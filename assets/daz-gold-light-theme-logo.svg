@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="20 0 160 110">
+  <defs>
+    <style>
+      .letter {
+        fill: none;
+        stroke: #D4AF37;
+        stroke-linecap: round;
+        stroke-width: 3;
+        filter: drop-shadow(0 0 2px rgba(212, 175, 55, 0.3));
+      }
+      .background {
+        fill: transparent;
+      }
+      
+      /* Animations remain the same */
+      @keyframes draw-D {
+        0% { stroke-dashoffset: 600; }
+        50% { stroke-dashoffset: 300; }
+        100% { stroke-dashoffset: 0; }
+      }
+      
+      @keyframes draw-line-top {
+        0% { stroke-dashoffset: 19.3; }
+        100% { stroke-dashoffset: 0; }
+      }
+      
+      @keyframes draw-line-bottom {
+        0% { stroke-dashoffset: 35; }
+        100% { stroke-dashoffset: 0; }
+      }
+      
+      @keyframes draw-ankh-loop {
+        0% { stroke-dashoffset: 60; }
+        100% { stroke-dashoffset: 0; }
+      }
+      
+      @keyframes draw-ankh-arms {
+        0% { stroke-dashoffset: 14; }
+        100% { stroke-dashoffset: 0; }
+      }
+      
+      @keyframes draw-rev-Z {
+        0% { stroke-dashoffset: -140; }
+        25% { stroke-dashoffset: -70; }
+        50% { stroke-dashoffset: 0; }
+        100% { stroke-dashoffset: 0; }
+      }
+      
+      .letter-D {
+        stroke-dasharray: 600;
+        stroke-dashoffset: 600;
+        animation: draw-D 10.3s ease-in-out forwards;
+      }
+      
+      .line-top {
+        stroke-dasharray: 19.3;
+        stroke-dashoffset: 19.3;
+        animation: draw-line-top 1s ease-in-out forwards;
+        animation-delay: 0.0s;
+      }
+      .line-bottom {
+        stroke-dasharray: 35;
+        stroke-dashoffset: 35;
+        animation: draw-line-bottom 1.5s ease-in-out forwards;
+        animation-delay: 0.0s;
+      }
+      
+      .ankh-loop {
+        stroke-dasharray: 60;
+        stroke-dashoffset: 60;
+        animation: draw-ankh-loop 1.5s ease-in-out forwards;
+        animation-delay: 1.5s;
+      }
+      .ankh-arms {
+        stroke-dasharray: 14;
+        stroke-dashoffset: 14;
+        animation: draw-ankh-arms 0.75s ease-in-out forwards;
+        animation-delay: 1.3s;
+      }
+      
+      .letter-Z {
+        stroke-dasharray: 140;
+        stroke-dashoffset: -140;
+        animation: draw-rev-Z 6s ease-in-out forwards;
+      }
+    </style>
+  </defs>
+  
+  <rect class="background" x="34" y="5" width="132" height="90"/>
+  
+  <g transform="translate(45 25)">
+    <path class="letter letter-D" d="M0 0 v70 a35 35 0 0 0 35 -35 a35 35 0 0 0 -35 -35 z"/>
+    
+    <g transform="translate(56.6 0)">
+      <path class="letter line-top" d="M0 35v-19.3"/>
+      <path class="letter line-bottom" d="M0 35v35"/>
+      
+      <path class="letter ankh-loop" d="M0 15.7 C4 9, 8.5 6, 8.5 2 C8.5 -2, 4 -3.5, 0 -3.5 C-4 -3.5, -8.5 -2, -8.5 2 C-8.5 6, -4 9, 0 15.7"/>
+      <path class="letter ankh-arms" d="M-7 15.7 L7 15.7"/>
+    </g>
+    
+    <path class="letter letter-Z" transform="translate(78.2 0)" d="M0 0h35 l-35 70h35"/>
+  </g>
+</svg>
