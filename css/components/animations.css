@@ -1,0 +1,59 @@
+/* Core animations */
+@keyframes fadeOutUp {
+    0% { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% { 
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes fadeInDown {
+    0% { 
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Remove unused animations and consolidate experience entries styling */
+.experience-entries {
+    opacity: 1;
+    transition: opacity 0.3s ease-out;
+}
+
+.experience-entries.fade-out {
+    opacity: 0;
+}
+
+/* Individual experience entry animation */
+.experience-entry {
+    animation: fadeInDown 0.7s ease-out forwards;
+    opacity: 0;
+}
+
+/* Sequence animations */
+.fade-sequence {
+    opacity: 0;
+}
+
+.fade-sequence.animate {
+    animation: fadeInDown 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.fade-sequence.credentials {
+    animation-delay: 0s;
+}
+
+.fade-sequence.section-title {
+    animation-delay: 0.15s;
+}
+
+.fade-sequence.content {
+    animation-delay: 0.3s;
+}
