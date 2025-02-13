@@ -1,0 +1,225 @@
+/* === EXPERIENCE COMPONENT === */
+
+/* Experience Entry Container */
+.experience-entry {
+    position: relative;
+    padding: var(--spacing-large);
+    margin-bottom: var(--spacing-large);
+    background: var(--bg-secondary);
+    transition: transform var(--transition-smooth),
+                box-shadow var(--transition-smooth);
+}
+
+/* Art Deco Frame */
+.experience-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+.experience-frame .frame-line {
+    position: absolute;
+    background: var(--accent);
+    transition: transform var(--transition-smooth);
+}
+
+/* Horizontal lines - Diagonal Offset */
+.experience-frame .frame-line.top,
+.experience-frame .frame-line.bottom {
+    height: 2px;
+    width: calc(100% - 20px);
+    transform: scaleX(0);
+}
+
+.experience-frame .frame-line.top { 
+    top: 0;
+    left: 20px;
+    transform-origin: left;
+}
+
+.experience-frame .frame-line.bottom {
+    bottom: 0;
+    right: 20px;
+    transform-origin: right;
+}
+
+/* Vertical lines - Diagonal Offset */
+.experience-frame .frame-line.left,
+.experience-frame .frame-line.right {
+    width: 2px;
+    height: calc(100% - 20px);
+    transform: scaleY(0);
+}
+
+.experience-frame .frame-line.left {
+    left: 0;
+    top: 20px;
+    transform-origin: top;
+}
+
+.experience-frame .frame-line.right {
+    right: 0;
+    bottom: 20px;
+    transform-origin: bottom;
+}
+
+/* Corner Triangle Effect */
+.experience-frame::before,
+.experience-frame::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    opacity: 0;
+    transition: opacity var(--transition-smooth), width var(--transition-smooth), height var(--transition-smooth);
+}
+
+/* Top Left Triangle */
+.experience-frame::before {
+    top: -1px;  /* Slight adjustment to align perfectly */
+    left: -1px; /* Slight adjustment to align perfectly */
+    border-width: 10px;  /* Full triangle */
+    border-color: var(--accent) transparent transparent var(--accent);  /* Full coloration */
+}
+
+/* Bottom Right Triangle */
+.experience-frame::after {
+    bottom: -1px;  /* Slight adjustment to align perfectly */
+    right: -1px;   /* Slight adjustment to align perfectly */
+    border-width: 10px;  /* Full triangle */
+    border-color: transparent var(--accent) var(--accent) transparent;  /* Full coloration */
+}
+
+/* Frame Animation on Hover */
+.experience-entry:hover .experience-frame .frame-line {
+    transform: scale(1);
+}
+
+.experience-entry:hover .experience-frame::before,
+.experience-entry:hover .experience-frame::after {
+    opacity: 1;
+    width: 10px;
+    height: 10px;
+}
+
+/* Experience Header */
+.experience-header {
+    margin-bottom: var(--spacing-medium);
+    position: relative;
+}
+
+.company-name {
+    font-size: var(--font-size-h2);
+    color: var(--accent);
+    margin: 0;
+    font-weight: bold;
+}
+
+.role-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--spacing-small);
+    color: var(--text-secondary);
+}
+
+/* Responsibility Groups */
+.categories-section {
+    margin-top: var(--spacing-medium);
+}
+
+.responsibility-group {
+    margin-bottom: var(--spacing-medium);
+}
+
+.responsibility-group h4 {
+    color: var(--accent);
+    margin-bottom: var(--spacing-small);
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 4px;
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+.responsibility-group ul {
+    list-style-type: disc;
+    padding-left: var(--spacing-medium);
+    margin: 0;
+}
+
+.responsibility-group li {
+    margin-bottom: var(--spacing-small);
+}
+
+/* Technical Environment */
+.tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-small);
+    margin-top: var(--spacing-medium);
+}
+
+.tech-tag {
+    padding: 4px 12px;
+    background: var(--bg-primary);
+    border: 1px solid var(--accent);
+    font-size: 0.9em;
+    transition: all var(--transition-quick);
+    position: relative;
+    overflow: hidden;
+}
+
+.tech-tag::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--accent);
+    transition: transform var(--transition-quick);
+    transform: skew(-45deg);
+    z-index: 1;
+}
+
+.tech-tag:hover::before {
+    transform: translate(100%, 0) skew(-45deg);
+}
+
+.tech-tag:hover {
+    color: var(--bg-primary);
+}
+
+.tech-tag:hover span {
+    color: var(--bg-primary);
+    position: relative;
+    z-index: 2;
+}
+
+/* Tech Environment Section */
+.tech-environment h4 {
+    color: var(--accent);
+    margin-bottom: var(--spacing-small);
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 4px;
+}
+
+.tech-environment ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tech-environment li {
+    margin-bottom: var(--spacing-small);
+    display: flex;
+}
+
+.tech-environment li strong {
+    min-width: 150px;
+    margin-right: var(--spacing-small);
+    color: var(--accent);
+}
