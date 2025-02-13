@@ -1,0 +1,86 @@
+/* === CSS VARIABLES === */
+:root {
+    /* Base Colors - Art Deco inspired palette */
+    --primary-gold: #D4AF37;
+    --secondary-gold: #C5A028;
+    --primary-black: #1A1A1A;
+    --primary-white: #FFFFFF;
+    --accent-blue: #0066CC;
+    
+    /* Theme Colors - Light */
+    --bg-primary: var(--primary-white);
+    --bg-secondary: #f8f9fa;
+    --text-primary: var(--primary-black);
+    --text-secondary: #4a4a4a;
+    --accent: var(--accent-blue);
+    
+    /* Transitions */
+    --transition-quick: 0.3s ease;
+    --transition-smooth: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Typography */
+    --font-primary: 'Raleway', sans-serif;
+    --font-size-base: 16px;
+    --font-size-h1: 2.5rem;
+    --font-size-h2: 2rem;
+    
+    /* Spacing */
+    --spacing-unit: 8px;
+    --spacing-small: calc(var(--spacing-unit) * 2);
+    --spacing-medium: calc(var(--spacing-unit) * 3);
+    --spacing-large: calc(var(--spacing-unit) * 4);
+    
+    /* Layout */
+    --max-width: 1200px;
+    --border-radius: 2px;
+	
+	    /* Layout Structure */
+    --content-width: 900px;
+    --content-padding: 2rem;
+    --main-margin: 4rem auto;
+}
+
+/* Add base layout rules */
+.cv-container {
+    width: var(--content-width);
+    margin: var(--main-margin);
+    padding: 0 var(--content-padding);
+
+
+/* Section spacing */
+.experience-section {
+    margin-top: 4rem;
+}
+}
+
+/* Dark theme variables */
+[data-theme="dark"] {
+    --bg-primary: var(--primary-black);
+    --bg-secondary: #2d2d2d;
+    --text-primary: var(--primary-white);
+    --text-secondary: #b3b3b3;
+    --accent: #00A3FF;
+}
+
+/* Base styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color var(--transition-smooth),
+                color var(--transition-smooth);
+}
+
+/* Print-specific variables */
+@media print {
+    :root {
+        --bg-primary: white;
+        --text-primary: black;
+        --spacing-unit: 6px;
+    }
+}
+
