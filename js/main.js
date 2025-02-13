@@ -3,4 +3,5 @@ document.addEventListener('DOMContentLoaded', () => {
     new ThemeManager();
     new LanguageManager();
     new ExperienceManager();
+    new EducationManager();
 });
