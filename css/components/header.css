@@ -38,7 +38,7 @@
 }
 
 
-/* Art Deco Frame - Enhanced Chevron Pattern */
+/* Art Deco Frame - Diamond Pattern */
 .initials-container {
     position: relative;
     width: 180px;
@@ -51,7 +51,7 @@
     transition: all var(--transition-smooth);
 }
 
-/* Outer decorative frame */
+/* Outer frame - will rotate to diamond */
 .initials-container::before {
     content: '';
     position: absolute;
@@ -70,7 +70,7 @@
     transition: all var(--transition-smooth);
 }
 
-/* Inner geometric pattern */
+/* Inner frame - maintains square shape */
 .initials-container::after {
     content: '';
     position: absolute;
@@ -89,42 +89,24 @@
     transition: all var(--transition-smooth);
 }
 
-/* Additional decorative elements */
-.frame-accent {
-    position: absolute;
-    inset: 25px;
-    border: 1px solid var(--accent);
-    clip-path: polygon(
-        0 0,
-        100% 0,
-        100% 100%,
-        0 100%
-    );
-    transition: all var(--transition-smooth);
-    opacity: 0.7;
-}
-
-/* Logo SVG Styling */
+/* Logo SVG Styling - removed all rotations */
 .theme-logo {
     position: absolute;
-    inset: 30px;  /* Adjusted for better fit */
-    width: calc(100% - 60px);  /* Adjusted size */
-    height: calc(100% - 60px);  /* Adjusted size */
+    inset: 30px;
+    width: calc(100% - 60px);
+    height: calc(100% - 60px);
     transition: all var(--transition-smooth);
     z-index: 1;
+    transform: none; /* Explicitly remove any rotation */
 }
 
 /* Hover animations */
 .initials-container:hover::before {
-    transform: scale(1.05);
+    transform: rotate(45deg) scale(1.05); /* Creates diamond shape */
 }
 
 .initials-container:hover::after {
-    transform: scale(0.98) rotate(15deg);
-}
-
-.initials-container:hover .frame-accent {
-    transform: scale(0.95) rotate(-15deg);
+    transform: scale(0.95); /* Slight scale down for depth */
 }
 
 /* Theme-based logo visibility */
