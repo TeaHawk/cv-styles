@@ -37,7 +37,8 @@
     gap: calc(var(--spacing-large) * 1.5);
 }
 
-/* Art Deco Frame - Chevron Pattern */
+
+/* Art Deco Frame - Zigzag Border */
 .initials-container {
     position: relative;
     width: 180px;
@@ -50,36 +51,50 @@
     transition: all var(--transition-smooth);
 }
 
-/* Outer chevron frame */
+/* Outer zigzag frame */
 .initials-container::before {
     content: '';
     position: absolute;
     inset: 0;
     border: 2px solid var(--accent);
     clip-path: polygon(
-        0 25%,
-        25% 0,
-        75% 0,
-        100% 25%,
-        100% 75%,
-        75% 100%,
-        25% 100%,
-        0 75%
+        0 40%,
+        20% 40%,
+        50% 0,
+        80% 40%,
+        100% 40%,
+        100% 60%,
+        80% 60%,
+        50% 100%,
+        20% 60%,
+        0 60%
     );
     transition: all var(--transition-smooth);
 }
 
-/* Inner chevron pattern */
+/* Inner decorative corners */
 .initials-container::after {
     content: '';
     position: absolute;
-    inset: 15px;
+    inset: 20px;
     border: 2px solid var(--accent);
     clip-path: polygon(
-        50% 0,
-        100% 50%,
-        50% 100%,
-        0 50%
+        0 0,
+        40% 0,
+        50% 10%,
+        60% 0,
+        100% 0,
+        100% 40%,
+        90% 50%,
+        100% 60%,
+        100% 100%,
+        60% 100%,
+        50% 90%,
+        40% 100%,
+        0 100%,
+        0 60%,
+        10% 50%,
+        0 40%
     );
     transition: all var(--transition-smooth);
 }
@@ -96,11 +111,11 @@
 
 /* Hover animations */
 .initials-container:hover::before {
-    transform: rotate(45deg);
+    transform: scale(1.05);
 }
 
 .initials-container:hover::after {
-    transform: rotate(-45deg);
+    transform: scale(0.95);
 }
 
 .light-logo { opacity: 1; }
