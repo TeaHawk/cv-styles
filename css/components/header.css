@@ -38,7 +38,7 @@
 }
 
 
-/* Art Deco Frame - Zigzag Border */
+/* Art Deco Frame - Enhanced Chevron Pattern */
 .initials-container {
     position: relative;
     width: 180px;
@@ -51,61 +51,66 @@
     transition: all var(--transition-smooth);
 }
 
-/* Outer zigzag frame */
+/* Outer decorative frame */
 .initials-container::before {
     content: '';
     position: absolute;
     inset: 0;
     border: 2px solid var(--accent);
     clip-path: polygon(
-        0 40%,
-        20% 40%,
-        50% 0,
-        80% 40%,
-        100% 40%,
-        100% 60%,
-        80% 60%,
-        50% 100%,
-        20% 60%,
-        0 60%
+        15% 0,
+        85% 0,
+        100% 15%,
+        100% 85%,
+        85% 100%,
+        15% 100%,
+        0 85%,
+        0 15%
     );
     transition: all var(--transition-smooth);
 }
 
-/* Inner decorative corners */
+/* Inner geometric pattern */
 .initials-container::after {
     content: '';
     position: absolute;
-    inset: 20px;
+    inset: 12px;
     border: 2px solid var(--accent);
     clip-path: polygon(
-        0 0,
-        40% 0,
-        50% 10%,
-        60% 0,
-        100% 0,
-        100% 40%,
-        90% 50%,
-        100% 60%,
-        100% 100%,
-        60% 100%,
-        50% 90%,
-        40% 100%,
-        0 100%,
-        0 60%,
-        10% 50%,
-        0 40%
+        20% 0%,
+        80% 0%,
+        100% 20%,
+        100% 80%,
+        80% 100%,
+        20% 100%,
+        0% 80%,
+        0% 20%
     );
     transition: all var(--transition-smooth);
+}
+
+/* Additional decorative elements */
+.frame-accent {
+    position: absolute;
+    inset: 25px;
+    border: 1px solid var(--accent);
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        100% 100%,
+        0 100%
+    );
+    transition: all var(--transition-smooth);
+    opacity: 0.7;
 }
 
 /* Logo SVG Styling */
 .theme-logo {
     position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    transition: opacity var(--transition-smooth);
+    inset: 30px;  /* Adjusted for better fit */
+    width: calc(100% - 60px);  /* Adjusted size */
+    height: calc(100% - 60px);  /* Adjusted size */
+    transition: all var(--transition-smooth);
     z-index: 1;
 }
 
@@ -115,9 +120,14 @@
 }
 
 .initials-container:hover::after {
-    transform: scale(0.95);
+    transform: scale(0.98) rotate(15deg);
 }
 
+.initials-container:hover .frame-accent {
+    transform: scale(0.95) rotate(-15deg);
+}
+
+/* Theme-based logo visibility */
 .light-logo { opacity: 1; }
 .dark-logo { opacity: 0; }
 
