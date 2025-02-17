@@ -95,9 +95,9 @@
     inset: 30px;
     width: calc(100% - 60px);
     height: calc(100% - 60px);
-    transition: all var(--transition-smooth);
+    transition: opacity var(--transition-smooth);
     z-index: 1;
-    transform: none; /* Explicitly remove any rotation */
+    transform: none !important; /* Force no transform */
 }
 
 /* Hover animations */
