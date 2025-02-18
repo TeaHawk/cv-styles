@@ -1,4 +1,3 @@
-// === TRANSLATIONS MANAGER ===
 const translations = {
     en: {
         meta: {
@@ -23,7 +22,23 @@ const translations = {
             experience: "Professional Experience",
             skills: "Technical Skills",
             education: "Education",
-			technicalBackground: "Technical Background"
+            technicalBackground: "Technical Background"
+        },
+        skills: {
+            proficiency: {
+                expert: "Expert",
+                advanced: "Advanced",
+                intermediate: "Intermediate",
+                beginner: "Beginner"
+            },
+            categories: {
+                etl: "ETL & Integration",
+                databases: "Databases",
+                bi: "Business Intelligence",
+                languages: "Languages & Frameworks",
+                devops: "DevOps & Cloud",
+                datascience: "Data Science & ML"
+            }
         }
     },
     fr: {
@@ -49,7 +64,23 @@ const translations = {
             experience: "Expérience Professionnelle",
             skills: "Compétences Techniques",
             education: "Formation",
-			technicalBackground: "Environnement Technique"
+            technicalBackground: "Environnement Technique"
+        },
+        skills: {
+            proficiency: {
+                expert: "Expert",
+                advanced: "Avancé",
+                intermediate: "Intermédiaire",
+                beginner: "Débutant"
+            },
+            categories: {
+                etl: "ETL & Intégration",
+                databases: "Bases de Données",
+                bi: "Business Intelligence",
+                languages: "Langages & Frameworks",
+                devops: "DevOps & Cloud",
+                datascience: "Data Science & ML"
+            }
         }
     },
     ru: {
@@ -75,7 +106,23 @@ const translations = {
             experience: "Профессиональный опыт",
             skills: "Технические навыки",
             education: "Образование",
-			technicalBackground: "Технический Стек"
+            technicalBackground: "Технический Стек"
+        },
+        skills: {
+            proficiency: {
+                expert: "Эксперт",
+                advanced: "Продвинутый",
+                intermediate: "Средний",
+                beginner: "Начальный"
+            },
+            categories: {
+                etl: "ETL и Интеграция",
+                databases: "Базы Данных",
+                bi: "Бизнес-аналитика",
+                languages: "Языки и Фреймворки",
+                devops: "DevOps и Облако",
+                datascience: "Data Science и ML"
+            }
         }
     }
 };
