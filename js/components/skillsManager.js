@@ -6,7 +6,6 @@ class SkillsManager {
     }
 
     init() {
-        // Ensure DOM is loaded
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', () => this.setupSkillsManager());
         } else {
@@ -20,10 +19,7 @@ class SkillsManager {
             return;
         }
 
-        // Initial render
         this.renderSkills(this.currentLang);
-
-        // Language change listener
         document.addEventListener('languageChanged', (e) => {
             if (e.detail.language !== this.currentLang) {
                 this.currentLang = e.detail.language;
@@ -32,37 +28,47 @@ class SkillsManager {
         });
     }
 
-    renderSkills(lang) {
-        try {
-            this.container.innerHTML = '';
-            const skillsHTML = this.generateSkillsHTML(lang);
-            this.container.innerHTML = skillsHTML;
-
-            requestAnimationFrame(() => {
-                this.container.classList.add('visible');
-                this.initializeProgressBars();
-                this.addHoverEffects();
-            });
-        } catch (error) {
-            console.error('Error rendering skills:', error);
-        }
+    getProficiencyLevel(percentage) {
+        if (percentage >= 90) return 'expert';
+        if (percentage >= 80) return 'advanced';
+        if (percentage >= 70) return 'proficient';
+        return 'working';
     }
 
-    updateSkills(lang) {
-        try {
-            this.container.classList.add('fade-out');
-            
-            setTimeout(() => {
-                const skillsHTML = this.generateSkillsHTML(lang);
-                this.container.innerHTML = skillsHTML;
-                
-                this.container.classList.remove('fade-out');
-                this.initializeProgressBars();
-                this.addHoverEffects();
-            }, 300);
-        } catch (error) {
-            console.error('Error updating skills:', error);
-        }
+    getProficiencyDots(percentage) {
+        const level = this.getProficiencyLevel(percentage);
+        const dots = {
+            'expert': 4,
+            'advanced': 3,
+            'proficient': 2,
+            'working': 1
+        }[level];
+
+        return Array(4).fill().map((_, i) => 
+            `<span class="proficiency-dot ${i < dots ? 'filled' : ''}"></span>`
+        ).join('');
+    }
+
+    getProficiencyText(percentage, lang) {
+        const level = this.getProficiencyLevel(percentage);
+        return translations[lang].skills.proficiency[level];
+    }
+
+    generateSkillsGridHTML(skills, lang) {
+        return skills.map(skill => `
+            <div class="skill-item" data-level="${skill.level}">
+                <span class="skill-name">${skill.name}</span>
+                <div class="proficiency-wrapper">
+                    <div class="proficiency-indicator">
+                        ${this.getProficiencyDots(skill.level)}
+                    </div>
+                    <span class="proficiency-text">${this.getProficiencyText(skill.level, lang)}</span>
+                </div>
+                <div class="skill-tags">
+                    ${skill.tags.map(tag => `<span class="skill-tag">${tag}</span>`).join('')}
+                </div>
+            </div>
+        `).join('');
     }
 
     generateSkillsHTML(lang) {
@@ -80,39 +86,41 @@ class SkillsManager {
                 <h3 class="category-title">${category.category}</h3>
                 
                 <div class="skills-grid">
-                    ${this.generateSkillsGridHTML(category.skills)}
+                    ${this.generateSkillsGridHTML(category.skills, lang)}
                 </div>
             </div>
         `).join('');
     }
 
-    generateSkillsGridHTML(skills) {
-        return skills.map(skill => `
-            <div class="skill-item" data-level="${skill.level}">
-                <div class="skill-header">
-                    <span class="skill-name">${skill.name}</span>
-                    <span class="skill-level">${skill.level}%</span>
-                </div>
-                <div class="skill-progress">
-                    <div class="progress-bar" style="width: ${skill.level}%"></div>
-                </div>
-                <div class="skill-tags">
-                    ${skill.tags.map(tag => `<span class="skill-tag">${tag}</span>`).join('')}
-                </div>
-            </div>
-        `).join('');
+    renderSkills(lang) {
+        try {
+            this.container.innerHTML = '';
+            const skillsHTML = this.generateSkillsHTML(lang);
+            this.container.innerHTML = skillsHTML;
+
+            requestAnimationFrame(() => {
+                this.container.classList.add('visible');
+                this.addHoverEffects();
+            });
+        } catch (error) {
+            console.error('Error rendering skills:', error);
+        }
     }
 
-    initializeProgressBars() {
-        const progressBars = this.container.querySelectorAll('.progress-bar');
-        progressBars.forEach(bar => {
-            const level = bar.parentElement.parentElement.dataset.level;
-            bar.style.width = '0%';
+    updateSkills(lang) {
+        try {
+            this.container.classList.add('fade-out');
             
             setTimeout(() => {
-                bar.style.width = `${level}%`;
-            }, 100);
-        });
+                const skillsHTML = this.generateSkillsHTML(lang);
+                this.container.innerHTML = skillsHTML;
+                
+                this.container.classList.remove('fade-out');
+                this.addHoverEffects();
+            }, 300);
+        } catch (error) {
+            console.error('Error updating skills:', error);
+        }
     }
 
     addHoverEffects() {
