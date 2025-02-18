@@ -1,30 +1,29 @@
 // Core Technical Skills Section
-// Core Technical Skills Section
 const skills_core = {
     workflow: {
         fr: [
             {
-                category: "Science des Données & ML",
+                category: "Data Science & ML",
                 skills: [
                     {
                         name: "Machine Learning",
                         level: 90,
-                        tags: ["TensorFlow", "Keras", "SciKit-Learn", "PyTorch"]
+                        tags: ["Classification", "Regression", "Clustering"]
                     },
                     {
                         name: "Deep Learning",
                         level: 85,
-                        tags: ["Réseaux de Neurones", "Vision par Ordinateur", "NLP"]
+                        tags: ["Neural Networks", "CNN", "RNN", "Transformers"]
                     },
                     {
-                        name: "Analyse Statistique",
-                        level: 85,
-                        tags: ["R", "Python", "SciPy"]
+                        name: "MLOps",
+                        level: 80,
+                        tags: ["Model Deployment", "Monitoring", "Version Control"]
                     },
                     {
-                        name: "Vision par Ordinateur",
+                        name: "NLP",
                         level: 85,
-                        tags: ["OpenCV", "Pillow", "Scikit-Image"]
+                        tags: ["BERT", "GPT", "Text Analysis", "Embeddings"]
                     }
                 ]
             },
@@ -32,44 +31,24 @@ const skills_core = {
                 category: "Traitement des Données",
                 skills: [
                     {
-                        name: "Préparation des Données",
+                        name: "Data Processing",
                         level: 95,
-                        tags: ["Pandas", "NumPy", "Nettoyage de Données"]
+                        tags: ["Pandas", "NumPy", "Dask", "Modin"]
                     },
                     {
-                        name: "Big Data",
-                        level: 85,
-                        tags: ["Spark", "Hadoop", "Calcul Distribué"]
-                    },
-                    {
-                        name: "Traitement de Texte",
+                        name: "Optimisation",
                         level: 90,
-                        tags: ["NLTK", "SpaCy", "Analyse Textuelle"]
+                        tags: ["Parallel Processing", "Memory Management", "Caching"]
                     },
                     {
-                        name: "OCR",
-                        level: 85,
-                        tags: ["Tesseract", "PyMuPDF", "Traitement Documentaire"]
-                    }
-                ]
-            },
-            {
-                category: "Visualisation des Données",
-                skills: [
-                    {
-                        name: "Business Intelligence",
-                        level: 95,
-                        tags: ["Power BI", "Reporting", "Suivi KPI"]
-                    },
-                    {
-                        name: "Visualisation Scientifique",
+                        name: "Data Validation",
                         level: 90,
-                        tags: ["Matplotlib", "Seaborn", "Graphiques"]
+                        tags: ["Great Expectations", "Pandera", "Data Quality"]
                     },
                     {
-                        name: "Tableaux de Bord Interactifs",
+                        name: "Scientific Computing",
                         level: 85,
-                        tags: ["Streamlit", "Dashboards Web"]
+                        tags: ["SciPy", "Statsmodels", "Optimization"]
                     }
                 ]
             }
@@ -81,22 +60,22 @@ const skills_core = {
                     {
                         name: "Machine Learning",
                         level: 90,
-                        tags: ["TensorFlow", "Keras", "SciKit-Learn", "PyTorch"]
+                        tags: ["Classification", "Regression", "Clustering"]
                     },
                     {
                         name: "Deep Learning",
                         level: 85,
-                        tags: ["Neural Networks", "Computer Vision", "NLP"]
+                        tags: ["Neural Networks", "CNN", "RNN", "Transformers"]
                     },
                     {
-                        name: "Statistical Analysis",
-                        level: 85,
-                        tags: ["R", "Python", "SciPy"]
+                        name: "MLOps",
+                        level: 80,
+                        tags: ["Model Deployment", "Monitoring", "Version Control"]
                     },
                     {
-                        name: "Computer Vision",
+                        name: "NLP",
                         level: 85,
-                        tags: ["OpenCV", "Pillow", "Scikit-Image"]
+                        tags: ["BERT", "GPT", "Text Analysis", "Embeddings"]
                     }
                 ]
             },
@@ -104,44 +83,24 @@ const skills_core = {
                 category: "Data Processing",
                 skills: [
                     {
-                        name: "Data Preparation",
+                        name: "Data Processing",
                         level: 95,
-                        tags: ["Pandas", "NumPy", "Data Cleaning"]
+                        tags: ["Pandas", "NumPy", "Dask", "Modin"]
                     },
                     {
-                        name: "Big Data Processing",
-                        level: 85,
-                        tags: ["Spark", "Hadoop", "Distributed Computing"]
-                    },
-                    {
-                        name: "Text Processing",
+                        name: "Optimization",
                         level: 90,
-                        tags: ["NLTK", "SpaCy", "Text Analysis"]
+                        tags: ["Parallel Processing", "Memory Management", "Caching"]
                     },
                     {
-                        name: "OCR",
-                        level: 85,
-                        tags: ["Tesseract", "PyMuPDF", "Document Processing"]
-                    }
-                ]
-            },
-            {
-                category: "Data Visualization",
-                skills: [
-                    {
-                        name: "Business Intelligence",
-                        level: 95,
-                        tags: ["Power BI", "Reporting", "KPI Monitoring"]
-                    },
-                    {
-                        name: "Scientific Visualization",
+                        name: "Data Validation",
                         level: 90,
-                        tags: ["Matplotlib", "Seaborn", "Data Plotting"]
+                        tags: ["Great Expectations", "Pandera", "Data Quality"]
                     },
                     {
-                        name: "Interactive Dashboards",
+                        name: "Scientific Computing",
                         level: 85,
-                        tags: ["Streamlit", "Web Dashboards"]
+                        tags: ["SciPy", "Statsmodels", "Optimization"]
                     }
                 ]
             }
@@ -153,22 +112,22 @@ const skills_core = {
                     {
                         name: "Machine Learning",
                         level: 90,
-                        tags: ["TensorFlow", "Keras", "SciKit-Learn", "PyTorch"]
+                        tags: ["Классификация", "Регрессия", "Кластеризация"]
                     },
                     {
                         name: "Deep Learning",
                         level: 85,
-                        tags: ["Нейронные сети", "Компьютерное зрение", "NLP"]
+                        tags: ["Нейронные сети", "CNN", "RNN", "Transformers"]
                     },
                     {
-                        name: "Статистический Анализ",
-                        level: 85,
-                        tags: ["R", "Python", "SciPy"]
+                        name: "MLOps",
+                        level: 80,
+                        tags: ["Развертывание моделей", "Мониторинг", "Версионирование"]
                     },
                     {
-                        name: "Компьютерное Зрение",
+                        name: "NLP",
                         level: 85,
-                        tags: ["OpenCV", "Pillow", "Scikit-Image"]
+                        tags: ["BERT", "GPT", "Анализ текста", "Embeddings"]
                     }
                 ]
             },
@@ -176,44 +135,24 @@ const skills_core = {
                 category: "Обработка Данных",
                 skills: [
                     {
-                        name: "Подготовка Данных",
+                        name: "Обработка Данных",
                         level: 95,
-                        tags: ["Pandas", "NumPy", "Очистка данных"]
+                        tags: ["Pandas", "NumPy", "Dask", "Modin"]
                     },
                     {
-                        name: "Обработка Больших Данных",
-                        level: 85,
-                        tags: ["Spark", "Hadoop", "Распределенные вычисления"]
-                    },
-                    {
-                        name: "Обработка Текста",
+                        name: "Оптимизация",
                         level: 90,
-                        tags: ["NLTK", "SpaCy", "Анализ текста"]
+                        tags: ["Параллельная обработка", "Управление памятью", "Кэширование"]
                     },
                     {
-                        name: "OCR",
-                        level: 85,
-                        tags: ["Tesseract", "PyMuPDF", "Обработка документов"]
-                    }
-                ]
-            },
-            {
-                category: "Визуализация Данных",
-                skills: [
-                    {
-                        name: "Business Intelligence",
-                        level: 95,
-                        tags: ["Power BI", "Отчетность", "Мониторинг KPI"]
-                    },
-                    {
-                        name: "Научная Визуализация",
+                        name: "Валидация Данных",
                         level: 90,
-                        tags: ["Matplotlib", "Seaborn", "Построение графиков"]
+                        tags: ["Great Expectations", "Pandera", "Качество данных"]
                     },
                     {
-                        name: "Интерактивные Дашборды",
+                        name: "Научные вычисления",
                         level: 85,
-                        tags: ["Streamlit", "Веб-дашборды"]
+                        tags: ["SciPy", "Statsmodels", "Оптимизация"]
                     }
                 ]
             }
@@ -221,161 +160,161 @@ const skills_core = {
     }
 };
 
-// Data Engineering & ETL Skills Section
+// Data Engineering Skills Section
 const skills_data_engineering = {
     workflow: {
         fr: [
             {
-                category: "ETL & Intégration",
+                category: "ETL & Pipelines",
                 skills: [
                     {
-                        name: "SSIS",
+                        name: "ETL Platforms",
                         level: 95,
-                        tags: ["Microsoft", "ETL", "Data Integration"]
+                        tags: ["SSIS", "Azure Data Factory", "Informatica"]
                     },
                     {
-                        name: "Denodo",
+                        name: "Streaming",
                         level: 85,
-                        tags: ["Virtualisation", "Data Integration"]
+                        tags: ["Kafka", "Event Hubs", "Real-time Processing"]
                     },
                     {
-                        name: "Python ETL",
+                        name: "Data Lake",
                         level: 90,
-                        tags: ["Scripting", "Automatisation"]
+                        tags: ["Delta Lake", "Parquet", "Data Cataloging"]
                     },
                     {
-                        name: "Scripts d'Intégration",
+                        name: "Orchestration",
                         level: 85,
-                        tags: ["FTP", "API REST", "Automatisation"]
+                        tags: ["Airflow", "Azure Pipelines", "Workflow Management"]
                     }
                 ]
             },
             {
-                category: "Gestion des Données",
+                category: "Big Data & Processing",
                 skills: [
+                    {
+                        name: "Distributed Computing",
+                        level: 90,
+                        tags: ["Spark", "PySpark", "Distributed Systems"]
+                    },
                     {
                         name: "Data Quality",
                         level: 90,
-                        tags: ["Validation", "Nettoyage", "Monitoring"]
+                        tags: ["DQ Frameworks", "Monitoring", "Validation"]
                     },
                     {
-                        name: "Data Pipelines",
-                        level: 90,
-                        tags: ["Orchestration", "Workflows"]
-                    },
-                    {
-                        name: "Temps Réel",
+                        name: "Data Integration",
                         level: 85,
-                        tags: ["Streaming", "Real-time Processing"]
+                        tags: ["Denodo", "APIs", "CDC"]
                     },
                     {
-                        name: "Dataiku",
+                        name: "Performance Tuning",
                         level: 85,
-                        tags: ["Data Ops", "Workflows"]
+                        tags: ["Query Optimization", "Resource Management", "Monitoring"]
                     }
                 ]
             }
         ],
         en: [
             {
-                category: "ETL & Integration",
+                category: "ETL & Pipelines",
                 skills: [
                     {
-                        name: "SSIS",
+                        name: "ETL Platforms",
                         level: 95,
-                        tags: ["Microsoft", "ETL", "Data Integration"]
+                        tags: ["SSIS", "Azure Data Factory", "Informatica"]
                     },
                     {
-                        name: "Denodo",
+                        name: "Streaming",
                         level: 85,
-                        tags: ["Virtualization", "Data Integration"]
+                        tags: ["Kafka", "Event Hubs", "Real-time Processing"]
                     },
                     {
-                        name: "Python ETL",
+                        name: "Data Lake",
                         level: 90,
-                        tags: ["Scripting", "Automation"]
+                        tags: ["Delta Lake", "Parquet", "Data Cataloging"]
                     },
                     {
-                        name: "Integration Scripts",
+                        name: "Orchestration",
                         level: 85,
-                        tags: ["FTP", "REST API", "Automation"]
+                        tags: ["Airflow", "Azure Pipelines", "Workflow Management"]
                     }
                 ]
             },
             {
-                category: "Data Management",
+                category: "Big Data & Processing",
                 skills: [
+                    {
+                        name: "Distributed Computing",
+                        level: 90,
+                        tags: ["Spark", "PySpark", "Distributed Systems"]
+                    },
                     {
                         name: "Data Quality",
                         level: 90,
-                        tags: ["Validation", "Cleaning", "Monitoring"]
+                        tags: ["DQ Frameworks", "Monitoring", "Validation"]
                     },
                     {
-                        name: "Data Pipelines",
-                        level: 90,
-                        tags: ["Orchestration", "Workflows"]
-                    },
-                    {
-                        name: "Real-time",
+                        name: "Data Integration",
                         level: 85,
-                        tags: ["Streaming", "Real-time Processing"]
+                        tags: ["Denodo", "APIs", "CDC"]
                     },
                     {
-                        name: "Dataiku",
+                        name: "Performance Tuning",
                         level: 85,
-                        tags: ["Data Ops", "Workflows"]
+                        tags: ["Query Optimization", "Resource Management", "Monitoring"]
                     }
                 ]
             }
         ],
         ru: [
             {
-                category: "ETL и Интеграция",
+                category: "ETL & Пайплайны",
                 skills: [
                     {
-                        name: "SSIS",
+                        name: "ETL Платформы",
                         level: 95,
-                        tags: ["Microsoft", "ETL", "Интеграция данных"]
+                        tags: ["SSIS", "Azure Data Factory", "Informatica"]
                     },
                     {
-                        name: "Denodo",
+                        name: "Стриминг",
                         level: 85,
-                        tags: ["Виртуализация", "Интеграция данных"]
+                        tags: ["Kafka", "Event Hubs", "Обработка в реальном времени"]
                     },
                     {
-                        name: "Python ETL",
+                        name: "Data Lake",
                         level: 90,
-                        tags: ["Скриптинг", "Автоматизация"]
+                        tags: ["Delta Lake", "Parquet", "Каталогизация данных"]
                     },
                     {
-                        name: "Скрипты интеграции",
+                        name: "Оркестрация",
                         level: 85,
-                        tags: ["FTP", "REST API", "Автоматизация"]
+                        tags: ["Airflow", "Azure Pipelines", "Управление воркфлоу"]
                     }
                 ]
             },
             {
-                category: "Управление Данными",
+                category: "Big Data & Обработка",
                 skills: [
                     {
-                        name: "Качество Данных",
+                        name: "Распределенные вычисления",
                         level: 90,
-                        tags: ["Валидация", "Очистка", "Мониторинг"]
+                        tags: ["Spark", "PySpark", "Распределенные системы"]
                     },
                     {
-                        name: "Пайплайны Данных",
+                        name: "Качество данных",
                         level: 90,
-                        tags: ["Оркестрация", "Рабочие процессы"]
+                        tags: ["DQ Фреймворки", "Мониторинг", "Валидация"]
                     },
                     {
-                        name: "Реальное время",
+                        name: "Интеграция данных",
                         level: 85,
-                        tags: ["Стриминг", "Обработка в реальном времени"]
+                        tags: ["Denodo", "APIs", "CDC"]
                     },
                     {
-                        name: "Dataiku",
+                        name: "Оптимизация производительности",
                         level: 85,
-                        tags: ["Data Ops", "Рабочие процессы"]
+                        tags: ["Оптимизация запросов", "Управление ресурсами", "Мониторинг"]
                     }
                 ]
             }
@@ -384,32 +323,32 @@ const skills_data_engineering = {
 };
 
 
-// Databases & Storage Skills Section
+// Database Skills Section
 const skills_databases = {
     workflow: {
         fr: [
             {
-                category: "Bases de Données",
+                category: "Bases de Données Relationnelles",
                 skills: [
                     {
-                        name: "MS SQL Server",
+                        name: "SQL Server",
                         level: 95,
-                        tags: ["T-SQL", "SSMS", "Stored Procedures"]
+                        tags: ["T-SQL", "SSMS", "Optimisation", "Administration"]
                     },
                     {
                         name: "PostgreSQL",
                         level: 90,
-                        tags: ["PL/pgSQL", "Performance Tuning"]
+                        tags: ["PL/pgSQL", "Partitionnement", "Réplication"]
                     },
                     {
                         name: "Oracle",
                         level: 85,
-                        tags: ["PL/SQL", "Oracle 12c"]
+                        tags: ["PL/SQL", "Performance Tuning", "RAC"]
                     },
                     {
-                        name: "Big Query",
-                        level: 80,
-                        tags: ["GCP", "Data Warehouse"]
+                        name: "Administration DB",
+                        level: 90,
+                        tags: ["Backup", "Recovery", "Sécurité", "Maintenance"]
                     }
                 ]
             },
@@ -417,46 +356,76 @@ const skills_databases = {
                 category: "Data Warehousing",
                 skills: [
                     {
-                        name: "OLAP",
+                        name: "OLAP & Cubes",
                         level: 90,
-                        tags: ["Cubes", "SSAS", "Multidimensionnel"]
+                        tags: ["SSAS", "MDX", "Modélisation dimensionnelle"]
                     },
                     {
-                        name: "Data Modeling",
+                        name: "Cloud Data Warehouse",
                         level: 85,
-                        tags: ["Star Schema", "Snowflake Schema"]
+                        tags: ["Snowflake", "BigQuery", "Redshift"]
                     },
                     {
-                        name: "Performance",
+                        name: "Modélisation",
                         level: 90,
-                        tags: ["Optimization", "Indexing", "Query Tuning"]
+                        tags: ["Star Schema", "Data Vault", "Kimball"]
+                    },
+                    {
+                        name: "Performance DW",
+                        level: 85,
+                        tags: ["Indexation", "Partitionnement", "Optimisation"]
+                    }
+                ]
+            },
+            {
+                category: "Solutions NoSQL",
+                skills: [
+                    {
+                        name: "Document Stores",
+                        level: 80,
+                        tags: ["MongoDB", "Elasticsearch", "Document Design"]
+                    },
+                    {
+                        name: "Graph Databases",
+                        level: 75,
+                        tags: ["Neo4j", "Graph Modeling", "Cypher"]
+                    },
+                    {
+                        name: "Key-Value Stores",
+                        level: 80,
+                        tags: ["Redis", "Cache", "Performance"]
+                    },
+                    {
+                        name: "Time Series DB",
+                        level: 75,
+                        tags: ["InfluxDB", "Metrics", "Monitoring"]
                     }
                 ]
             }
         ],
         en: [
             {
-                category: "Databases",
+                category: "Relational Databases",
                 skills: [
                     {
-                        name: "MS SQL Server",
+                        name: "SQL Server",
                         level: 95,
-                        tags: ["T-SQL", "SSMS", "Stored Procedures"]
+                        tags: ["T-SQL", "SSMS", "Optimization", "Administration"]
                     },
                     {
                         name: "PostgreSQL",
                         level: 90,
-                        tags: ["PL/pgSQL", "Performance Tuning"]
+                        tags: ["PL/pgSQL", "Partitioning", "Replication"]
                     },
                     {
                         name: "Oracle",
                         level: 85,
-                        tags: ["PL/SQL", "Oracle 12c"]
+                        tags: ["PL/SQL", "Performance Tuning", "RAC"]
                     },
                     {
-                        name: "Big Query",
-                        level: 80,
-                        tags: ["GCP", "Data Warehouse"]
+                        name: "DB Administration",
+                        level: 90,
+                        tags: ["Backup", "Recovery", "Security", "Maintenance"]
                     }
                 ]
             },
@@ -464,66 +433,126 @@ const skills_databases = {
                 category: "Data Warehousing",
                 skills: [
                     {
-                        name: "OLAP",
+                        name: "OLAP & Cubes",
                         level: 90,
-                        tags: ["Cubes", "SSAS", "Multidimensional"]
+                        tags: ["SSAS", "MDX", "Dimensional Modeling"]
                     },
                     {
-                        name: "Data Modeling",
+                        name: "Cloud Data Warehouse",
                         level: 85,
-                        tags: ["Star Schema", "Snowflake Schema"]
+                        tags: ["Snowflake", "BigQuery", "Redshift"]
                     },
                     {
-                        name: "Performance",
+                        name: "Modeling",
                         level: 90,
-                        tags: ["Optimization", "Indexing", "Query Tuning"]
+                        tags: ["Star Schema", "Data Vault", "Kimball"]
+                    },
+                    {
+                        name: "DW Performance",
+                        level: 85,
+                        tags: ["Indexing", "Partitioning", "Optimization"]
+                    }
+                ]
+            },
+            {
+                category: "NoSQL Solutions",
+                skills: [
+                    {
+                        name: "Document Stores",
+                        level: 80,
+                        tags: ["MongoDB", "Elasticsearch", "Document Design"]
+                    },
+                    {
+                        name: "Graph Databases",
+                        level: 75,
+                        tags: ["Neo4j", "Graph Modeling", "Cypher"]
+                    },
+                    {
+                        name: "Key-Value Stores",
+                        level: 80,
+                        tags: ["Redis", "Cache", "Performance"]
+                    },
+                    {
+                        name: "Time Series DB",
+                        level: 75,
+                        tags: ["InfluxDB", "Metrics", "Monitoring"]
                     }
                 ]
             }
         ],
         ru: [
             {
-                category: "Базы Данных",
+                category: "Реляционные базы данных",
                 skills: [
                     {
-                        name: "MS SQL Server",
+                        name: "SQL Server",
                         level: 95,
-                        tags: ["T-SQL", "SSMS", "Хранимые процедуры"]
+                        tags: ["T-SQL", "SSMS", "Оптимизация", "Администрирование"]
                     },
                     {
                         name: "PostgreSQL",
                         level: 90,
-                        tags: ["PL/pgSQL", "Оптимизация производительности"]
+                        tags: ["PL/pgSQL", "Партиционирование", "Репликация"]
                     },
                     {
                         name: "Oracle",
                         level: 85,
-                        tags: ["PL/SQL", "Oracle 12c"]
+                        tags: ["PL/SQL", "Оптимизация производительности", "RAC"]
                     },
                     {
-                        name: "Big Query",
-                        level: 80,
-                        tags: ["GCP", "Data Warehouse"]
+                        name: "Администрирование БД",
+                        level: 90,
+                        tags: ["Backup", "Recovery", "Безопасность", "Обслуживание"]
                     }
                 ]
             },
             {
-                category: "Хранилища Данных",
+                category: "Хранилища данных",
                 skills: [
                     {
-                        name: "OLAP",
+                        name: "OLAP & Кубы",
                         level: 90,
-                        tags: ["Кубы", "SSAS", "Многомерность"]
+                        tags: ["SSAS", "MDX", "Размерное моделирование"]
                     },
                     {
-                        name: "Моделирование Данных",
+                        name: "Облачные хранилища",
                         level: 85,
-                        tags: ["Star Schema", "Snowflake Schema"]
+                        tags: ["Snowflake", "BigQuery", "Redshift"]
                     },
                     {
-                        name: "Производительность",
+                        name: "Моделирование",
                         level: 90,
-                        tags: ["Оптимизация", "Индексирование", "Настройка запросов"]
+                        tags: ["Star Schema", "Data Vault", "Kimball"]
+                    },
+                    {
+                        name: "Производительность DW",
+                        level: 85,
+                        tags: ["Индексирование", "Партиционирование", "Оптимизация"]
+                    }
+                ]
+            },
+            {
+                category: "NoSQL решения",
+                skills: [
+                    {
+                        name: "Document Stores",
+                        level: 80,
+                        tags: ["MongoDB", "Elasticsearch", "Проектирование документов"]
+                    },
+                    {
+                        name: "Графовые БД",
+                        level: 75,
+                        tags: ["Neo4j", "Графовое моделирование", "Cypher"]
+                    },
+                    {
+                        name: "Key-Value хранилища",
+                        level: 80,
+                        tags: ["Redis", "Кэширование", "Производительность"]
+                    },
+                    {
+                        name: "Time Series БД",
+                        level: 75,
+                        tags: ["InfluxDB", "Метрики", "Мониторинг"]
                     }
                 ]
             }
@@ -531,7 +560,7 @@ const skills_databases = {
     }
 };
 
-// Development & Programming Skills Section
+// Development Skills Section
 const skills_development = {
     workflow: {
         fr: [
@@ -541,72 +570,72 @@ const skills_development = {
                     {
                         name: "Python",
                         level: 95,
-                        tags: ["Data Science", "Scripting", "ETL"]
+                        tags: ["FastAPI", "Flask", "Django", "AsyncIO"]
                     },
                     {
                         name: "SQL",
                         level: 95,
-                        tags: ["T-SQL", "PL/SQL", "PostgreSQL"]
-                    },
-                    {
-                        name: "R",
-                        level: 85,
-                        tags: ["Analyse Statistique", "Data Science"]
+                        tags: ["T-SQL", "PL/SQL", "PostgreSQL", "Optimisation"]
                     },
                     {
                         name: "C#",
-                        level: 80,
-                        tags: [".NET", "Intégration", "Scripts"]
+                        level: 85,
+                        tags: [".NET Core", "LINQ", "Entity Framework"]
+                    },
+                    {
+                        name: "Shell Scripting",
+                        level: 85,
+                        tags: ["Bash", "PowerShell", "Automatisation"]
                     }
                 ]
             },
             {
-                category: "Frameworks & Bibliothèques",
+                category: "DevOps & CI/CD",
                 skills: [
-                    {
-                        name: "Data Processing",
-                        level: 95,
-                        tags: ["Pandas", "NumPy", "SciPy"]
-                    },
-                    {
-                        name: "Machine Learning",
-                        level: 90,
-                        tags: ["Scikit-learn", "TensorFlow", "Keras"]
-                    },
-                    {
-                        name: "Parallel Computing",
-                        level: 85,
-                        tags: ["ThreadPoolExecutor", "multiprocessing", "Dask"]
-                    },
-                    {
-                        name: "Web & API",
-                        level: 85,
-                        tags: ["FastAPI", "Flask", "Requests"]
-                    }
-                ]
-            },
-            {
-                category: "Outils de Développement",
-                skills: [
-                    {
-                        name: "IDEs",
-                        level: 90,
-                        tags: ["Visual Studio", "PyCharm", "Jupyter"]
-                    },
                     {
                         name: "Version Control",
                         level: 90,
-                        tags: ["Git", "Azure DevOps"]
+                        tags: ["Git", "Azure DevOps", "GitFlow"]
                     },
                     {
-                        name: "Testing",
+                        name: "CI/CD",
                         level: 85,
-                        tags: ["Unit Testing", "Integration Testing"]
+                        tags: ["Azure Pipelines", "GitHub Actions", "Jenkins"]
+                    },
+                    {
+                        name: "Containerisation",
+                        level: 85,
+                        tags: ["Docker", "Kubernetes", "Container Registry"]
+                    },
+                    {
+                        name: "IaC",
+                        level: 80,
+                        tags: ["Terraform", "ARM Templates", "Infrastructure"]
+                    }
+                ]
+            },
+            {
+                category: "Tests & Qualité",
+                skills: [
+                    {
+                        name: "Test Unitaire",
+                        level: 90,
+                        tags: ["PyTest", "UnitTest", "MSTest"]
+                    },
+                    {
+                        name: "Test d'Intégration",
+                        level: 85,
+                        tags: ["API Testing", "End-to-End", "Performance"]
+                    },
+                    {
+                        name: "Code Quality",
+                        level: 90,
+                        tags: ["SonarQube", "Linting", "Code Review"]
                     },
                     {
                         name: "Documentation",
                         level: 90,
-                        tags: ["Markdown", "Sphinx", "Confluence"]
+                        tags: ["Sphinx", "Swagger", "Markdown"]
                     }
                 ]
             }
@@ -618,149 +647,149 @@ const skills_development = {
                     {
                         name: "Python",
                         level: 95,
-                        tags: ["Data Science", "Scripting", "ETL"]
+                        tags: ["FastAPI", "Flask", "Django", "AsyncIO"]
                     },
                     {
                         name: "SQL",
                         level: 95,
-                        tags: ["T-SQL", "PL/SQL", "PostgreSQL"]
-                    },
-                    {
-                        name: "R",
-                        level: 85,
-                        tags: ["Statistical Analysis", "Data Science"]
+                        tags: ["T-SQL", "PL/SQL", "PostgreSQL", "Optimization"]
                     },
                     {
                         name: "C#",
-                        level: 80,
-                        tags: [".NET", "Integration", "Scripts"]
+                        level: 85,
+                        tags: [".NET Core", "LINQ", "Entity Framework"]
+                    },
+                    {
+                        name: "Shell Scripting",
+                        level: 85,
+                        tags: ["Bash", "PowerShell", "Automation"]
                     }
                 ]
             },
             {
-                category: "Frameworks & Libraries",
+                category: "DevOps & CI/CD",
                 skills: [
-                    {
-                        name: "Data Processing",
-                        level: 95,
-                        tags: ["Pandas", "NumPy", "SciPy"]
-                    },
-                    {
-                        name: "Machine Learning",
-                        level: 90,
-                        tags: ["Scikit-learn", "TensorFlow", "Keras"]
-                    },
-                    {
-                        name: "Parallel Computing",
-                        level: 85,
-                        tags: ["ThreadPoolExecutor", "multiprocessing", "Dask"]
-                    },
-                    {
-                        name: "Web & API",
-                        level: 85,
-                        tags: ["FastAPI", "Flask", "Requests"]
-                    }
-                ]
-            },
-            {
-                category: "Development Tools",
-                skills: [
-                    {
-                        name: "IDEs",
-                        level: 90,
-                        tags: ["Visual Studio", "PyCharm", "Jupyter"]
-                    },
                     {
                         name: "Version Control",
                         level: 90,
-                        tags: ["Git", "Azure DevOps"]
+                        tags: ["Git", "Azure DevOps", "GitFlow"]
                     },
                     {
-                        name: "Testing",
+                        name: "CI/CD",
                         level: 85,
-                        tags: ["Unit Testing", "Integration Testing"]
+                        tags: ["Azure Pipelines", "GitHub Actions", "Jenkins"]
+                    },
+                    {
+                        name: "Containerization",
+                        level: 85,
+                        tags: ["Docker", "Kubernetes", "Container Registry"]
+                    },
+                    {
+                        name: "IaC",
+                        level: 80,
+                        tags: ["Terraform", "ARM Templates", "Infrastructure"]
+                    }
+                ]
+            },
+            {
+                category: "Testing & Quality",
+                skills: [
+                    {
+                        name: "Unit Testing",
+                        level: 90,
+                        tags: ["PyTest", "UnitTest", "MSTest"]
+                    },
+                    {
+                        name: "Integration Testing",
+                        level: 85,
+                        tags: ["API Testing", "End-to-End", "Performance"]
+                    },
+                    {
+                        name: "Code Quality",
+                        level: 90,
+                        tags: ["SonarQube", "Linting", "Code Review"]
                     },
                     {
                         name: "Documentation",
                         level: 90,
-                        tags: ["Markdown", "Sphinx", "Confluence"]
+                        tags: ["Sphinx", "Swagger", "Markdown"]
                     }
                 ]
             }
         ],
         ru: [
             {
-                category: "Языки Программирования",
+                category: "Языки программирования",
                 skills: [
                     {
                         name: "Python",
                         level: 95,
-                        tags: ["Data Science", "Скрипты", "ETL"]
+                        tags: ["FastAPI", "Flask", "Django", "AsyncIO"]
                     },
                     {
                         name: "SQL",
                         level: 95,
-                        tags: ["T-SQL", "PL/SQL", "PostgreSQL"]
-                    },
-                    {
-                        name: "R",
-                        level: 85,
-                        tags: ["Статистический анализ", "Data Science"]
+                        tags: ["T-SQL", "PL/SQL", "PostgreSQL", "Оптимизация"]
                     },
                     {
                         name: "C#",
+                        level: 85,
+                        tags: [".NET Core", "LINQ", "Entity Framework"]
+                    },
+                    {
+                        name: "Shell Scripting",
+                        level: 85,
+                        tags: ["Bash", "PowerShell", "Автоматизация"]
+                    }
+                ]
+            },
+            {
+                category: "DevOps и CI/CD",
+                skills: [
+                    {
+                        name: "Контроль версий",
+                        level: 90,
+                        tags: ["Git", "Azure DevOps", "GitFlow"]
+                    },
+                    {
+                        name: "CI/CD",
+                        level: 85,
+                        tags: ["Azure Pipelines", "GitHub Actions", "Jenkins"]
+                    },
+                    {
+                        name: "Контейнеризация",
+                        level: 85,
+                        tags: ["Docker", "Kubernetes", "Container Registry"]
+                    },
+                    {
+                        name: "IaC",
                         level: 80,
-                        tags: [".NET", "Интеграция", "Скрипты"]
+                        tags: ["Terraform", "ARM Templates", "Инфраструктура"]
                     }
                 ]
             },
             {
-                category: "Фреймворки и Библиотеки",
+                category: "Тестирование и Качество",
                 skills: [
                     {
-                        name: "Обработка Данных",
-                        level: 95,
-                        tags: ["Pandas", "NumPy", "SciPy"]
-                    },
-                    {
-                        name: "Machine Learning",
+                        name: "Модульное тестирование",
                         level: 90,
-                        tags: ["Scikit-learn", "TensorFlow", "Keras"]
+                        tags: ["PyTest", "UnitTest", "MSTest"]
                     },
                     {
-                        name: "Параллельные Вычисления",
+                        name: "Интеграционное тестирование",
                         level: 85,
-                        tags: ["ThreadPoolExecutor", "multiprocessing", "Dask"]
+                        tags: ["API Testing", "End-to-End", "Производительность"]
                     },
                     {
-                        name: "Web & API",
-                        level: 85,
-                        tags: ["FastAPI", "Flask", "Requests"]
-                    }
-                ]
-            },
-            {
-                category: "Инструменты Разработки",
-                skills: [
-                    {
-                        name: "IDE",
+                        name: "Качество кода",
                         level: 90,
-                        tags: ["Visual Studio", "PyCharm", "Jupyter"]
-                    },
-                    {
-                        name: "Контроль Версий",
-                        level: 90,
-                        tags: ["Git", "Azure DevOps"]
-                    },
-                    {
-                        name: "Тестирование",
-                        level: 85,
-                        tags: ["Unit Testing", "Integration Testing"]
+                        tags: ["SonarQube", "Linting", "Code Review"]
                     },
                     {
                         name: "Документация",
                         level: 90,
-                        tags: ["Markdown", "Sphinx", "Confluence"]
+                        tags: ["Sphinx", "Swagger", "Markdown"]
                     }
                 ]
             }
@@ -768,191 +797,236 @@ const skills_development = {
     }
 };
 
-// Infrastructure & Cloud Skills Section
+// Infrastructure Skills Section
 const skills_infrastructure = {
     workflow: {
         fr: [
             {
-                category: "Cloud & DevOps",
+                category: "Cloud & Multi-Cloud",
                 skills: [
                     {
-                        name: "Azure DevOps",
+                        name: "Microsoft Azure",
                         level: 90,
-                        tags: ["CI/CD", "Pipelines", "Repos"]
+                        tags: ["ADF", "Synapse", "Azure DevOps", "Functions"]
                     },
                     {
-                        name: "GCP",
+                        name: "Google Cloud",
                         level: 85,
-                        tags: ["BigQuery", "Cloud Storage", "Dataflow"]
+                        tags: ["BigQuery", "Dataflow", "Cloud Storage", "IAM"]
                     },
                     {
-                        name: "PowerShell",
-                        level: 85,
-                        tags: ["Scripting", "Automatisation", "Windows"]
-                    }
-                ]
-            },
-            {
-                category: "Infrastructure & Sécurité",
-                skills: [
-                    {
-                        name: "Windows Server",
-                        level: 85,
-                        tags: ["2016", "IIS", "Active Directory"]
-                    },
-                    {
-                        name: "VMware",
+                        name: "AWS",
                         level: 80,
-                        tags: ["Virtualisation", "Infrastructure"]
+                        tags: ["S3", "Redshift", "Lambda", "Basic Services"]
                     },
                     {
-                        name: "Sécurité",
+                        name: "Cloud Architecture",
                         level: 85,
-                        tags: ["Active Directory", "SOC", "Monitoring"]
+                        tags: ["Scalability", "HA", "Cost Optimization"]
                     }
                 ]
             },
             {
-                category: "Monitoring & Support",
+                category: "Infrastructure & Virtualisation",
                 skills: [
                     {
-                        name: "Service Now",
-                        level: 90,
-                        tags: ["ITSM", "CRM", "Support"]
+                        name: "Serveurs & Systèmes",
+                        level: 85,
+                        tags: ["Windows Server", "Linux", "Active Directory"]
+                    },
+                    {
+                        name: "Virtualisation",
+                        level: 85,
+                        tags: ["VMware", "Hyper-V", "VDI"]
+                    },
+                    {
+                        name: "Stockage & Sauvegarde",
+                        level: 80,
+                        tags: ["SAN", "NAS", "Backup Solutions"]
+                    },
+                    {
+                        name: "Réseau",
+                        level: 80,
+                        tags: ["LAN/WAN", "VPN", "Load Balancing"]
+                    }
+                ]
+            },
+            {
+                category: "Sécurité & Monitoring",
+                skills: [
+                    {
+                        name: "Sécurité Cloud",
+                        level: 85,
+                        tags: ["Identity", "Key Management", "Encryption"]
                     },
                     {
                         name: "Monitoring",
-                        level: 85,
-                        tags: ["SQL Profiler", "Log Analysis", "Performance"]
+                        level: 90,
+                        tags: ["Azure Monitor", "Prometheus", "Grafana"]
                     },
                     {
-                        name: "GLPI",
+                        name: "Logs & Audit",
+                        level: 85,
+                        tags: ["Log Analytics", "SIEM", "Audit Trail"]
+                    },
+                    {
+                        name: "Conformité",
                         level: 80,
-                        tags: ["Asset Management", "Support"]
+                        tags: ["GDPR", "SOC", "Security Standards"]
                     }
                 ]
             }
         ],
         en: [
             {
-                category: "Cloud & DevOps",
+                category: "Cloud & Multi-Cloud",
                 skills: [
                     {
-                        name: "Azure DevOps",
+                        name: "Microsoft Azure",
                         level: 90,
-                        tags: ["CI/CD", "Pipelines", "Repos"]
+                        tags: ["ADF", "Synapse", "Azure DevOps", "Functions"]
                     },
                     {
-                        name: "GCP",
+                        name: "Google Cloud",
                         level: 85,
-                        tags: ["BigQuery", "Cloud Storage", "Dataflow"]
+                        tags: ["BigQuery", "Dataflow", "Cloud Storage", "IAM"]
                     },
                     {
-                        name: "PowerShell",
-                        level: 85,
-                        tags: ["Scripting", "Automation", "Windows"]
-                    }
-                ]
-            },
-            {
-                category: "Infrastructure & Security",
-                skills: [
-                    {
-                        name: "Windows Server",
-                        level: 85,
-                        tags: ["2016", "IIS", "Active Directory"]
-                    },
-                    {
-                        name: "VMware",
+                        name: "AWS",
                         level: 80,
-                        tags: ["Virtualization", "Infrastructure"]
+                        tags: ["S3", "Redshift", "Lambda", "Basic Services"]
                     },
                     {
-                        name: "Security",
+                        name: "Cloud Architecture",
                         level: 85,
-                        tags: ["Active Directory", "SOC", "Monitoring"]
+                        tags: ["Scalability", "HA", "Cost Optimization"]
                     }
                 ]
             },
             {
-                category: "Monitoring & Support",
+                category: "Infrastructure & Virtualization",
                 skills: [
                     {
-                        name: "Service Now",
-                        level: 90,
-                        tags: ["ITSM", "CRM", "Support"]
+                        name: "Servers & Systems",
+                        level: 85,
+                        tags: ["Windows Server", "Linux", "Active Directory"]
+                    },
+                    {
+                        name: "Virtualization",
+                        level: 85,
+                        tags: ["VMware", "Hyper-V", "VDI"]
+                    },
+                    {
+                        name: "Storage & Backup",
+                        level: 80,
+                        tags: ["SAN", "NAS", "Backup Solutions"]
+                    },
+                    {
+                        name: "Networking",
+                        level: 80,
+                        tags: ["LAN/WAN", "VPN", "Load Balancing"]
+                    }
+                ]
+            },
+            {
+                category: "Security & Monitoring",
+                skills: [
+                    {
+                        name: "Cloud Security",
+                        level: 85,
+                        tags: ["Identity", "Key Management", "Encryption"]
                     },
                     {
                         name: "Monitoring",
-                        level: 85,
-                        tags: ["SQL Profiler", "Log Analysis", "Performance"]
+                        level: 90,
+                        tags: ["Azure Monitor", "Prometheus", "Grafana"]
                     },
                     {
-                        name: "GLPI",
+                        name: "Logs & Audit",
+                        level: 85,
+                        tags: ["Log Analytics", "SIEM", "Audit Trail"]
+                    },
+                    {
+                        name: "Compliance",
                         level: 80,
-                        tags: ["Asset Management", "Support"]
+                        tags: ["GDPR", "SOC", "Security Standards"]
                     }
                 ]
             }
         ],
         ru: [
             {
-                category: "Cloud и DevOps",
+                category: "Cloud & Multi-Cloud",
                 skills: [
                     {
-                        name: "Azure DevOps",
+                        name: "Microsoft Azure",
                         level: 90,
-                        tags: ["CI/CD", "Pipelines", "Repos"]
+                        tags: ["ADF", "Synapse", "Azure DevOps", "Functions"]
                     },
                     {
-                        name: "GCP",
+                        name: "Google Cloud",
                         level: 85,
-                        tags: ["BigQuery", "Cloud Storage", "Dataflow"]
+                        tags: ["BigQuery", "Dataflow", "Cloud Storage", "IAM"]
                     },
                     {
-                        name: "PowerShell",
-                        level: 85,
-                        tags: ["Скрипты", "Автоматизация", "Windows"]
-                    }
-                ]
-            },
-            {
-                category: "Инфраструктура и Безопасность",
-                skills: [
-                    {
-                        name: "Windows Server",
-                        level: 85,
-                        tags: ["2016", "IIS", "Active Directory"]
-                    },
-                    {
-                        name: "VMware",
+                        name: "AWS",
                         level: 80,
-                        tags: ["Виртуализация", "Инфраструктура"]
+                        tags: ["S3", "Redshift", "Lambda", "Базовые сервисы"]
                     },
                     {
-                        name: "Безопасность",
+                        name: "Облачная Архитектура",
                         level: 85,
-                        tags: ["Active Directory", "SOC", "Мониторинг"]
+                        tags: ["Масштабируемость", "HA", "Оптимизация затрат"]
                     }
                 ]
             },
             {
-                category: "Мониторинг и Поддержка",
+                category: "Инфраструктура & Виртуализация",
                 skills: [
                     {
-                        name: "Service Now",
-                        level: 90,
-                        tags: ["ITSM", "CRM", "Поддержка"]
+                        name: "Серверы & Системы",
+                        level: 85,
+                        tags: ["Windows Server", "Linux", "Active Directory"]
+                    },
+                    {
+                        name: "Виртуализация",
+                        level: 85,
+                        tags: ["VMware", "Hyper-V", "VDI"]
+                    },
+                    {
+                        name: "Хранение & Бэкап",
+                        level: 80,
+                        tags: ["SAN", "NAS", "Решения для резервирования"]
+                    },
+                    {
+                        name: "Сети",
+                        level: 80,
+                        tags: ["LAN/WAN", "VPN", "Балансировка нагрузки"]
+                    }
+                ]
+            },
+            {
+                category: "Безопасность & Мониторинг",
+                skills: [
+                    {
+                        name: "Облачная безопасность",
+                        level: 85,
+                        tags: ["Identity", "Управление ключами", "Шифрование"]
                     },
                     {
                         name: "Мониторинг",
-                        level: 85,
-                        tags: ["SQL Profiler", "Анализ логов", "Производительность"]
+                        level: 90,
+                        tags: ["Azure Monitor", "Prometheus", "Grafana"]
                     },
                     {
-                        name: "GLPI",
+                        name: "Логи & Аудит",
+                        level: 85,
+                        tags: ["Log Analytics", "SIEM", "Аудит"]
+                    },
+                    {
+                        name: "Соответствие стандартам",
                         level: 80,
-                        tags: ["Управление активами", "Поддержка"]
+                        tags: ["GDPR", "SOC", "Стандарты безопасности"]
                     }
                 ]
             }
@@ -960,7 +1034,7 @@ const skills_infrastructure = {
     }
 };
 
-// Methodologies & Project Management Skills Section
+// Methodologies Skills Section
 const skills_methodologies = {
     workflow: {
         fr: [
@@ -968,59 +1042,74 @@ const skills_methodologies = {
                 category: "Méthodologies & Gestion",
                 skills: [
                     {
-                        name: "Documentation Technique",
-                        level: 95,
-                        tags: ["Spécifications", "Guides", "Procédures"]
-                    },
-                    {
                         name: "Gestion de Projet",
                         level: 90,
-                        tags: ["Planning", "Coordination", "Suivi"]
+                        tags: ["Agile", "Scrum", "Kanban", "JIRA"]
                     },
                     {
-                        name: "Support Utilisateur",
+                        name: "ITSM",
                         level: 90,
-                        tags: ["Formation", "Assistance", "Résolution"]
-                    }
-                ]
-            },
-            {
-                category: "Compétences Transverses",
-                skills: [
-                    {
-                        name: "Communication",
-                        level: 90,
-                        tags: ["Présentation", "Réunions", "Reporting"]
+                        tags: ["ITIL", "ServiceNow", "Gestion des incidents"]
                     },
                     {
-                        name: "Analyse & Résolution",
-                        level: 95,
-                        tags: ["Problèmes Complexes", "Optimisation"]
-                    },
-                    {
-                        name: "Travail d'Équipe",
-                        level: 90,
-                        tags: ["Collaboration", "Partage", "Support"]
-                    }
-                ]
-            },
-            {
-                category: "Expertise Métier",
-                skills: [
-                    {
-                        name: "Finance & Trading",
+                        name: "Gouvernance des Données",
                         level: 85,
-                        tags: ["Marchés", "Données Financières"]
+                        tags: ["Politiques", "Standards", "Conformité"]
                     },
                     {
-                        name: "Gestion des Données",
-                        level: 95,
-                        tags: ["Gouvernance", "Qualité", "Sécurité"]
-                    },
+                        name: "Gestion du Changement",
+                        level: 85,
+                        tags: ["Formation", "Documentation", "Transition"]
+                    }
+                ]
+            },
+            {
+                category: "Business & Analyse",
+                skills: [
                     {
-                        name: "Analyse Business",
+                        name: "Business Intelligence",
                         level: 90,
-                        tags: ["KPIs", "Reporting", "Dashboards"]
+                        tags: ["KPIs", "Tableaux de bord", "Reporting"]
+                    },
+                    {
+                        name: "Analyse Financière",
+                        level: 85,
+                        tags: ["Trading", "Risques", "Modélisation"]
+                    },
+                    {
+                        name: "Process Optimization",
+                        level: 90,
+                        tags: ["BPM", "Workflow", "Automatisation"]
+                    },
+                    {
+                        name: "Requirements Engineering",
+                        level: 85,
+                        tags: ["Analyse", "Spécifications", "User Stories"]
+                    }
+                ]
+            },
+            {
+                category: "Leadership & Communication",
+                skills: [
+                    {
+                        name: "Communication Technique",
+                        level: 90,
+                        tags: ["Présentation", "Documentation", "Formation"]
+                    },
+                    {
+                        name: "Gestion d'Équipe",
+                        level: 85,
+                        tags: ["Coordination", "Mentorat", "Support"]
+                    },
+                    {
+                        name: "Stakeholder Management",
+                        level: 85,
+                        tags: ["Négociation", "Reporting", "Engagement"]
+                    },
+                    {
+                        name: "Problem Solving",
+                        level: 90,
+                        tags: ["Analyse", "Résolution", "Innovation"]
                     }
                 ]
             }
@@ -1030,59 +1119,74 @@ const skills_methodologies = {
                 category: "Methodologies & Management",
                 skills: [
                     {
-                        name: "Technical Documentation",
-                        level: 95,
-                        tags: ["Specifications", "Guides", "Procedures"]
-                    },
-                    {
                         name: "Project Management",
                         level: 90,
-                        tags: ["Planning", "Coordination", "Tracking"]
+                        tags: ["Agile", "Scrum", "Kanban", "JIRA"]
                     },
                     {
-                        name: "User Support",
+                        name: "ITSM",
                         level: 90,
-                        tags: ["Training", "Assistance", "Resolution"]
-                    }
-                ]
-            },
-            {
-                category: "Soft Skills",
-                skills: [
-                    {
-                        name: "Communication",
-                        level: 90,
-                        tags: ["Presentation", "Meetings", "Reporting"]
+                        tags: ["ITIL", "ServiceNow", "Incident Management"]
                     },
                     {
-                        name: "Analysis & Problem Solving",
-                        level: 95,
-                        tags: ["Complex Problems", "Optimization"]
-                    },
-                    {
-                        name: "Teamwork",
-                        level: 90,
-                        tags: ["Collaboration", "Knowledge Sharing", "Support"]
-                    }
-                ]
-            },
-            {
-                category: "Business Expertise",
-                skills: [
-                    {
-                        name: "Finance & Trading",
+                        name: "Data Governance",
                         level: 85,
-                        tags: ["Markets", "Financial Data"]
+                        tags: ["Policies", "Standards", "Compliance"]
                     },
                     {
-                        name: "Data Management",
-                        level: 95,
-                        tags: ["Governance", "Quality", "Security"]
-                    },
+                        name: "Change Management",
+                        level: 85,
+                        tags: ["Training", "Documentation", "Transition"]
+                    }
+                ]
+            },
+            {
+                category: "Business & Analysis",
+                skills: [
                     {
-                        name: "Business Analysis",
+                        name: "Business Intelligence",
                         level: 90,
-                        tags: ["KPIs", "Reporting", "Dashboards"]
+                        tags: ["KPIs", "Dashboards", "Reporting"]
+                    },
+                    {
+                        name: "Financial Analysis",
+                        level: 85,
+                        tags: ["Trading", "Risk", "Modeling"]
+                    },
+                    {
+                        name: "Process Optimization",
+                        level: 90,
+                        tags: ["BPM", "Workflow", "Automation"]
+                    },
+                    {
+                        name: "Requirements Engineering",
+                        level: 85,
+                        tags: ["Analysis", "Specifications", "User Stories"]
+                    }
+                ]
+            },
+            {
+                category: "Leadership & Communication",
+                skills: [
+                    {
+                        name: "Technical Communication",
+                        level: 90,
+                        tags: ["Presentation", "Documentation", "Training"]
+                    },
+                    {
+                        name: "Team Management",
+                        level: 85,
+                        tags: ["Coordination", "Mentoring", "Support"]
+                    },
+                    {
+                        name: "Stakeholder Management",
+                        level: 85,
+                        tags: ["Negotiation", "Reporting", "Engagement"]
+                    },
+                    {
+                        name: "Problem Solving",
+                        level: 90,
+                        tags: ["Analysis", "Resolution", "Innovation"]
                     }
                 ]
             }
@@ -1092,66 +1196,80 @@ const skills_methodologies = {
                 category: "Методологии и Управление",
                 skills: [
                     {
-                        name: "Техническая Документация",
-                        level: 95,
-                        tags: ["Спецификации", "Руководства", "Процедуры"]
-                    },
-                    {
                         name: "Управление Проектами",
                         level: 90,
-                        tags: ["Планирование", "Координация", "Отслеживание"]
+                        tags: ["Agile", "Scrum", "Kanban", "JIRA"]
                     },
                     {
-                        name: "Поддержка Пользователей",
+                        name: "ITSM",
                         level: 90,
-                        tags: ["Обучение", "Помощь", "Решение проблем"]
-                    }
-                ]
-            },
-            {
-                category: "Soft Skills",
-                skills: [
-                    {
-                        name: "Коммуникация",
-                        level: 90,
-                        tags: ["Презентации", "Встречи", "Отчетность"]
-                    },
-                    {
-                        name: "Анализ и Решение Проблем",
-                        level: 95,
-                        tags: ["Сложные задачи", "Оптимизация"]
-                    },
-                    {
-                        name: "Командная Работа",
-                        level: 90,
-                        tags: ["Сотрудничество", "Обмен знаниями", "Поддержка"]
-                    }
-                ]
-            },
-            {
-                category: "Бизнес-экспертиза",
-                skills: [
-                    {
-                        name: "Финансы и Трейдинг",
-                        level: 85,
-                        tags: ["Рынки", "Финансовые данные"]
+                        tags: ["ITIL", "ServiceNow", "Управление инцидентами"]
                     },
                     {
                         name: "Управление Данными",
-                        level: 95,
-                        tags: ["Управление", "Качество", "Безопасность"]
+                        level: 85,
+                        tags: ["Политики", "Стандарты", "Соответствие"]
                     },
                     {
-                        name: "Бизнес-анализ",
+                        name: "Управление Изменениями",
+                        level: 85,
+                        tags: ["Обучение", "Документация", "Переход"]
+                    }
+                ]
+            },
+            {
+                category: "Бизнес и Анализ",
+                skills: [
+                    {
+                        name: "Бизнес-аналитика",
                         level: 90,
-                        tags: ["KPI", "Отчетность", "Дашборды"]
+                        tags: ["KPI", "Дашборды", "Отчетность"]
+                    },
+                    {
+                        name: "Финансовый Анализ",
+                        level: 85,
+                        tags: ["Трейдинг", "Риски", "Моделирование"]
+                    },
+                    {
+                        name: "Оптимизация Процессов",
+                        level: 90,
+                        tags: ["BPM", "Воркфлоу", "Автоматизация"]
+                    },
+                    {
+                        name: "Работа с Требованиями",
+                        level: 85,
+                        tags: ["Анализ", "Спецификации", "User Stories"]
+                    }
+                ]
+            },
+            {
+                category: "Лидерство и Коммуникация",
+                skills: [
+                    {
+                        name: "Техническая Коммуникация",
+                        level: 90,
+                        tags: ["Презентации", "Документация", "Обучение"]
+                    },
+                    {
+                        name: "Управление Командой",
+                        level: 85,
+                        tags: ["Координация", "Менторство", "Поддержка"]
+                    },
+                    {
+                        name: "Работа со Стейкхолдерами",
+                        level: 85,
+                        tags: ["Переговоры", "Отчетность", "Вовлечение"]
+                    },
+                    {
+                        name: "Решение Проблем",
+                        level: 90,
+                        tags: ["Анализ", "Разрешение", "Инновации"]
                     }
                 ]
             }
         ]
     }
 };
-
 // 7. Final skills object combining all sections
 const skills = {
     workflow: {
