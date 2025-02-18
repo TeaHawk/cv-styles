@@ -1,0 +1,174 @@
+/* === SKILLS COMPONENT === */
+
+/* Skills Section Container */
+.skills-entries {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-large);
+    opacity: 0;
+    transition: opacity var(--transition-smooth);
+}
+
+.skills-entries.visible {
+    opacity: 1;
+}
+
+/* Category Styling */
+.skills-category {
+    position: relative;
+    padding: var(--spacing-large);
+    background: var(--bg-secondary);
+    margin-bottom: var(--spacing-large);
+}
+
+/* Art Deco Frame */
+.category-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+.category-frame .frame-line {
+    position: absolute;
+    background: var(--accent);
+    transition: transform var(--transition-smooth);
+}
+
+/* Horizontal lines */
+.category-frame .frame-line.top,
+.category-frame .frame-line.bottom {
+    height: 2px;
+    width: calc(100% - 20px);
+    transform: scaleX(0);
+}
+
+.category-frame .frame-line.top { 
+    top: 0;
+    left: 20px;
+    transform-origin: left;
+}
+
+.category-frame .frame-line.bottom {
+    bottom: 0;
+    right: 20px;
+    transform-origin: right;
+}
+
+/* Vertical lines */
+.category-frame .frame-line.left,
+.category-frame .frame-line.right {
+    width: 2px;
+    height: calc(100% - 20px);
+    transform: scaleY(0);
+}
+
+.category-frame .frame-line.left {
+    left: 0;
+    top: 20px;
+    transform-origin: top;
+}
+
+.category-frame .frame-line.right {
+    right: 0;
+    bottom: 20px;
+    transform-origin: bottom;
+}
+
+/* Frame Animation */
+.skills-category:hover .category-frame .frame-line {
+    transform: scale(1);
+}
+
+/* Category Title */
+.category-title {
+    font-size: var(--font-size-h2);
+    color: var(--accent);
+    margin-bottom: var(--spacing-medium);
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: var(--spacing-small);
+}
+
+/* Skills Grid */
+.skills-grid {
+    display: grid;
+    gap: var(--spacing-medium);
+}
+
+/* Individual Skill Item */
+.skill-item {
+    padding: var(--spacing-small);
+    transition: transform var(--transition-quick);
+}
+
+.skill-item:hover {
+    transform: translateY(-2px);
+}
+
+.skill-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-small);
+}
+
+.skill-name {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.skill-level {
+    color: var(--accent);
+    font-size: 0.9em;
+}
+
+/* Progress Bar */
+.skill-progress {
+    height: 4px;
+    background: var(--bg-primary);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    margin-bottom: var(--spacing-small);
+}
+
+.progress-bar {
+    height: 100%;
+    background: var(--accent);
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Skill Tags */
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: calc(var(--spacing-small) / 2);
+    margin-top: var(--spacing-small);
+}
+
+.skill-tag {
+    padding: 2px 8px;
+    background: var(--bg-primary);
+    border: 1px solid var(--accent);
+    font-size: 0.8em;
+    border-radius: var(--border-radius);
+    transition: all var(--transition-quick);
+}
+
+.skill-tag:hover {
+    background: var(--accent);
+    color: var(--bg-primary);
+}
+
+/* Animation Classes */
+.fade-out {
+    opacity: 0;
+    transition: opacity var(--transition-quick);
+}
+
+@media (max-width: 768px) {
+    .skills-entries {
+        grid-template-columns: 1fr;
+    }
+}
