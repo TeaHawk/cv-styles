@@ -4,4 +4,5 @@ document.addEventListener('DOMContentLoaded', () => {
     new LanguageManager();
     new ExperienceManager();
     new EducationManager();
+    new SkillsManager();
 });
