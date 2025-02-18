@@ -99,6 +99,7 @@
 
 /* Individual Skill Item */
 .skill-item {
+    position: relative;
     display: flex;
     align-items: center;
     padding: 6px 8px;
@@ -146,13 +147,18 @@
 
 /* Proficiency Text */
 .proficiency-text {
+    position: absolute;
+    right: 8px;
+    background: var(--bg-primary);
+    padding: 2px 6px;
+    border-radius: 2px;
     font-size: 0.8rem;
-    color: var(--text-secondary);
+    color: var(--accent);
     opacity: 0;
     transition: opacity var(--transition-quick);
-    position: absolute;
-    right: var(--spacing-medium);
     pointer-events: none;
+    z-index: 2;
+    border: 1px solid var(--accent);
 }
 
 .skill-item:hover .proficiency-text {
