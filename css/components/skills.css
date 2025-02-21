@@ -3,7 +3,7 @@
 /* Container */
 .skills-entries {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Changed from 3 to 4 columns */
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--spacing-medium);
     margin-bottom: var(--spacing-large);
     opacity: 0;
@@ -17,9 +17,18 @@
 /* Category */
 .skills-category {
     position: relative;
-    padding: var(--spacing-medium);
+    padding: var(--spacing-large); /* Increased padding for better spacing */
     background: var(--bg-secondary);
     border: 1px solid var(--accent);
+    transition: transform var(--transition-quick);
+    height: calc(100% - var(--spacing-medium)); /* Ensure equal height */
+    display: flex;
+    flex-direction: column;
+}
+
+.skills-category:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Art Deco Frame */
@@ -87,14 +96,17 @@
     font-size: 1.1rem;
     color: var(--accent);
     margin-bottom: var(--spacing-medium);
-    padding-bottom: 4px;
+    padding-bottom: var(--spacing-small);
     border-bottom: 1px solid var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.5px;
 }
 
 /* Skills Grid */
 .skills-grid {
     display: grid;
-    gap: 8px;
+    gap: var(--spacing-small);
+    flex-grow: 1; /* Allow grid to fill remaining space */
 }
 
 /* Individual Skill Item */
@@ -102,15 +114,17 @@
     position: relative;
     display: flex;
     align-items: center;
-    padding: 6px 8px;
+    padding: var(--spacing-small) var(--spacing-medium);
     gap: var(--spacing-small);
     transition: all var(--transition-quick);
     border-left: 2px solid transparent;
+    background: var(--bg-secondary);
 }
 
 .skill-item:hover {
     border-left-color: var(--accent);
     background: var(--bg-primary);
+    transform: translateX(4px);
 }
 
 .skill-name {
@@ -179,6 +193,7 @@
     flex-wrap: wrap;
     gap: 4px;
     margin-left: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .skill-item {
@@ -198,13 +213,7 @@
 }
 
 /* Responsive Design */
-@media (max-width: 1400px) {
-    .skills-entries {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
     .skills-entries {
         grid-template-columns: repeat(2, 1fr);
     }
