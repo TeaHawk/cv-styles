@@ -5,5 +5,5 @@ document.addEventListener('DOMContentLoaded', () => {
     new ExperienceManager();
     new EducationManager();
     new SkillsManager();
-    new contactManager();
+    new ContactManager();
 });
