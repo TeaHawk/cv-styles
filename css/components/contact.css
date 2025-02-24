@@ -1,0 +1,113 @@
+/* === CONTACT COMPONENT === */
+
+.contact-entries {
+    margin-bottom: var(--spacing-large);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-medium);
+    padding: var(--spacing-medium);
+}
+
+.contact-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-medium);
+    background: var(--bg-secondary);
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: transform var(--transition-smooth);
+}
+
+/* Art Deco Frame */
+.contact-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+.contact-frame .frame-line {
+    position: absolute;
+    background: var(--accent);
+    transition: transform var(--transition-smooth);
+}
+
+/* Horizontal lines */
+.contact-frame .frame-line.top,
+.contact-frame .frame-line.bottom {
+    height: 2px;
+    width: 100%;
+    transform: scaleX(0);
+}
+
+.contact-frame .frame-line.top { 
+    top: 0;
+    transform-origin: left;
+}
+
+.contact-frame .frame-line.bottom {
+    bottom: 0;
+    transform-origin: right;
+}
+
+/* Vertical lines */
+.contact-frame .frame-line.left,
+.contact-frame .frame-line.right {
+    width: 2px;
+    height: 100%;
+    transform: scaleY(0);
+}
+
+.contact-frame .frame-line.left {
+    left: 0;
+    transform-origin: top;
+}
+
+.contact-frame .frame-line.right {
+    right: 0;
+    transform-origin: bottom;
+}
+
+/* Hover Effects */
+.contact-link:hover {
+    transform: translateY(-2px);
+}
+
+.contact-link:hover .frame-line,
+.contact-link.hover .frame-line {
+    transform: scale(1);
+}
+
+.contact-icon {
+    font-size: 1.5rem;
+    margin-right: var(--spacing-medium);
+}
+
+.contact-text {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* Fade Animation */
+.fade-out {
+    opacity: 0;
+    transition: opacity var(--transition-quick);
+}
+
+/* Print Styles */
+@media print {
+    .contact-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-small);
+    }
+    
+    .contact-link {
+        page-break-inside: avoid;
+    }
+}
