@@ -5,6 +5,8 @@
     opacity: 0;
     transition: opacity 0.5s ease;
     margin-bottom: var(--spacing-large);
+    position: relative;
+    padding-bottom: var(--spacing-large);
 }
 
 .contact-entries.visible {
@@ -15,12 +17,45 @@
     opacity: 0;
 }
 
-/* Contact Grid Layout */
-.contact-grid {
+/* Art Deco Arch Layout */
+.contact-arch {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-areas:
+        "left . right"
+        ". center ."
+        ". bottom .";
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto auto;
     gap: var(--spacing-medium);
     margin: var(--spacing-medium) 0;
+    position: relative;
+}
+
+/* Curved Path for Arch */
+.arch-path {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.arch-path svg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.arch-path svg path {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 1px;
+    stroke-dasharray: 5, 5;
+    opacity: 0.5;
 }
 
 /* Individual Contact Entry */
@@ -35,6 +70,43 @@
     display: flex;
     align-items: center;
     overflow: hidden;
+    min-height: 80px;
+}
+
+/* Position-specific styling */
+.contact-entry[data-position="left"] {
+    grid-area: left;
+    justify-self: end;
+    width: 90%;
+    transform-origin: right center;
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
+    padding-left: calc(var(--spacing-medium) * 1.5);
+}
+
+.contact-entry[data-position="right"] {
+    grid-area: right;
+    justify-self: start;
+    width: 90%;
+    transform-origin: left center;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    padding-right: calc(var(--spacing-medium) * 1.5);
+}
+
+.contact-entry[data-position="center"] {
+    grid-area: center;
+    justify-self: center;
+    width: 75%;
+    transform-origin: center top;
+}
+
+.contact-entry[data-position="bottom"] {
+    grid-area: bottom;
+    justify-self: center;
+    width: 50%;
+    transform-origin: center top;
+    margin-bottom: var(--spacing-large);
 }
 
 /* Art Deco Frame */
@@ -53,44 +125,89 @@
     transition: transform var(--transition-smooth);
 }
 
-/* Horizontal lines - Diagonal Offset */
-.contact-frame .frame-line.top,
-.contact-frame .frame-line.bottom {
+/* Position-specific frame lines */
+.contact-entry[data-position="left"] .frame-line.top {
     height: 2px;
-    width: calc(100% - 30px);
-    transform: scaleX(0);
-}
-
-.contact-frame .frame-line.top { 
+    width: calc(100% - 40px);
     top: 0;
-    left: 15px;
+    right: 0;
+    transform: scaleX(0);
     transform-origin: left;
 }
 
-.contact-frame .frame-line.bottom {
+.contact-entry[data-position="left"] .frame-line.bottom {
+    height: 2px;
+    width: calc(100% - 40px);
     bottom: 0;
-    right: 15px;
+    right: 0;
+    transform: scaleX(0);
     transform-origin: right;
 }
 
-/* Vertical lines - Diagonal Offset */
-.contact-frame .frame-line.left,
-.contact-frame .frame-line.right {
-    width: 2px;
-    height: calc(100% - 30px);
-    transform: scaleY(0);
+.contact-entry[data-position="right"] .frame-line.top {
+    height: 2px;
+    width: calc(100% - 40px);
+    top: 0;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: right;
 }
 
+.contact-entry[data-position="right"] .frame-line.bottom {
+    height: 2px;
+    width: calc(100% - 40px);
+    bottom: 0;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+}
+
+.contact-entry[data-position="center"] .frame-line.top,
+.contact-entry[data-position="bottom"] .frame-line.top {
+    height: 2px;
+    width: calc(100% - 30px);
+    top: 0;
+    left: 15px;
+    transform: scaleX(0);
+    transform-origin: left;
+}
+
+.contact-entry[data-position="center"] .frame-line.bottom,
+.contact-entry[data-position="bottom"] .frame-line.bottom {
+    height: 2px;
+    width: calc(100% - 30px);
+    bottom: 0;
+    right: 15px;
+    transform: scaleX(0);
+    transform-origin: right;
+}
+
+/* Vertical lines */
 .contact-frame .frame-line.left {
+    width: 2px;
+    height: calc(100% - 30px);
     left: 0;
     top: 15px;
+    transform: scaleY(0);
     transform-origin: top;
 }
 
 .contact-frame .frame-line.right {
+    width: 2px;
+    height: calc(100% - 30px);
     right: 0;
     bottom: 15px;
+    transform: scaleY(0);
     transform-origin: bottom;
+}
+
+/* Left and right position specific vertical lines */
+.contact-entry[data-position="left"] .frame-line.left {
+    display: none;
+}
+
+.contact-entry[data-position="right"] .frame-line.right {
+    display: none;
 }
 
 /* Art Deco Corners */
@@ -127,6 +244,17 @@
     transform: translate(4px, 4px);
 }
 
+/* Position-specific corner hiding */
+.contact-entry[data-position="left"] .frame-corner.tl,
+.contact-entry[data-position="left"] .frame-corner.bl {
+    display: none;
+}
+
+.contact-entry[data-position="right"] .frame-corner.tr,
+.contact-entry[data-position="right"] .frame-corner.br {
+    display: none;
+}
+
 /* Frame Animation on Hover */
 .contact-entry:hover .contact-frame .frame-line,
 .contact-entry.entry-hover .contact-frame .frame-line {
@@ -152,6 +280,20 @@
     align-items: center;
     gap: var(--spacing-medium);
     z-index: 1;
+    width: 100%;
+}
+
+.contact-entry[data-position="left"] .contact-content {
+    justify-content: flex-end;
+}
+
+.contact-entry[data-position="right"] .contact-content {
+    justify-content: flex-start;
+}
+
+.contact-entry[data-position="center"] .contact-content,
+.contact-entry[data-position="bottom"] .contact-content {
+    justify-content: center;
 }
 
 .contact-icon {
@@ -168,37 +310,6 @@
     font-size: 0.95rem;
 }
 
-/* Social Network Specific Styling */
-.contact-entry[data-type="linkedin"]::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(0, 119, 181, 0.1), transparent);
-    opacity: 0;
-    transition: opacity var(--transition-smooth);
-    z-index: 0;
-}
-
-.contact-entry[data-type="github"]::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(36, 41, 46, 0.1), transparent);
-    opacity: 0;
-    transition: opacity var(--transition-smooth);
-    z-index: 0;
-}
-
-.contact-entry:hover::after {
-    opacity: 1;
-}
-
 /* Animation for Entry */
 @keyframes fadeInUp {
     from {
@@ -213,20 +324,68 @@
 
 .contact-entry {
     animation: fadeInUp 0.5s ease-out forwards;
-    animation-delay: calc(var(--index, 0) * 0.1s);
+    animation-delay: calc(var(--index, 0) * 0.15s);
     opacity: 0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .contact-arch {
+        grid-template-areas:
+            "left"
+            "right"
+            "center"
+            "bottom";
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto auto;
+    }
+    
+    .contact-entry[data-position="left"],
+    .contact-entry[data-position="right"],
+    .contact-entry[data-position="center"],
+    .contact-entry[data-position="bottom"] {
+        width: 100%;
+        justify-self: center;
+        border-radius: 0;
+        padding: var(--spacing-medium);
+    }
+    
+    .contact-entry[data-position="left"] .contact-content,
+    .contact-entry[data-position="right"] .contact-content {
+        justify-content: center;
+    }
+    
+    .arch-path {
+        display: none;
+    }
 }
 
 /* Print Styles */
 @media print {
-    .contact-entry {
-        break-inside: avoid;
-        page-break-inside: avoid;
+    .contact-arch {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "left right"
+            "center center"
+            "bottom bottom";
     }
     
-    .contact-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
+    .contact-entry {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+    
+    .contact-entry[data-position="left"],
+    .contact-entry[data-position="right"],
+    .contact-entry[data-position="center"],
+    .contact-entry[data-position="bottom"] {
+        width: auto;
+        border-radius: 0;
+    }
+    
+    .arch-path {
+        display: none;
     }
     
     .contact-entry:hover,
