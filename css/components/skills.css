@@ -11,7 +11,7 @@
 }
 
 .skills-entries > :last-child {
-    grid-column: 2;  /* Place in middle column */
+    grid-column: 2;
 
 .skills-entries.visible {
     opacity: 1;
