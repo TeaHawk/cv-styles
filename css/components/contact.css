@@ -1,173 +1,237 @@
-class ContactManager {
-    constructor() {
-        this.container = document.querySelector('.contact-entries');
-        this.currentLang = localStorage.getItem('language') || 'fr';
-        this.init();
+/* === CONTACT COMPONENT === */
+
+/* Contact Entry Container */
+.contact-entries {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    margin-bottom: var(--spacing-large);
+}
+
+.contact-entries.visible {
+    opacity: 1;
+}
+
+.contact-entries.fade-out {
+    opacity: 0;
+}
+
+/* Contact Grid Layout */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--spacing-medium);
+    margin: var(--spacing-medium) 0;
+}
+
+/* Individual Contact Entry */
+.contact-entry {
+    position: relative;
+    padding: var(--spacing-medium);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: transform var(--transition-smooth),
+                box-shadow var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Art Deco Frame */
+.contact-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+.contact-frame .frame-line {
+    position: absolute;
+    background: var(--accent);
+    transition: transform var(--transition-smooth);
+}
+
+/* Horizontal lines - Diagonal Offset */
+.contact-frame .frame-line.top,
+.contact-frame .frame-line.bottom {
+    height: 2px;
+    width: calc(100% - 30px);
+    transform: scaleX(0);
+}
+
+.contact-frame .frame-line.top { 
+    top: 0;
+    left: 15px;
+    transform-origin: left;
+}
+
+.contact-frame .frame-line.bottom {
+    bottom: 0;
+    right: 15px;
+    transform-origin: right;
+}
+
+/* Vertical lines - Diagonal Offset */
+.contact-frame .frame-line.left,
+.contact-frame .frame-line.right {
+    width: 2px;
+    height: calc(100% - 30px);
+    transform: scaleY(0);
+}
+
+.contact-frame .frame-line.left {
+    left: 0;
+    top: 15px;
+    transform-origin: top;
+}
+
+.contact-frame .frame-line.right {
+    right: 0;
+    bottom: 15px;
+    transform-origin: bottom;
+}
+
+/* Art Deco Corners */
+.contact-frame .frame-corner {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    opacity: 0;
+    transition: opacity var(--transition-smooth), transform var(--transition-smooth);
+}
+
+.contact-frame .frame-corner.tl {
+    top: 0;
+    left: 0;
+    transform: translate(-4px, -4px);
+}
+
+.contact-frame .frame-corner.tr {
+    top: 0;
+    right: 0;
+    transform: translate(4px, -4px);
+}
+
+.contact-frame .frame-corner.bl {
+    bottom: 0;
+    left: 0;
+    transform: translate(-4px, 4px);
+}
+
+.contact-frame .frame-corner.br {
+    bottom: 0;
+    right: 0;
+    transform: translate(4px, 4px);
+}
+
+/* Frame Animation on Hover */
+.contact-entry:hover .contact-frame .frame-line,
+.contact-entry.entry-hover .contact-frame .frame-line {
+    transform: scale(1);
+}
+
+.contact-entry:hover .contact-frame .frame-corner,
+.contact-entry.entry-hover .contact-frame .frame-corner {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+/* Contact Entry Hover Effect */
+.contact-entry:hover,
+.contact-entry.entry-hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Content Styling */
+.contact-content {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-medium);
+    z-index: 1;
+}
+
+.contact-icon {
+    font-size: 1.5rem;
+    color: var(--accent);
+    transition: transform var(--transition-quick);
+}
+
+.contact-entry:hover .contact-icon {
+    transform: scale(1.1);
+}
+
+.contact-text {
+    font-size: 0.95rem;
+}
+
+/* Social Network Specific Styling */
+.contact-entry[data-type="linkedin"]::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(0, 119, 181, 0.1), transparent);
+    opacity: 0;
+    transition: opacity var(--transition-smooth);
+    z-index: 0;
+}
+
+.contact-entry[data-type="github"]::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(36, 41, 46, 0.1), transparent);
+    opacity: 0;
+    transition: opacity var(--transition-smooth);
+    z-index: 0;
+}
+
+.contact-entry:hover::after {
+    opacity: 1;
+}
+
+/* Animation for Entry */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
     }
-
-    init() {
-        // Ensure DOM is fully loaded before initializing
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => this.setupContactManager());
-        } else {
-            this.setupContactManager();
-        }
-    }
-
-    setupContactManager() {
-        // Find the container, with fallback
-        if (!this.container) {
-            console.error('Contact entries container not found. Create a div with class "contact-entries".');
-            return;
-        }
-
-        // Initial render
-        this.renderContacts(this.currentLang);
-
-        // Language change event listener
-        document.addEventListener('languageChanged', (e) => {
-            if (e.detail.language !== this.currentLang) {
-                this.currentLang = e.detail.language;
-                this.updateContacts(this.currentLang);
-            }
-        });
-    }
-
-    renderContacts(lang) {
-        try {
-            // Clear previous content
-            this.container.innerHTML = '';
-            
-            // Generate and insert HTML
-            const contactsHTML = this.generateContactsHTML(lang);
-            this.container.innerHTML = contactsHTML;
-
-            // Add animations
-            requestAnimationFrame(() => {
-                this.container.classList.add('visible');
-                this.addHoverEffects();
-            });
-        } catch (error) {
-            console.error('Error rendering contacts:', error);
-        }
-    }
-
-    updateContacts(lang) {
-        try {
-            // First fade out
-            this.container.classList.add('fade-out');
-            
-            setTimeout(() => {
-                // Update content while faded out
-                const contactsHTML = this.generateContactsHTML(lang);
-                this.container.innerHTML = contactsHTML;
-                
-                // Remove fade out and let entry animations play
-                this.container.classList.remove('fade-out');
-                this.addHoverEffects();
-            }, 300); // Matches the CSS transition duration
-        } catch (error) {
-            console.error('Error updating contacts:', error);
-        }
-    }
-
-    generateContactsHTML(lang) {
-        const header = translations[lang].header;
-        
-        return `
-            <div class="contact-grid">
-                <a href="https://www.linkedin.com/in/daniel-izmailov-clauzel/" 
-                   class="contact-entry" 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   itemscope 
-                   itemtype="http://schema.org/Person">
-                    <div class="contact-frame">
-                        <div class="frame-line top"></div>
-                        <div class="frame-line right"></div>
-                        <div class="frame-line bottom"></div>
-                        <div class="frame-line left"></div>
-                    </div>
-                    <div class="contact-content">
-                        <span class="contact-icon">📎</span>
-                        <span class="contact-text" itemprop="sameAs">LinkedIn</span>
-                    </div>
-                </a>
-
-                <a href="https://github.com/TeaHawk" 
-                   class="contact-entry" 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   itemscope 
-                   itemtype="http://schema.org/Person">
-                    <div class="contact-frame">
-                        <div class="frame-line top"></div>
-                        <div class="frame-line right"></div>
-                        <div class="frame-line bottom"></div>
-                        <div class="frame-line left"></div>
-                    </div>
-                    <div class="contact-content">
-                        <span class="contact-icon">💻</span>
-                        <span class="contact-text" itemprop="sameAs">GitHub</span>
-                    </div>
-                </a>
-
-                <a href="mailto:${header.contact.email.split(' ')[1]}" 
-                   class="contact-entry" 
-                   itemscope 
-                   itemtype="http://schema.org/Person">
-                    <div class="contact-frame">
-                        <div class="frame-line top"></div>
-                        <div class="frame-line right"></div>
-                        <div class="frame-line bottom"></div>
-                        <div class="frame-line left"></div>
-                    </div>
-                    <div class="contact-content">
-                        <span class="contact-icon">✉️</span>
-                        <span class="contact-text" itemprop="email">${header.contact.email}</span>
-                    </div>
-                </a>
-
-                <a href="tel:${header.contact.phone.split(' ')[1].replace(/ /g, '')}" 
-                   class="contact-entry" 
-                   itemscope 
-                   itemtype="http://schema.org/Person">
-                    <div class="contact-frame">
-                        <div class="frame-line top"></div>
-                        <div class="frame-line right"></div>
-                        <div class="frame-line bottom"></div>
-                        <div class="frame-line left"></div>
-                    </div>
-                    <div class="contact-content">
-                        <span class="contact-icon">📱</span>
-                        <span class="contact-text" itemprop="telephone">${header.contact.phone}</span>
-                    </div>
-                </a>
-            </div>
-        `;
-    }
-
-    addHoverEffects() {
-        const entries = this.container.querySelectorAll('.contact-entry');
-        
-        entries.forEach(entry => {
-            // Ensure only one set of event listeners
-            entry.removeEventListener('mouseenter', this.handleMouseEnter);
-            entry.removeEventListener('mouseleave', this.handleMouseLeave);
-
-            // Add new event listeners
-            entry.addEventListener('mouseenter', () => {
-                entry.classList.add('entry-hover');
-            });
-
-            entry.addEventListener('mouseleave', () => {
-                entry.classList.remove('entry-hover');
-            });
-        });
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-// Initialize on DOM load
-document.addEventListener('DOMContentLoaded', () => {
-    window.contactManager = new ContactManager();
-});
+.contact-entry {
+    animation: fadeInUp 0.5s ease-out forwards;
+    animation-delay: calc(var(--index, 0) * 0.1s);
+    opacity: 0;
+}
+
+/* Print Styles */
+@media print {
+    .contact-entry {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+    
+    .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .contact-entry:hover,
+    .contact-entry.entry-hover {
+        transform: none;
+        box-shadow: none;
+    }
+}
