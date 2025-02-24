@@ -17,18 +17,9 @@
 /* Category */
 .skills-category {
     position: relative;
-    padding: var(--spacing-large); /* Increased padding for better spacing */
+    padding: var(--spacing-medium);
     background: var(--bg-secondary);
     border: 1px solid var(--accent);
-    transition: transform var(--transition-quick);
-    height: calc(100% - var(--spacing-medium)); /* Ensure equal height */
-    display: flex;
-    flex-direction: column;
-}
-
-.skills-category:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Art Deco Frame */
@@ -96,17 +87,14 @@
     font-size: 1.1rem;
     color: var(--accent);
     margin-bottom: var(--spacing-medium);
-    padding-bottom: var(--spacing-small);
+    padding-bottom: 4px;
     border-bottom: 1px solid var(--accent);
-    font-weight: 600;
-    letter-spacing: 0.5px;
 }
 
 /* Skills Grid */
 .skills-grid {
     display: grid;
-    gap: var(--spacing-small);
-    flex-grow: 1; /* Allow grid to fill remaining space */
+    gap: 8px;
 }
 
 /* Individual Skill Item */
@@ -114,17 +102,15 @@
     position: relative;
     display: flex;
     align-items: center;
-    padding: var(--spacing-small) var(--spacing-medium);
+    padding: 6px 8px;
     gap: var(--spacing-small);
     transition: all var(--transition-quick);
     border-left: 2px solid transparent;
-    background: var(--bg-secondary);
 }
 
 .skill-item:hover {
     border-left-color: var(--accent);
     background: var(--bg-primary);
-    transform: translateX(4px);
 }
 
 .skill-name {
@@ -193,7 +179,6 @@
     flex-wrap: wrap;
     gap: 4px;
     margin-left: 4px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .skill-item {
