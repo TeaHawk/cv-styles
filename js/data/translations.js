@@ -22,7 +22,9 @@ const translations = {
             experience: "Professional Experience",
             skills: "Technical Skills",
             education: "Education",
-            technicalBackground: "Technical Background"
+            technicalBackground: "Technical Background",
+            contact: "Professional Networks"
+            
         },
         skills: {
             proficiency: {
@@ -64,7 +66,9 @@ const translations = {
             experience: "Expérience Professionnelle",
             skills: "Compétences Techniques",
             education: "Formation",
-            technicalBackground: "Environnement Technique"
+            technicalBackground: "Environnement Technique",
+            contact: "Réseaux Professionnels"
+            
         },
         skills: {
             proficiency: {
@@ -106,7 +110,8 @@ const translations = {
             experience: "Профессиональный опыт",
             skills: "Технические навыки",
             education: "Образование",
-            technicalBackground: "Технический Стек"
+            technicalBackground: "Технический Стек",
+            contact: "Профессиональные сети"
         },
         skills: {
             proficiency: {
