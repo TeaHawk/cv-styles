@@ -92,96 +92,69 @@ class ContactManager {
     }
 
     generateContactsHTML(lang) {
-        // Access the contact info from translations
-        const headerContact = translations[lang].header.contact;
-        
-        // Extract email and phone from the contact data
-        const email = headerContact.email.split(' ')[1];
-        const phone = headerContact.phone.split(' ')[1];
-        
-        let html = '<div class="contact-grid">';
-        
-        // Add social network contacts from contacts.js data file
-        for (const [key, social] of Object.entries(contacts.social)) {
-            html += `
-                <a href="${social.url}" 
-                   class="contact-entry" 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   data-type="${key}"
-                   itemscope 
-                   itemtype="http://schema.org/Person">
-                    <div class="contact-frame">
-                        <div class="frame-line top"></div>
-                        <div class="frame-line right"></div>
-                        <div class="frame-line bottom"></div>
-                        <div class="frame-line left"></div>
-                        <div class="frame-corner tl"></div>
-                        <div class="frame-corner tr"></div>
-                        <div class="frame-corner bl"></div>
-                        <div class="frame-corner br"></div>
-                    </div>
-                    <div class="contact-content">
-                        <span class="contact-icon">${social.icon}</span>
-                        <span class="contact-text" itemprop="sameAs">${social.name[lang]}</span>
-                    </div>
-                </a>
-            `;
-        }
-        
-        // Add direct contact methods (email, phone)
-        const directContacts = contacts.direct;
-        
-        // Email with translation
-        html += `
-            <a href="mailto:${email}" 
-               class="contact-entry" 
-               data-type="email"
-               itemscope 
-               itemtype="http://schema.org/Person">
-                <div class="contact-frame">
-                    <div class="frame-line top"></div>
-                    <div class="frame-line right"></div>
-                    <div class="frame-line bottom"></div>
-                    <div class="frame-line left"></div>
-                    <div class="frame-corner tl"></div>
-                    <div class="frame-corner tr"></div>
-                    <div class="frame-corner bl"></div>
-                    <div class="frame-corner br"></div>
+        // Start with the arch container and SVG path
+        let html = `
+            <div class="contact-arch">
+                <div class="arch-path">
+                    <svg viewBox="0 0 300 200" preserveAspectRatio="none">
+                        <path d="M60,50 Q150,150 240,50" />
+                    </svg>
                 </div>
-                <div class="contact-content">
-                    <span class="contact-icon">${directContacts.email.icon}</span>
-                    <span class="contact-text" itemprop="email">${headerContact.email}</span>
-                </div>
-            </a>
         `;
         
-        // Phone with translation
-        html += `
-            <a href="tel:${phone.replace(/ /g, '')}" 
-               class="contact-entry" 
-               data-type="phone"
-               itemscope 
-               itemtype="http://schema.org/Person">
-                <div class="contact-frame">
-                    <div class="frame-line top"></div>
-                    <div class="frame-line right"></div>
-                    <div class="frame-line bottom"></div>
-                    <div class="frame-line left"></div>
-                    <div class="frame-corner tl"></div>
-                    <div class="frame-corner tr"></div>
-                    <div class="frame-corner bl"></div>
-                    <div class="frame-corner br"></div>
-                </div>
-                <div class="contact-content">
-                    <span class="contact-icon">${directContacts.phone.icon}</span>
-                    <span class="contact-text" itemprop="telephone">${headerContact.phone}</span>
-                </div>
-            </a>
-        `;
+        // Generate left arch entry (LinkedIn)
+        const leftContact = contacts.arch.left.linkedin;
+        html += this.generateContactEntry(leftContact, lang, 0);
         
+        // Generate right arch entry (Email)
+        const rightContact = contacts.arch.right.email;
+        html += this.generateContactEntry(rightContact, lang, 1);
+        
+        // Generate center arch entry (GitHub)
+        const centerContact = contacts.arch.center.github;
+        html += this.generateContactEntry(centerContact, lang, 2);
+        
+        // Generate bottom entry (Phone)
+        const bottomContact = contacts.arch.bottom.phone;
+        html += this.generateContactEntry(bottomContact, lang, 3);
+        
+        // Close the arch container
         html += '</div>';
+        
         return html;
+    }
+    
+    generateContactEntry(contact, lang, index) {
+        // Determine URL - some contacts have dynamic URLs based on language
+        let url = typeof contact.url === 'function' ? contact.url(lang) : contact.url;
+        
+        // Determine display text - some contacts have dynamic text based on language
+        let displayText = typeof contact.text === 'function' ? contact.text(lang) : contact.name[lang];
+        
+        return `
+            <a href="${url}" 
+               class="contact-entry" 
+               data-position="${contact.position}"
+               data-index="${index}"
+               ${contact.position !== 'bottom' && contact.position !== 'center' ? 'target="_blank" rel="noopener noreferrer"' : ''}
+               itemscope 
+               itemtype="http://schema.org/Person">
+                <div class="contact-frame">
+                    <div class="frame-line top"></div>
+                    <div class="frame-line right"></div>
+                    <div class="frame-line bottom"></div>
+                    <div class="frame-line left"></div>
+                    <div class="frame-corner tl"></div>
+                    <div class="frame-corner tr"></div>
+                    <div class="frame-corner bl"></div>
+                    <div class="frame-corner br"></div>
+                </div>
+                <div class="contact-content">
+                    <span class="contact-icon">${contact.icon}</span>
+                    <span class="contact-text">${displayText}</span>
+                </div>
+            </a>
+        `;
     }
 
     addHoverEffects() {
