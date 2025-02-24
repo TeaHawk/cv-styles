@@ -10,9 +10,8 @@
     transition: opacity var(--transition-smooth);
 }
 
-/* New addition: Style for the last row */
-.skills-entries > :last-child {
-    grid-column: 2;  /* Place in middle column */
+.skills-entries > .skills-category:last-child:nth-child(3n + 1) {
+    grid-column: 2;
 }
 
 .skills-entries.visible {
