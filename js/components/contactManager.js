@@ -22,6 +22,9 @@ class ContactManager {
             return;
         }
 
+        // Add design toggle buttons
+        this.addDesignToggle();
+
         // Set initial design
         this.container.classList.add(`${this.currentDesign}-design`);
 
@@ -35,6 +38,56 @@ class ContactManager {
                 this.updateContacts(this.currentLang);
             }
         });
+    }
+
+    addDesignToggle() {
+        // Create toggle container
+        const toggleContainer = document.createElement('div');
+        toggleContainer.className = 'design-toggle';
+        
+        // Create Eagle button
+        const eagleBtn = document.createElement('button');
+        eagleBtn.className = `toggle-btn ${this.currentDesign === 'eagle' ? 'active' : ''}`;
+        eagleBtn.textContent = 'Eagle';
+        eagleBtn.addEventListener('click', () => this.changeDesign('eagle'));
+        
+        // Create Ziggurat button
+        const zigguratBtn = document.createElement('button');
+        zigguratBtn.className = `toggle-btn ${this.currentDesign === 'ziggurat' ? 'active' : ''}`;
+        zigguratBtn.textContent = 'Ziggurat';
+        zigguratBtn.addEventListener('click', () => this.changeDesign('ziggurat'));
+        
+        // Append buttons to container
+        toggleContainer.appendChild(eagleBtn);
+        toggleContainer.appendChild(zigguratBtn);
+        
+        // Append toggle container to parent
+        this.container.parentNode.appendChild(toggleContainer);
+    }
+
+    changeDesign(design) {
+        // Skip if same design
+        if (design === this.currentDesign) return;
+        
+        // Update current design
+        this.currentDesign = design;
+        localStorage.setItem('contactDesign', design);
+        
+        // Update UI
+        this.container.classList.remove('eagle-design', 'ziggurat-design');
+        this.container.classList.add(`${design}-design`);
+        
+        // Update toggle buttons
+        const buttons = document.querySelectorAll('.toggle-btn');
+        buttons.forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.textContent.toLowerCase() === design) {
+                btn.classList.add('active');
+            }
+        });
+        
+        // Re-render contacts with new design
+        this.updateContacts(this.currentLang);
     }
 
     renderContacts(lang) {
