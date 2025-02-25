@@ -150,6 +150,7 @@
     right: 0;
     bottom: 0;
     pointer-events: none;
+    clip-path: polygon(10% 0, 90% 0, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0 90%, 0 10%);
 }
 
 .contact-frame .frame-line {
@@ -158,11 +159,11 @@
     transition: transform var(--transition-smooth);
 }
 
-/* Frame lines */
+/* Frame lines with adjusted positioning */
 .contact-frame .frame-line.top {
     height: 2px;
     width: calc(100% - 20px);
-    top: 0;
+    top: 4px;
     left: 10px;
     transform: scaleX(0);
     transform-origin: left;
@@ -171,7 +172,7 @@
 .contact-frame .frame-line.bottom {
     height: 2px;
     width: calc(100% - 20px);
-    bottom: 0;
+    bottom: 4px;
     right: 10px;
     transform: scaleX(0);
     transform-origin: right;
@@ -180,7 +181,7 @@
 .contact-frame .frame-line.left {
     width: 2px;
     height: calc(100% - 20px);
-    left: 0;
+    left: 4px;
     top: 10px;
     transform: scaleY(0);
     transform-origin: top;
@@ -189,7 +190,7 @@
 .contact-frame .frame-line.right {
     width: 2px;
     height: calc(100% - 20px);
-    right: 0;
+    right: 4px;
     bottom: 10px;
     transform: scaleY(0);
     transform-origin: bottom;
@@ -239,302 +240,16 @@
     transform: translate(0, 0);
 }
 
-/* Contact Entry Hover Effect */
+/* Ensure visibility in light theme */
+.contact-entry {
+    border: 1px solid var(--accent);
+    border-opacity: 0.2;
+}
+
+/* Enhanced hover effect */
 .contact-entry:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-/* Content Styling */
-.contact-content {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-medium);
-    z-index: 1;
-    width: 100%;
-    justify-content: center;
-}
-
-.contact-icon {
-    font-size: 1.5rem;
-    color: var(--accent);
-    transition: transform var(--transition-quick);
-}
-
-.contact-entry:hover .contact-icon {
-    transform: scale(1.1);
-}
-
-.contact-text {
-    font-size: 0.95rem;
-}
-
-/* Animation for Entry */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.contact-entry {
-    animation: fadeInUp 0.5s ease-out forwards;
-    animation-delay: calc(var(--index, 0) * 0.15s);
-    opacity: 0;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    .contact-entries {
-        grid-template-columns: 1fr;
-        grid-template-areas:
-            "spine"
-            "center"
-            "left-wing"
-
-/* === CONTACT COMPONENT === */
-
-/* Contact Section Container */
-.contact-section {
-    position: relative;
-    margin-top: -20px; /* Create slight overlap with skills section */
-    padding-top: 0;
-}
-
-/* Contact Entry Container */
-.contact-entries {
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    position: relative;
-    padding-bottom: var(--spacing-large);
-}
-
-.contact-entries.visible {
-    opacity: 1;
-}
-
-.contact-entries.fade-out {
-    opacity: 0;
-}
-
-/* Eagle Gargoyle Design */
-.contact-entries {
-    display: grid;
-    grid-template-areas:
-        "spine spine spine"
-        "left-wing center right-wing"
-        "bottom-left bottom-center bottom-right";
-    grid-template-columns: 1fr auto 1fr;
-    grid-template-rows: 20px auto auto;
-    gap: var(--spacing-medium);
-    margin-top: 10px; /* Space from T-stem */
-    position: relative;
-}
-
-/* Central spine of eagle design */
-.eagle-spine {
-    grid-area: spine;
-    height: 20px;
-    width: 2px;
-    background: var(--accent);
-    justify-self: center;
-    position: relative;
-}
-
-.eagle-spine::before,
-.eagle-spine::after {
-    content: '';
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    background: var(--accent);
-    transform: rotate(45deg);
-}
-
-.eagle-spine::before {
-    top: -3px;
-    left: -2px;
-}
-
-.eagle-spine::after {
-    bottom: -3px;
-    left: -2px;
-}
-
-/* Wing connecting lines */
-.wing-line {
-    position: absolute;
-    background: var(--accent);
-    height: 2px;
-}
-
-.wing-line.left {
-    width: calc(50% - 20px);
-    right: 50%;
-    top: 20px;
-    transform-origin: right;
-    transform: rotate(-30deg);
-}
-
-.wing-line.right {
-    width: calc(50% - 20px);
-    left: 50%;
-    top: 20px;
-    transform-origin: left;
-    transform: rotate(30deg);
-}
-
-/* Individual Contact Entry - Eagle Design */
-.contact-entry.eagle-position-center {
-    grid-area: center;
-    background: var(--bg-secondary);
-    min-height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 2;
-}
-
-.contact-entry.eagle-position-left {
-    grid-area: left-wing;
-    justify-self: end;
-    width: 85%;
-    transform-origin: right center;
-    clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%);
-}
-
-.contact-entry.eagle-position-right {
-    grid-area: right-wing;
-    justify-self: start;
-    width: 85%;
-    transform-origin: left center;
-    clip-path: polygon(0 0, 90% 0, 100% 100%, 0 100%);
-}
-
-.contact-entry.eagle-position-bottom-center {
-    grid-area: bottom-center;
-    width: 60%;
-    justify-self: center;
-    margin-top: -10px;
-    clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
-}
-
-/* Contact Entry - Common Styling */
-.contact-entry {
-    position: relative;
-    padding: var(--spacing-medium);
-    background: var(--bg-secondary);
-    color: var(--text-primary);
-    text-decoration: none;
-    transition: transform var(--transition-smooth),
-                box-shadow var(--transition-smooth);
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    min-height: 60px;
-    z-index: 1;
-}
-
-/* Art Deco Frame */
-.contact-frame {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    pointer-events: none;
-}
-
-.contact-frame .frame-line {
-    position: absolute;
-    background: var(--accent);
-    transition: transform var(--transition-smooth);
-}
-
-/* Frame lines */
-.contact-frame .frame-line.top {
-    height: 2px;
-    width: calc(100% - 20px);
-    top: 0;
-    left: 10px;
-    transform: scaleX(0);
-    transform-origin: left;
-}
-
-.contact-frame .frame-line.bottom {
-    height: 2px;
-    width: calc(100% - 20px);
-    bottom: 0;
-    right: 10px;
-    transform: scaleX(0);
-    transform-origin: right;
-}
-
-.contact-frame .frame-line.left {
-    width: 2px;
-    height: calc(100% - 20px);
-    left: 0;
-    top: 10px;
-    transform: scaleY(0);
-    transform-origin: top;
-}
-
-.contact-frame .frame-line.right {
-    width: 2px;
-    height: calc(100% - 20px);
-    right: 0;
-    bottom: 10px;
-    transform: scaleY(0);
-    transform-origin: bottom;
-}
-
-/* Art Deco Corners */
-.contact-frame .frame-corner {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background: var(--accent);
-    opacity: 0;
-    transition: opacity var(--transition-smooth), transform var(--transition-smooth);
-}
-
-.contact-frame .frame-corner.tl {
-    top: 0;
-    left: 0;
-    transform: translate(-4px, -4px);
-}
-
-.contact-frame .frame-corner.tr {
-    top: 0;
-    right: 0;
-    transform: translate(4px, -4px);
-}
-
-.contact-frame .frame-corner.bl {
-    bottom: 0;
-    left: 0;
-    transform: translate(-4px, 4px);
-}
-
-.contact-frame .frame-corner.br {
-    bottom: 0;
-    right: 0;
-    transform: translate(4px, 4px);
-}
-
-/* Frame Animation on Hover */
-.contact-entry:hover .contact-frame .frame-line {
-    transform: scale(1);
-}
-
-.contact-entry:hover .contact-frame .frame-corner {
-    opacity: 1;
-    transform: translate(0, 0);
+    border-color: var(--accent);
+    border-opacity: 1;
 }
 
 /* Contact Entry Hover Effect */
