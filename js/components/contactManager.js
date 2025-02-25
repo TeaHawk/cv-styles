@@ -94,7 +94,7 @@ class ContactManager {
     generateContactsHTML(lang) {
         // Start with connector and wing lines
         let html = `
-            <div class="skills-contact-connector"></div>
+            <div class="skills-connection"></div>
             <div class="wing-line left"></div>
             <div class="wing-line right"></div>
         `;
