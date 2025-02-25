@@ -2,6 +2,7 @@ class ContactManager {
     constructor() {
         this.container = document.querySelector('.contact-entries');
         this.currentLang = localStorage.getItem('language') || 'fr';
+        this.currentDesign = localStorage.getItem('contactDesign') || 'eagle';
         this.init();
     }
 
@@ -21,6 +22,12 @@ class ContactManager {
             return;
         }
 
+        // Add design toggle buttons
+        this.addDesignToggle();
+
+        // Set initial design
+        this.container.classList.add(`${this.currentDesign}-design`);
+
         // Initial render
         this.renderContacts(this.currentLang);
 
@@ -33,13 +40,66 @@ class ContactManager {
         });
     }
 
+    addDesignToggle() {
+        // Create toggle container
+        const toggleContainer = document.createElement('div');
+        toggleContainer.className = 'design-toggle';
+        
+        // Create Eagle button
+        const eagleBtn = document.createElement('button');
+        eagleBtn.className = `toggle-btn ${this.currentDesign === 'eagle' ? 'active' : ''}`;
+        eagleBtn.textContent = 'Eagle';
+        eagleBtn.addEventListener('click', () => this.changeDesign('eagle'));
+        
+        // Create Ziggurat button
+        const zigguratBtn = document.createElement('button');
+        zigguratBtn.className = `toggle-btn ${this.currentDesign === 'ziggurat' ? 'active' : ''}`;
+        zigguratBtn.textContent = 'Ziggurat';
+        zigguratBtn.addEventListener('click', () => this.changeDesign('ziggurat'));
+        
+        // Append buttons to container
+        toggleContainer.appendChild(eagleBtn);
+        toggleContainer.appendChild(zigguratBtn);
+        
+        // Append toggle container to parent
+        this.container.parentNode.appendChild(toggleContainer);
+    }
+
+    changeDesign(design) {
+        // Skip if same design
+        if (design === this.currentDesign) return;
+        
+        // Update current design
+        this.currentDesign = design;
+        localStorage.setItem('contactDesign', design);
+        
+        // Update UI
+        this.container.classList.remove('eagle-design', 'ziggurat-design');
+        this.container.classList.add(`${design}-design`);
+        
+        // Update toggle buttons
+        const buttons = document.querySelectorAll('.toggle-btn');
+        buttons.forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.textContent.toLowerCase() === design) {
+                btn.classList.add('active');
+            }
+        });
+        
+        // Re-render contacts with new design
+        this.updateContacts(this.currentLang);
+    }
+
     renderContacts(lang) {
         try {
             // Clear previous content
             this.container.innerHTML = '';
             
-            // Generate and insert HTML
-            const contactsHTML = this.generateContactsHTML(lang);
+            // Generate and insert HTML based on current design
+            const contactsHTML = this.currentDesign === 'eagle' 
+                ? this.generateEagleContactsHTML(lang)
+                : this.generateZigguratContactsHTML(lang);
+                
             this.container.innerHTML = contactsHTML;
 
             // Add animations with sequential delays
@@ -68,7 +128,10 @@ class ContactManager {
             
             setTimeout(() => {
                 // Update content while faded out
-                const contactsHTML = this.generateContactsHTML(lang);
+                const contactsHTML = this.currentDesign === 'eagle' 
+                    ? this.generateEagleContactsHTML(lang)
+                    : this.generateZigguratContactsHTML(lang);
+                    
                 this.container.innerHTML = contactsHTML;
                 
                 // Add sequential animations
@@ -91,40 +154,58 @@ class ContactManager {
         }
     }
 
-    generateContactsHTML(lang) {
-        // Start with the arch container and SVG path
+    generateEagleContactsHTML(lang) {
         let html = `
-            <div class="contact-arch">
-                <div class="arch-path">
-                    <svg viewBox="0 0 300 200" preserveAspectRatio="none">
-                        <path d="M60,50 Q150,150 240,50" />
-                    </svg>
-                </div>
+            <div class="eagle-spine"></div>
+            <div class="wing-line left"></div>
+            <div class="wing-line right"></div>
         `;
         
-        // Generate left arch entry (LinkedIn)
-        const leftContact = contacts.arch.left.linkedin;
-        html += this.generateContactEntry(leftContact, lang, 0);
+        // GitHub at center position
+        const githubContact = contacts.arch.center.github;
+        html += this.generateContactEntry(githubContact, lang, 0, 'eagle-position-center');
         
-        // Generate right arch entry (Email)
-        const rightContact = contacts.arch.right.email;
-        html += this.generateContactEntry(rightContact, lang, 1);
+        // LinkedIn at left wing position
+        const linkedinContact = contacts.arch.left.linkedin;
+        html += this.generateContactEntry(linkedinContact, lang, 1, 'eagle-position-left');
         
-        // Generate center arch entry (GitHub)
-        const centerContact = contacts.arch.center.github;
-        html += this.generateContactEntry(centerContact, lang, 2);
+        // Email at right wing position
+        const emailContact = contacts.arch.right.email;
+        html += this.generateContactEntry(emailContact, lang, 2, 'eagle-position-right');
         
-        // Generate bottom entry (Phone)
-        const bottomContact = contacts.arch.bottom.phone;
-        html += this.generateContactEntry(bottomContact, lang, 3);
-        
-        // Close the arch container
-        html += '</div>';
+        // Phone at bottom center position
+        const phoneContact = contacts.arch.bottom.phone;
+        html += this.generateContactEntry(phoneContact, lang, 3, 'eagle-position-bottom-center');
         
         return html;
     }
     
-    generateContactEntry(contact, lang, index) {
+    generateZigguratContactsHTML(lang) {
+        let html = '';
+        
+        // First layer (top) - GitHub
+        html += `<div class="ziggurat-layer">
+            <div class="ziggurat-decor"></div>
+            ${this.generateContactEntry(contacts.arch.center.github, lang, 0, 'ziggurat-position-top')}
+        </div>`;
+        
+        // Second layer - LinkedIn and Email
+        html += `<div class="ziggurat-layer">
+            <div class="ziggurat-decor"></div>
+            ${this.generateContactEntry(contacts.arch.left.linkedin, lang, 1, 'ziggurat-position-middle-left')}
+            ${this.generateContactEntry(contacts.arch.right.email, lang, 2, 'ziggurat-position-middle-right')}
+        </div>`;
+        
+        // Bottom layer - Phone
+        html += `<div class="ziggurat-layer">
+            <div class="ziggurat-decor"></div>
+            ${this.generateContactEntry(contacts.arch.bottom.phone, lang, 3, 'ziggurat-position-bottom')}
+        </div>`;
+        
+        return html;
+    }
+    
+    generateContactEntry(contact, lang, index, positionClass) {
         // Determine URL - some contacts have dynamic URLs based on language
         let url = typeof contact.url === 'function' ? contact.url(lang) : contact.url;
         
@@ -133,10 +214,9 @@ class ContactManager {
         
         return `
             <a href="${url}" 
-               class="contact-entry" 
-               data-position="${contact.position}"
+               class="contact-entry ${positionClass}" 
                data-index="${index}"
-               ${contact.position !== 'bottom' && contact.position !== 'center' ? 'target="_blank" rel="noopener noreferrer"' : ''}
+               ${positionClass !== 'eagle-position-bottom-center' && positionClass !== 'ziggurat-position-bottom' ? 'target="_blank" rel="noopener noreferrer"' : ''}
                itemscope 
                itemtype="http://schema.org/Person">
                 <div class="contact-frame">
