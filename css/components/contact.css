@@ -1,4 +1,4 @@
-/* === CONTACT COMPONENT === */
+/* === REVISED CONTACT COMPONENT CSS === */
 
 /* Contact Section Container */
 .contact-section {
@@ -100,6 +100,7 @@
     justify-content: center;
     position: relative;
     z-index: 2;
+    /* For rectangular shapes, no clip-path is needed */
 }
 
 .contact-entry.eagle-position-left {
@@ -107,6 +108,7 @@
     justify-self: end;
     width: 85%;
     transform-origin: right center;
+    /* Non-rectangular shape */
     clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%);
 }
 
@@ -140,9 +142,36 @@
     overflow: hidden;
     min-height: 60px;
     z-index: 1;
+    /* Removed direct border to avoid the rectangular default */
 }
 
-/* Art Deco Frame */
+/* NEW: Pseudo-element for border that follows the clip-path */
+.contact-entry::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    border: 1px solid var(--accent);
+    /* Optionally start with a lower opacity or a transform effect */
+    transition: border-color var(--transition-smooth), transform var(--transition-smooth);
+    /* Inherit the same clip-path as the contact entry */
+    clip-path: inherit;
+}
+
+/* Hover state: enhance the pseudo-border and entry shadow */
+.contact-entry:hover::before {
+    border-color: var(--accent);
+}
+
+.contact-entry:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Art Deco Frame (border overlay) */
 .contact-frame {
     position: absolute;
     top: 0;
@@ -150,16 +179,17 @@
     right: 0;
     bottom: 0;
     pointer-events: none;
-    clip-path: polygon(10% 0, 90% 0, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0 90%, 0 10%);
+    /* Instead of a fixed polygon, inherit the parent’s clip-path */
+    clip-path: inherit;
 }
 
+/* Frame lines with adjusted positioning */
 .contact-frame .frame-line {
     position: absolute;
     background: var(--accent);
     transition: transform var(--transition-smooth);
 }
 
-/* Frame lines with adjusted positioning */
 .contact-frame .frame-line.top {
     height: 2px;
     width: calc(100% - 20px);
@@ -238,24 +268,6 @@
 .contact-entry:hover .contact-frame .frame-corner {
     opacity: 1;
     transform: translate(0, 0);
-}
-
-/* Ensure visibility in light theme */
-.contact-entry {
-    border: 1px solid var(--accent);
-    border-opacity: 0.2;
-}
-
-/* Enhanced hover effect */
-.contact-entry:hover {
-    border-color: var(--accent);
-    border-opacity: 1;
-}
-
-/* Contact Entry Hover Effect */
-.contact-entry:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Content Styling */
