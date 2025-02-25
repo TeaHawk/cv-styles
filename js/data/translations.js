@@ -7,8 +7,8 @@ const translations = {
         header: {
             title: "Data Engineer",
             contact: {
-                email: "📧 clauzel.daniel@gmail.com",
-                phone: "📱 +33 6 48 87 03 20"
+                email: "clauzel.daniel@gmail.com",
+                phone: "+33 6 48 87 03 20"
             }
         },
         controls: {
@@ -51,8 +51,8 @@ const translations = {
         header: {
             title: "Ingénieur Data",
             contact: {
-                email: "📧 clauzel.daniel@gmail.com",
-                phone: "📱 +33 6 48 87 03 20"
+                email: "clauzel.daniel@gmail.com",
+                phone: "+33 6 48 87 03 20"
             }
         },
         controls: {
@@ -95,8 +95,8 @@ const translations = {
         header: {
             title: "Инженер Данных",
             contact: {
-                email: "📧 clauzel.daniel@gmail.com",
-                phone: "📱 +33 6 48 87 03 20"
+                email: "clauzel.daniel@gmail.com",
+                phone: "+33 6 48 87 03 20"
             }
         },
         controls: {
