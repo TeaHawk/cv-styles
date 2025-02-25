@@ -2,6 +2,7 @@ class ContactManager {
     constructor() {
         this.container = document.querySelector('.contact-entries');
         this.currentLang = localStorage.getItem('language') || 'fr';
+        this.currentDesign = localStorage.getItem('contactDesign') || 'eagle';
         this.init();
     }
 
@@ -21,6 +22,9 @@ class ContactManager {
             return;
         }
 
+        // Set initial design
+        this.container.classList.add(`${this.currentDesign}-design`);
+
         // Initial render
         this.renderContacts(this.currentLang);
 
@@ -38,8 +42,11 @@ class ContactManager {
             // Clear previous content
             this.container.innerHTML = '';
             
-            // Generate and insert HTML
-            const contactsHTML = this.generateEagleContactsHTML(lang);
+            // Generate and insert HTML based on current design
+            const contactsHTML = this.currentDesign === 'eagle' 
+                ? this.generateEagleContactsHTML(lang)
+                : this.generateZigguratContactsHTML(lang);
+                
             this.container.innerHTML = contactsHTML;
 
             // Add animations with sequential delays
@@ -68,7 +75,10 @@ class ContactManager {
             
             setTimeout(() => {
                 // Update content while faded out
-                const contactsHTML = this.generateEagleContactsHTML(lang);
+                const contactsHTML = this.currentDesign === 'eagle' 
+                    ? this.generateEagleContactsHTML(lang)
+                    : this.generateZigguratContactsHTML(lang);
+                    
                 this.container.innerHTML = contactsHTML;
                 
                 // Add sequential animations
@@ -93,7 +103,7 @@ class ContactManager {
 
     generateEagleContactsHTML(lang) {
         let html = `
-            <div class="eagle-connector"></div>
+            <div class="eagle-spine"></div>
             <div class="wing-line left"></div>
             <div class="wing-line right"></div>
         `;
@@ -117,6 +127,31 @@ class ContactManager {
         return html;
     }
     
+    generateZigguratContactsHTML(lang) {
+        let html = '';
+        
+        // First layer (top) - GitHub
+        html += `<div class="ziggurat-layer">
+            <div class="ziggurat-decor"></div>
+            ${this.generateContactEntry(contacts.arch.center.github, lang, 0, 'ziggurat-position-top')}
+        </div>`;
+        
+        // Second layer - LinkedIn and Email
+        html += `<div class="ziggurat-layer">
+            <div class="ziggurat-decor"></div>
+            ${this.generateContactEntry(contacts.arch.left.linkedin, lang, 1, 'ziggurat-position-middle-left')}
+            ${this.generateContactEntry(contacts.arch.right.email, lang, 2, 'ziggurat-position-middle-right')}
+        </div>`;
+        
+        // Bottom layer - Phone
+        html += `<div class="ziggurat-layer">
+            <div class="ziggurat-decor"></div>
+            ${this.generateContactEntry(contacts.arch.bottom.phone, lang, 3, 'ziggurat-position-bottom')}
+        </div>`;
+        
+        return html;
+    }
+    
     generateContactEntry(contact, lang, index, positionClass) {
         // Determine URL - some contacts have dynamic URLs based on language
         let url = typeof contact.url === 'function' ? contact.url(lang) : contact.url;
@@ -128,7 +163,7 @@ class ContactManager {
             <a href="${url}" 
                class="contact-entry ${positionClass}" 
                data-index="${index}"
-               ${positionClass !== 'eagle-position-bottom-center' ? 'target="_blank" rel="noopener noreferrer"' : ''}
+               ${positionClass !== 'eagle-position-bottom-center' && positionClass !== 'ziggurat-position-bottom' ? 'target="_blank" rel="noopener noreferrer"' : ''}
                itemscope 
                itemtype="http://schema.org/Person">
                 <div class="contact-frame">
