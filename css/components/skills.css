@@ -226,3 +226,36 @@
     opacity: 0;
     transition: opacity var(--transition-quick);
 }
+
+
+/*NEW*/
+
+
+/* Adjust the bottom margin of the skills entries for better footer connection */
+.skills-entries {
+    margin-bottom: 30px; /* Reduced from var(--spacing-large) to connect better with footer */
+}
+
+/* Enhance the last skill to visually connect with footer designs */
+.skills-entries > :last-child {
+    grid-column: 2;  /* Keep in middle column */
+    position: relative;
+    z-index: 2; /* Ensure it stays on top */
+}
+
+/* Add a subtle shadow to the last skill item to enhance the connection */
+.skills-entries > :last-child .skills-category {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Add a subtle downward indicator from the last skill to the footer */
+.skills-entries > :last-child .skills-category::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    width: 2px;
+    height: 15px;
+    background: var(--accent);
+    transform: translateX(-50%);
+}
