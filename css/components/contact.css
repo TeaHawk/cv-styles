@@ -24,7 +24,7 @@
 }
 
 /* Eagle Gargoyle Design */
-.contact-entries.eagle-design {
+.contact-entries {
     display: grid;
     grid-template-areas:
         "spine spine spine"
@@ -126,70 +126,6 @@
     clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
 }
 
-/* Ziggurat Design */
-.contact-entries.ziggurat-design {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 15px;
-    position: relative;
-}
-
-/* Ziggurat Layers */
-.ziggurat-layer {
-    position: relative;
-    width: 100%;
-    margin-bottom: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.ziggurat-layer:first-child {
-    width: 33.33%; /* Width of the T-stem */
-}
-
-.ziggurat-layer:nth-child(2) {
-    width: 60%; /* Second layer wider */
-}
-
-.ziggurat-layer:nth-child(3) {
-    width: 80%; /* Third layer even wider */
-}
-
-.ziggurat-layer:last-child {
-    width: 100%; /* Bottom layer full width */
-}
-
-/* Ziggurat Layer Decoration */
-.ziggurat-decor {
-    position: absolute;
-    height: 2px;
-    background: var(--accent);
-    width: 100%;
-    top: 0;
-}
-
-.ziggurat-decor::before,
-.ziggurat-decor::after {
-    content: '';
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background: var(--accent);
-    transform: rotate(45deg);
-}
-
-.ziggurat-decor::before {
-    left: 0;
-    top: -3px;
-}
-
-.ziggurat-decor::after {
-    right: 0;
-    top: -3px;
-}
-
 /* Contact Entry - Common Styling */
 .contact-entry {
     position: relative;
@@ -204,39 +140,6 @@
     overflow: hidden;
     min-height: 60px;
     z-index: 1;
-}
-
-/* Contact Entry - Ziggurat Design */
-.contact-entry.ziggurat-position-top {
-    width: 100%;
-    justify-content: center;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-}
-
-.contact-entry.ziggurat-position-middle-left {
-    width: 48%;
-    margin-right: auto;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-top-right-radius: 20px;
-}
-
-.contact-entry.ziggurat-position-middle-right {
-    width: 48%;
-    margin-left: auto;
-    border-top-right-radius: 0;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-top-left-radius: 20px;
-}
-
-.contact-entry.ziggurat-position-bottom {
-    width: 33.33%;
-    border-radius: 20px;
 }
 
 /* Art Deco Frame */
@@ -327,20 +230,17 @@
 }
 
 /* Frame Animation on Hover */
-.contact-entry:hover .contact-frame .frame-line,
-.contact-entry.entry-hover .contact-frame .frame-line {
+.contact-entry:hover .contact-frame .frame-line {
     transform: scale(1);
 }
 
-.contact-entry:hover .contact-frame .frame-corner,
-.contact-entry.entry-hover .contact-frame .frame-corner {
+.contact-entry:hover .contact-frame .frame-corner {
     opacity: 1;
     transform: translate(0, 0);
 }
 
 /* Contact Entry Hover Effect */
-.contact-entry:hover,
-.contact-entry.entry-hover {
+.contact-entry:hover {
     transform: translateY(-3px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
@@ -387,36 +287,9 @@
     opacity: 0;
 }
 
-/* Toggle button for designs */
-.design-toggle {
-    position: absolute;
-    top: -40px;
-    right: 0;
-    display: flex;
-    gap: var(--spacing-small);
-    z-index: 10;
-}
-
-.toggle-btn {
-    padding: 6px 12px;
-    background: var(--bg-secondary);
-    border: 1px solid var(--accent);
-    color: var(--text-primary);
-    cursor: pointer;
-    font-size: 0.8rem;
-    transition: all var(--transition-quick);
-}
-
-.toggle-btn:hover,
-.toggle-btn.active {
-    background: var(--accent);
-    color: var(--bg-primary);
-}
-
 /* Responsive Adjustments */
 @media (max-width: 768px) {
-    .contact-entries.eagle-design,
-    .contact-entries.ziggurat-design {
+    .contact-entries {
         grid-template-columns: 1fr;
         grid-template-areas:
             "spine"
@@ -429,11 +302,7 @@
     .contact-entry.eagle-position-left,
     .contact-entry.eagle-position-right,
     .contact-entry.eagle-position-center,
-    .contact-entry.eagle-position-bottom-center,
-    .contact-entry.ziggurat-position-top,
-    .contact-entry.ziggurat-position-middle-left,
-    .contact-entry.ziggurat-position-middle-right,
-    .contact-entry.ziggurat-position-bottom {
+    .contact-entry.eagle-position-bottom-center {
         width: 100%;
         justify-self: center;
         clip-path: none;
@@ -444,10 +313,6 @@
     .wing-line.right {
         display: none;
     }
-    
-    .ziggurat-layer {
-        width: 100% !important;
-    }
 }
 
 /* Print Styles */
@@ -457,8 +322,7 @@
         break-inside: avoid;
     }
     
-    .contact-entries.eagle-design,
-    .contact-entries.ziggurat-design {
+    .contact-entries {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
@@ -472,13 +336,8 @@
         clip-path: none !important;
     }
     
-    .design-toggle {
-        display: none;
-    }
-    
     .eagle-spine,
-    .wing-line,
-    .ziggurat-decor {
+    .wing-line {
         display: none;
     }
 }
