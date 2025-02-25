@@ -231,31 +231,59 @@
 /*NEW*/
 
 
-/* Adjust the bottom margin of the skills entries for better footer connection */
+/* Better connect the skills to the eagle footer */
 .skills-entries {
-    margin-bottom: 30px; /* Reduced from var(--spacing-large) to connect better with footer */
-}
-
-/* Enhance the last skill to visually connect with footer designs */
-.skills-entries > :last-child {
-    grid-column: 2;  /* Keep in middle column */
+    margin-bottom: 40px; /* Adjusted for better connection */
     position: relative;
-    z-index: 2; /* Ensure it stays on top */
 }
 
-/* Add a subtle shadow to the last skill item to enhance the connection */
-.skills-entries > :last-child .skills-category {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+/* Enhance the last skill for better connection */
+.skills-entries > :last-child {
+    grid-column: 2; /* Keep in middle column */
+    position: relative;
+    z-index: 2;
 }
 
-/* Add a subtle downward indicator from the last skill to the footer */
-.skills-entries > :last-child .skills-category::after {
+/* Add visual connection from last skill to eagle footer */
+.skills-entries > :last-child::after {
     content: '';
     position: absolute;
-    bottom: -15px;
-    left: 50%;
-    width: 2px;
-    height: 15px;
+    width: 12px;
+    height: 12px;
     background: var(--accent);
+    bottom: -26px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    z-index: 3;
+}
+
+/* Add glow to the last skill to enhance connection */
+.skills-entries > :last-child .skills-category {
+    box-shadow: 0 4px 15px rgba(var(--accent-rgb), 0.2);
+    transition: box-shadow var(--transition-smooth);
+}
+
+.skills-entries > :last-child .skills-category:hover {
+    box-shadow: 0 6px 20px rgba(var(--accent-rgb), 0.3);
+}
+
+/* Add pulsing accent dot to bottom of last skill */
+@keyframes pulseDot {
+    0% { transform: translateX(-50%) scale(0.8); opacity: 0.6; }
+    50% { transform: translateX(-50%) scale(1.2); opacity: 1; }
+    100% { transform: translateX(-50%) scale(0.8); opacity: 0.6; }
+}
+
+.skills-entries > :last-child .skills-category::before {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    bottom: -12px;
+    left: 50%;
     transform: translateX(-50%);
+    z-index: 3;
+    animation: pulseDot 2s ease-in-out infinite;
 }
