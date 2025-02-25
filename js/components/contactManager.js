@@ -39,7 +39,7 @@ class ContactManager {
             this.container.innerHTML = '';
             
             // Generate and insert HTML
-            const contactsHTML = this.generateContactsHTML(lang);
+            const contactsHTML = this.generateEagleContactsHTML(lang);
             this.container.innerHTML = contactsHTML;
 
             // Add animations with sequential delays
@@ -68,7 +68,7 @@ class ContactManager {
             
             setTimeout(() => {
                 // Update content while faded out
-                const contactsHTML = this.generateContactsHTML(lang);
+                const contactsHTML = this.generateEagleContactsHTML(lang);
                 this.container.innerHTML = contactsHTML;
                 
                 // Add sequential animations
@@ -91,34 +91,33 @@ class ContactManager {
         }
     }
 
-    generateContactsHTML(lang) {
-        // Start with connector and wing lines
+    generateEagleContactsHTML(lang) {
         let html = `
-            <div class="skills-connection"></div>
+            <div class="eagle-connector"></div>
             <div class="wing-line left"></div>
             <div class="wing-line right"></div>
         `;
         
-        // Generate GitHub entry (center position)
+        // GitHub at center position
         const githubContact = contacts.arch.center.github;
-        html += this.generateContactEntry(githubContact, lang, 0);
+        html += this.generateContactEntry(githubContact, lang, 0, 'eagle-position-center');
         
-        // Generate LinkedIn entry (left position)
+        // LinkedIn at left wing position
         const linkedinContact = contacts.arch.left.linkedin;
-        html += this.generateContactEntry(linkedinContact, lang, 1);
+        html += this.generateContactEntry(linkedinContact, lang, 1, 'eagle-position-left');
         
-        // Generate Email entry (right position)
+        // Email at right wing position
         const emailContact = contacts.arch.right.email;
-        html += this.generateContactEntry(emailContact, lang, 2);
+        html += this.generateContactEntry(emailContact, lang, 2, 'eagle-position-right');
         
-        // Generate Phone entry (bottom position)
+        // Phone at bottom center position
         const phoneContact = contacts.arch.bottom.phone;
-        html += this.generateContactEntry(phoneContact, lang, 3);
+        html += this.generateContactEntry(phoneContact, lang, 3, 'eagle-position-bottom-center');
         
         return html;
     }
     
-    generateContactEntry(contact, lang, index) {
+    generateContactEntry(contact, lang, index, positionClass) {
         // Determine URL - some contacts have dynamic URLs based on language
         let url = typeof contact.url === 'function' ? contact.url(lang) : contact.url;
         
@@ -127,10 +126,9 @@ class ContactManager {
         
         return `
             <a href="${url}" 
-               class="contact-entry" 
-               data-position="${contact.position}"
+               class="contact-entry ${positionClass}" 
                data-index="${index}"
-               ${contact.position !== 'bottom' && contact.position !== 'center' ? 'target="_blank" rel="noopener noreferrer"' : ''}
+               ${positionClass !== 'eagle-position-bottom-center' ? 'target="_blank" rel="noopener noreferrer"' : ''}
                itemscope 
                itemtype="http://schema.org/Person">
                 <div class="contact-frame">
