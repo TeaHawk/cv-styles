@@ -1,9 +1,9 @@
-/* === CONTACT COMPONENT === */
+/* === CONTACT COMPONENT - ENHANCED EAGLE DESIGN === */
 
 /* Contact Section Container */
 .contact-section {
     position: relative;
-    margin-top: -20px; /* Create slight overlap with skills section */
+    margin-top: -25px; /* Increased overlap with skills section */
     padding-top: 0;
 }
 
@@ -23,69 +23,64 @@
     opacity: 0;
 }
 
-/* Eagle Gargoyle Design */
+/* Enhanced Eagle Gargoyle Design */
 .contact-entries.eagle-design {
     display: grid;
     grid-template-areas:
-        "spine spine spine"
+        "connector connector connector"
         "left-wing center right-wing"
         "bottom-left bottom-center bottom-right";
     grid-template-columns: 1fr auto 1fr;
-    grid-template-rows: 20px auto auto;
+    grid-template-rows: 25px auto auto;
     gap: var(--spacing-medium);
-    margin-top: 10px; /* Space from T-stem */
+    margin-top: 0; /* Removed for better connection */
     position: relative;
 }
 
-/* Central spine of eagle design */
-.eagle-spine {
-    grid-area: spine;
-    height: 20px;
-    width: 2px;
+/* Connection to skills pane */
+.eagle-connector {
+    grid-area: connector;
+    width: 4px; /* Slightly wider */
+    height: 25px;
     background: var(--accent);
     justify-self: center;
     position: relative;
+    z-index: 3;
 }
 
-.eagle-spine::before,
-.eagle-spine::after {
+.eagle-connector::before {
     content: '';
     position: absolute;
-    width: 6px;
-    height: 6px;
+    width: 12px;
+    height: 12px;
     background: var(--accent);
-    transform: rotate(45deg);
-}
-
-.eagle-spine::before {
-    top: -3px;
-    left: -2px;
-}
-
-.eagle-spine::after {
-    bottom: -3px;
-    left: -2px;
+    border-radius: 50%;
+    top: -6px;
+    left: -4px;
+    z-index: 4;
 }
 
 /* Wing connecting lines */
 .wing-line {
     position: absolute;
     background: var(--accent);
-    height: 2px;
+    height: 3px; /* Slightly thicker */
+    opacity: 0.8;
+    z-index: 2;
 }
 
 .wing-line.left {
-    width: calc(50% - 20px);
+    width: calc(50% - 15px);
     right: 50%;
-    top: 20px;
+    top: 25px; /* Aligned with connector bottom */
     transform-origin: right;
     transform: rotate(-30deg);
 }
 
 .wing-line.right {
-    width: calc(50% - 20px);
+    width: calc(50% - 15px);
     left: 50%;
-    top: 20px;
+    top: 25px; /* Aligned with connector bottom */
     transform-origin: left;
     transform: rotate(30deg);
 }
@@ -95,11 +90,14 @@
     grid-area: center;
     background: var(--bg-secondary);
     min-height: 60px;
+    min-width: 150px; /* Ensure minimum width */
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     z-index: 2;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .contact-entry.eagle-position-left {
@@ -107,7 +105,10 @@
     justify-self: end;
     width: 85%;
     transform-origin: right center;
-    clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%);
+    border-radius: 0 10px 10px 0;
+    /* Custom shape - smoother corners */
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 0;
 }
 
 .contact-entry.eagle-position-right {
@@ -115,131 +116,23 @@
     justify-self: start;
     width: 85%;
     transform-origin: left center;
-    clip-path: polygon(0 0, 90% 0, 100% 100%, 0 100%);
+    border-radius: 10px 0 0 10px;
+    /* Custom shape - smoother corners */
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 0;
 }
 
 .contact-entry.eagle-position-bottom-center {
     grid-area: bottom-center;
-    width: 60%;
+    width: 70%; /* Wider to fit phone number */
     justify-self: center;
-    margin-top: -10px;
-    clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+    margin-top: -5px;
+    border-radius: 10px;
+    min-width: 230px; /* Minimum width to prevent text wrapping */
+    max-width: 350px; /* Maximum width to maintain design */
 }
 
-/* Ziggurat Design */
-.contact-entries.ziggurat-design {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 15px;
-    position: relative;
-}
-
-/* Ziggurat Layers */
-.ziggurat-layer {
-    position: relative;
-    width: 100%;
-    margin-bottom: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.ziggurat-layer:first-child {
-    width: 33.33%; /* Width of the T-stem */
-}
-
-.ziggurat-layer:nth-child(2) {
-    width: 60%; /* Second layer wider */
-}
-
-.ziggurat-layer:nth-child(3) {
-    width: 80%; /* Third layer even wider */
-}
-
-.ziggurat-layer:last-child {
-    width: 100%; /* Bottom layer full width */
-}
-
-/* Ziggurat Layer Decoration */
-.ziggurat-decor {
-    position: absolute;
-    height: 2px;
-    background: var(--accent);
-    width: 100%;
-    top: 0;
-}
-
-.ziggurat-decor::before,
-.ziggurat-decor::after {
-    content: '';
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background: var(--accent);
-    transform: rotate(45deg);
-}
-
-.ziggurat-decor::before {
-    left: 0;
-    top: -3px;
-}
-
-.ziggurat-decor::after {
-    right: 0;
-    top: -3px;
-}
-
-/* Contact Entry - Common Styling */
-.contact-entry {
-    position: relative;
-    padding: var(--spacing-medium);
-    background: var(--bg-secondary);
-    color: var(--text-primary);
-    text-decoration: none;
-    transition: transform var(--transition-smooth),
-                box-shadow var(--transition-smooth);
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    min-height: 60px;
-    z-index: 1;
-}
-
-/* Contact Entry - Ziggurat Design */
-.contact-entry.ziggurat-position-top {
-    width: 100%;
-    justify-content: center;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-}
-
-.contact-entry.ziggurat-position-middle-left {
-    width: 48%;
-    margin-right: auto;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-top-right-radius: 20px;
-}
-
-.contact-entry.ziggurat-position-middle-right {
-    width: 48%;
-    margin-left: auto;
-    border-top-right-radius: 0;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-top-left-radius: 20px;
-}
-
-.contact-entry.ziggurat-position-bottom {
-    width: 33.33%;
-    border-radius: 20px;
-}
-
-/* Art Deco Frame */
+/* Enhanced Art Deco Frame */
 .contact-frame {
     position: absolute;
     top: 0;
@@ -247,52 +140,151 @@
     right: 0;
     bottom: 0;
     pointer-events: none;
+    border-radius: inherit; /* Inherit border radius from parent */
+    overflow: hidden; /* Keep animations inside border radius */
 }
 
+/* Enhanced frame lines that follow shape */
 .contact-frame .frame-line {
     position: absolute;
     background: var(--accent);
     transition: transform var(--transition-smooth);
 }
 
-/* Frame lines */
-.contact-frame .frame-line.top {
+/* Frame lines - adapted for each position */
+.eagle-position-center .frame-line.top,
+.eagle-position-center .frame-line.bottom,
+.eagle-position-bottom-center .frame-line.top,
+.eagle-position-bottom-center .frame-line.bottom {
     height: 2px;
     width: calc(100% - 20px);
-    top: 0;
     left: 10px;
     transform: scaleX(0);
+}
+
+.eagle-position-center .frame-line.top,
+.eagle-position-bottom-center .frame-line.top {
+    top: 0;
     transform-origin: left;
 }
 
-.contact-frame .frame-line.bottom {
-    height: 2px;
-    width: calc(100% - 20px);
+.eagle-position-center .frame-line.bottom,
+.eagle-position-bottom-center .frame-line.bottom {
     bottom: 0;
-    right: 10px;
+    transform-origin: right;
+}
+
+/* Wing-specific frame lines */
+.eagle-position-left .frame-line.top {
+    height: 2px;
+    width: calc(100% - 30px);
+    top: 0;
+    right: 0;
+    left: auto;
+    transform: scaleX(0);
+    transform-origin: left;
+    border-top-right-radius: 10px;
+}
+
+.eagle-position-left .frame-line.bottom {
+    height: 2px;
+    width: calc(100% - 10px);
+    bottom: 0;
+    right: 0;
+    left: auto;
     transform: scaleX(0);
     transform-origin: right;
 }
 
-.contact-frame .frame-line.left {
+.eagle-position-right .frame-line.top {
+    height: 2px;
+    width: calc(100% - 30px);
+    top: 0;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: right;
+    border-top-left-radius: 10px;
+}
+
+.eagle-position-right .frame-line.bottom {
+    height: 2px;
+    width: calc(100% - 10px);
+    bottom: 0;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+}
+
+/* Vertical frame lines */
+.contact-frame .frame-line.left,
+.contact-frame .frame-line.right {
     width: 2px;
     height: calc(100% - 20px);
+    transform: scaleY(0);
+}
+
+.contact-frame .frame-line.left {
     left: 0;
     top: 10px;
-    transform: scaleY(0);
     transform-origin: top;
 }
 
 .contact-frame .frame-line.right {
-    width: 2px;
-    height: calc(100% - 20px);
     right: 0;
     bottom: 10px;
-    transform: scaleY(0);
     transform-origin: bottom;
 }
 
-/* Art Deco Corners */
+/* Wing-specific vertical lines */
+.eagle-position-left .frame-line.right {
+    height: calc(100% - 10px);
+    right: 0;
+    top: 0;
+}
+
+.eagle-position-right .frame-line.left {
+    height: calc(100% - 10px);
+    left: 0;
+    top: 0;
+}
+
+/* Feather details for wings */
+.eagle-position-left::before,
+.eagle-position-right::before {
+    content: '';
+    position: absolute;
+    height: 65%;
+    width: 15px;
+    top: 15%;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        transparent 30%,
+        var(--accent) 30%, var(--accent) 32%,
+        transparent 32%, transparent 50%,
+        var(--accent) 50%, var(--accent) 52%,
+        transparent 52%, transparent 70%,
+        var(--accent) 70%, var(--accent) 72%,
+        transparent 72%
+    );
+    opacity: 0.3;
+    transition: opacity var(--transition-smooth);
+}
+
+.eagle-position-left::before {
+    left: 20px;
+}
+
+.eagle-position-right::before {
+    right: 20px;
+}
+
+.eagle-position-left:hover::before,
+.eagle-position-right:hover::before {
+    opacity: 0.6;
+}
+
+/* Art Deco Corners - Enhanced for shapes */
 .contact-frame .frame-corner {
     position: absolute;
     width: 8px;
@@ -326,6 +318,17 @@
     transform: translate(4px, 4px);
 }
 
+/* Hide certain corners depending on position */
+.eagle-position-left .frame-corner.tl,
+.eagle-position-left .frame-corner.bl {
+    display: none;
+}
+
+.eagle-position-right .frame-corner.tr,
+.eagle-position-right .frame-corner.br {
+    display: none;
+}
+
 /* Frame Animation on Hover */
 .contact-entry:hover .contact-frame .frame-line,
 .contact-entry.entry-hover .contact-frame .frame-line {
@@ -342,7 +345,7 @@
 .contact-entry:hover,
 .contact-entry.entry-hover {
     transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
 /* Content Styling */
@@ -355,6 +358,16 @@
     justify-content: center;
 }
 
+.eagle-position-left .contact-content {
+    justify-content: flex-end;
+    padding-right: var(--spacing-medium);
+}
+
+.eagle-position-right .contact-content {
+    justify-content: flex-start;
+    padding-left: var(--spacing-medium);
+}
+
 .contact-icon {
     font-size: 1.5rem;
     color: var(--accent);
@@ -362,18 +375,19 @@
 }
 
 .contact-entry:hover .contact-icon {
-    transform: scale(1.1);
+    transform: scale(1.2); /* Slightly more dramatic */
 }
 
 .contact-text {
     font-size: 0.95rem;
+    white-space: nowrap; /* Prevent text from wrapping */
 }
 
 /* Animation for Entry */
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(15px);
     }
     to {
         opacity: 1;
@@ -382,62 +396,48 @@
 }
 
 .contact-entry {
-    animation: fadeInUp 0.5s ease-out forwards;
-    animation-delay: calc(var(--index, 0) * 0.15s);
+    animation: fadeInUp 0.6s ease-out forwards;
+    animation-delay: calc(var(--index, 0) * 0.2s);
     opacity: 0;
 }
 
-/* Toggle button for designs */
-.design-toggle {
-    position: absolute;
-    top: -40px;
-    right: 0;
-    display: flex;
-    gap: var(--spacing-small);
-    z-index: 10;
+/* Enhanced hover state with glow effect */
+@keyframes contactGlow {
+    0%, 100% { box-shadow: 0 0 5px rgba(var(--accent-rgb), 0.3); }
+    50% { box-shadow: 0 0 15px rgba(var(--accent-rgb), 0.5); }
 }
 
-.toggle-btn {
-    padding: 6px 12px;
-    background: var(--bg-secondary);
-    border: 1px solid var(--accent);
-    color: var(--text-primary);
-    cursor: pointer;
-    font-size: 0.8rem;
-    transition: all var(--transition-quick);
-}
-
-.toggle-btn:hover,
-.toggle-btn.active {
-    background: var(--accent);
-    color: var(--bg-primary);
+.contact-entry:hover {
+    animation: contactGlow 2s infinite;
 }
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
-    .contact-entries.eagle-design,
-    .contact-entries.ziggurat-design {
+    .contact-entries.eagle-design {
         grid-template-columns: 1fr;
         grid-template-areas:
-            "spine"
+            "connector"
             "center"
             "left-wing"
             "right-wing"
             "bottom-center";
+        gap: var(--spacing-small);
     }
     
     .contact-entry.eagle-position-left,
     .contact-entry.eagle-position-right,
     .contact-entry.eagle-position-center,
-    .contact-entry.eagle-position-bottom-center,
-    .contact-entry.ziggurat-position-top,
-    .contact-entry.ziggurat-position-middle-left,
-    .contact-entry.ziggurat-position-middle-right,
-    .contact-entry.ziggurat-position-bottom {
+    .contact-entry.eagle-position-bottom-center {
         width: 100%;
         justify-self: center;
-        clip-path: none;
-        border-radius: 0;
+        border-radius: 10px;
+        min-width: auto;
+    }
+
+    .eagle-position-left .contact-content,
+    .eagle-position-right .contact-content {
+        justify-content: center;
+        padding: 0;
     }
     
     .wing-line.left,
@@ -445,8 +445,9 @@
         display: none;
     }
     
-    .ziggurat-layer {
-        width: 100% !important;
+    .eagle-position-left::before,
+    .eagle-position-right::before {
+        display: none;
     }
 }
 
@@ -457,11 +458,11 @@
         break-inside: avoid;
     }
     
-    .contact-entries.eagle-design,
-    .contact-entries.ziggurat-design {
+    .contact-entries.eagle-design {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
+        gap: 10px;
     }
     
     .contact-entry {
@@ -469,16 +470,15 @@
         margin: 0 0 10px 0 !important;
         page-break-inside: avoid;
         break-inside: avoid;
-        clip-path: none !important;
+        border-radius: 0 !important;
     }
     
-    .design-toggle {
+    .eagle-connector,
+    .wing-line {
         display: none;
     }
     
-    .eagle-spine,
-    .wing-line,
-    .ziggurat-decor {
+    .contact-entry::before {
         display: none;
     }
 }
