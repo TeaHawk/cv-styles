@@ -142,7 +142,92 @@
     z-index: 1;
 }
 
-/* Art Deco Frame with Complex Shape */
+/* Advanced Border Animation for Complex Shapes */
+.contact-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+/* Left Wing Design */
+.contact-entry.eagle-position-left .contact-frame::before,
+.contact-entry.eagle-position-right .contact-frame::before,
+.contact-entry.eagle-position-bottom-center .contact-frame::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid var(--accent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    clip-path: polygon(
+        10% 0, 
+        90% 0, 
+        100% 10%, 
+        100% 90%, 
+        90% 100%, 
+        10% 100%, 
+        0 90%, 
+        0 10%
+    );
+}
+
+.contact-entry.eagle-position-left .contact-frame,
+.contact-entry.eagle-position-right .contact-frame {
+    clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.contact-entry.eagle-position-bottom-center .contact-frame {
+    clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+}
+
+/* Hover Animation */
+.contact-entry:hover .contact-frame::before {
+    opacity: 1;
+    animation: borderTrace 1s linear forwards;
+}
+
+@keyframes borderTrace {
+    0% {
+        clip-path: polygon(
+            50% 50%, 
+            50% 50%, 
+            50% 50%, 
+            50% 50%, 
+            50% 50%, 
+            50% 50%, 
+            50% 50%, 
+            50% 50%
+        );
+    }
+    100% {
+        clip-path: polygon(
+            10% 0, 
+            90% 0, 
+            100% 10%, 
+            100% 90%, 
+            90% 100%, 
+            10% 100%, 
+            0 90%, 
+            0 10%
+        );
+    }
+}
+
+/* Subtle border in all themes */
+.contact-entry {
+    border: 1px solid rgba(var(--accent-rgb), 0.2);
+    transition: border-color 0.3s ease;
+}
+
+.contact-entry:hover {
+    border-color: rgba(var(--accent-rgb), 0.6);
+}/* Art Deco Frame with Complex Shape */
 .contact-frame {
     position: absolute;
     top: 0;
