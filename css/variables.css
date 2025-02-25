@@ -6,6 +6,7 @@
     --primary-black: #1A1A1A;
     --primary-white: #FFFFFF;
     --accent-blue: #0066CC;
+    --accent-rgb: 0, 102, 204;
     
     /* Theme Colors - Light */
     --bg-primary: var(--primary-white);
@@ -60,6 +61,7 @@
     --text-primary: var(--primary-white);
     --text-secondary: #b3b3b3;
     --accent: #00A3FF;
+    --accent-rgb: 0, 163, 255;
 }
 
 /* Base styles */
