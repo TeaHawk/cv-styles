@@ -9,22 +9,6 @@
 
 /* Contact Entry Container */
 .contact-entries {
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    position: relative;
-    padding-bottom: var(--spacing-large);
-}
-
-.contact-entries.visible {
-    opacity: 1;
-}
-
-.contact-entries.fade-out {
-    opacity: 0;
-}
-
-/* Eagle Gargoyle Design */
-.contact-entries {
     display: grid;
     grid-template-areas:
         "spine spine spine"
@@ -35,6 +19,16 @@
     gap: var(--spacing-medium);
     margin-top: 10px; /* Space from T-stem */
     position: relative;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.contact-entries.visible {
+    opacity: 1;
+}
+
+.contact-entries.fade-out {
+    opacity: 0;
 }
 
 /* Central spine of eagle design */
@@ -91,42 +85,6 @@
 }
 
 /* Individual Contact Entry - Eagle Design */
-.contact-entry.eagle-position-center {
-    grid-area: center;
-    background: var(--bg-secondary);
-    min-height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 2;
-}
-
-.contact-entry.eagle-position-left {
-    grid-area: left-wing;
-    justify-self: end;
-    width: 85%;
-    transform-origin: right center;
-    clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%);
-}
-
-.contact-entry.eagle-position-right {
-    grid-area: right-wing;
-    justify-self: start;
-    width: 85%;
-    transform-origin: left center;
-    clip-path: polygon(0 0, 90% 0, 100% 100%, 0 100%);
-}
-
-.contact-entry.eagle-position-bottom-center {
-    grid-area: bottom-center;
-    width: 60%;
-    justify-self: center;
-    margin-top: -10px;
-    clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
-}
-
-/* Contact Entry - Common Styling */
 .contact-entry {
     position: relative;
     padding: var(--spacing-medium);
@@ -142,29 +100,60 @@
     z-index: 1;
 }
 
-/* Advanced Border Animation for Complex Shapes */
-.contact-frame {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    pointer-events: none;
-}
-
-/* Left Wing Design */
-.contact-entry.eagle-position-left .contact-frame::before,
-.contact-entry.eagle-position-right .contact-frame::before,
-.contact-entry.eagle-position-bottom-center .contact-frame::before {
+/* Advanced Border with Unique Shapes */
+.contact-entry::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
     border: 2px solid var(--accent);
-    opacity: 0;
-    transition: opacity 0.4s ease;
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 2;
+    transition: opacity 0.3s ease;
+}
+
+/* Shape-specific border clips */
+.contact-entry.eagle-position-left::before {
+    clip-path: polygon(
+        0 10%, 
+        10% 0, 
+        90% 0, 
+        100% 10%, 
+        100% 90%, 
+        90% 100%, 
+        0 90%
+    );
+}
+
+.contact-entry.eagle-position-right::before {
+    clip-path: polygon(
+        100% 10%, 
+        90% 0, 
+        10% 0, 
+        0 10%, 
+        0 90%, 
+        10% 100%, 
+        100% 90%
+    );
+}
+
+.contact-entry.eagle-position-bottom-center::before {
+    clip-path: polygon(
+        10% 0, 
+        90% 0, 
+        100% 10%, 
+        100% 50%, 
+        90% 100%, 
+        10% 100%, 
+        0 50%, 
+        0 10%
+    );
+}
+
+.contact-entry.eagle-position-center::before {
     clip-path: polygon(
         10% 0, 
         90% 0, 
@@ -177,57 +166,7 @@
     );
 }
 
-.contact-entry.eagle-position-left .contact-frame,
-.contact-entry.eagle-position-right .contact-frame {
-    clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%);
-}
-
-.contact-entry.eagle-position-bottom-center .contact-frame {
-    clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
-}
-
-/* Hover Animation */
-.contact-entry:hover .contact-frame::before {
-    opacity: 1;
-    animation: borderTrace 1s linear forwards;
-}
-
-@keyframes borderTrace {
-    0% {
-        clip-path: polygon(
-            50% 50%, 
-            50% 50%, 
-            50% 50%, 
-            50% 50%, 
-            50% 50%, 
-            50% 50%, 
-            50% 50%, 
-            50% 50%
-        );
-    }
-    100% {
-        clip-path: polygon(
-            10% 0, 
-            90% 0, 
-            100% 10%, 
-            100% 90%, 
-            90% 100%, 
-            10% 100%, 
-            0 90%, 
-            0 10%
-        );
-    }
-}
-
-/* Subtle border in all themes */
-.contact-entry {
-    border: 1px solid rgba(var(--accent-rgb), 0.2);
-    transition: border-color 0.3s ease;
-}
-
-.contact-entry:hover {
-    border-color: rgba(var(--accent-rgb), 0.6);
-}/* Art Deco Frame with Complex Shape */
+/* Border Frame and Hover Effects */
 .contact-frame {
     position: absolute;
     top: 0;
@@ -235,239 +174,6 @@
     right: 0;
     bottom: 0;
     pointer-events: none;
-}
-
-.contact-entry.eagle-position-left .contact-frame,
-.contact-entry.eagle-position-right .contact-frame {
-    clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%);
-}
-
-.contact-entry.eagle-position-bottom-center .contact-frame {
-    clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
-}
-
-.contact-frame .frame-line {
-    position: absolute;
-    background: var(--accent);
-    transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
-}
-
-/* Adjusting frame lines for each unique shape */
-.contact-entry.eagle-position-left .contact-frame .frame-line.top {
-    height: 2px;
-    width: calc(100% - 20px);
-    top: 4px;
-    left: 20px;
-    transform: scaleX(0);
-    transform-origin: left;
-}
-
-.contact-entry.eagle-position-left .contact-frame .frame-line.right {
-    width: 2px;
-    height: calc(100% - 10px);
-    right: 4px;
-    top: 10px;
-    transform: scaleY(0);
-    transform-origin: top;
-}
-
-.contact-entry.eagle-position-right .contact-frame .frame-line.top {
-    height: 2px;
-    width: calc(100% - 20px);
-    top: 4px;
-    right: 20px;
-    transform: scaleX(0);
-    transform-origin: right;
-}
-
-.contact-entry.eagle-position-right .contact-frame .frame-line.left {
-    width: 2px;
-    height: calc(100% - 10px);
-    left: 4px;
-    top: 10px;
-    transform: scaleY(0);
-    transform-origin: top;
-}
-
-.contact-entry.eagle-position-bottom-center .contact-frame .frame-line.bottom {
-    height: 2px;
-    width: calc(100% - 20px);
-    bottom: 4px;
-    left: 10px;
-    transform: scaleX(0);
-    transform-origin: left;
-}
-
-.contact-entry.eagle-position-center .contact-frame .frame-line {
-    transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
-}
-
-/* Frame Animation on Hover */
-.contact-entry:hover .contact-frame .frame-line {
-    transform: scale(1);
-}
-
-/* Ensure visibility and subtle border in all themes */
-.contact-entry {
-    border: 1px solid rgba(var(--accent-rgb), 0.2);
-    transition: border-color 0.3s ease;
-}
-
-.contact-entry:hover {
-    border-color: rgba(var(--accent-rgb), 0.6);
-}/* === CONTACT COMPONENT === */
-
-/* Contact Section Container */
-.contact-section {
-    position: relative;
-    margin-top: -20px; /* Create slight overlap with skills section */
-    padding-top: 0;
-}
-
-/* Contact Entry Container */
-.contact-entries {
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    position: relative;
-    padding-bottom: var(--spacing-large);
-}
-
-.contact-entries.visible {
-    opacity: 1;
-}
-
-.contact-entries.fade-out {
-    opacity: 0;
-}
-
-/* Eagle Gargoyle Design */
-.contact-entries {
-    display: grid;
-    grid-template-areas:
-        "spine spine spine"
-        "left-wing center right-wing"
-        "bottom-left bottom-center bottom-right";
-    grid-template-columns: 1fr auto 1fr;
-    grid-template-rows: 20px auto auto;
-    gap: var(--spacing-medium);
-    margin-top: 10px; /* Space from T-stem */
-    position: relative;
-}
-
-/* Central spine of eagle design */
-.eagle-spine {
-    grid-area: spine;
-    height: 20px;
-    width: 2px;
-    background: var(--accent);
-    justify-self: center;
-    position: relative;
-}
-
-.eagle-spine::before,
-.eagle-spine::after {
-    content: '';
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    background: var(--accent);
-    transform: rotate(45deg);
-}
-
-.eagle-spine::before {
-    top: -3px;
-    left: -2px;
-}
-
-.eagle-spine::after {
-    bottom: -3px;
-    left: -2px;
-}
-
-/* Wing connecting lines */
-.wing-line {
-    position: absolute;
-    background: var(--accent);
-    height: 2px;
-}
-
-.wing-line.left {
-    width: calc(50% - 20px);
-    right: 50%;
-    top: 20px;
-    transform-origin: right;
-    transform: rotate(-30deg);
-}
-
-.wing-line.right {
-    width: calc(50% - 20px);
-    left: 50%;
-    top: 20px;
-    transform-origin: left;
-    transform: rotate(30deg);
-}
-
-/* Individual Contact Entry - Eagle Design */
-.contact-entry.eagle-position-center {
-    grid-area: center;
-    background: var(--bg-secondary);
-    min-height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 2;
-}
-
-.contact-entry.eagle-position-left {
-    grid-area: left-wing;
-    justify-self: end;
-    width: 85%;
-    transform-origin: right center;
-    clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%);
-}
-
-.contact-entry.eagle-position-right {
-    grid-area: right-wing;
-    justify-self: start;
-    width: 85%;
-    transform-origin: left center;
-    clip-path: polygon(0 0, 90% 0, 100% 100%, 0 100%);
-}
-
-.contact-entry.eagle-position-bottom-center {
-    grid-area: bottom-center;
-    width: 60%;
-    justify-self: center;
-    margin-top: -10px;
-    clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
-}
-
-/* Contact Entry - Common Styling */
-.contact-entry {
-    position: relative;
-    padding: var(--spacing-medium);
-    background: var(--bg-secondary);
-    color: var(--text-primary);
-    text-decoration: none;
-    transition: transform var(--transition-smooth),
-                box-shadow var(--transition-smooth);
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    min-height: 60px;
-    z-index: 1;
-}
-
-/* Art Deco Frame */
-.contact-frame {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    pointer-events: none;
-    clip-path: polygon(10% 0, 90% 0, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0 90%, 0 10%);
 }
 
 .contact-frame .frame-line {
@@ -476,11 +182,11 @@
     transition: transform var(--transition-smooth);
 }
 
-/* Frame lines with adjusted positioning */
+/* Frame lines */
 .contact-frame .frame-line.top {
     height: 2px;
     width: calc(100% - 20px);
-    top: 4px;
+    top: 0;
     left: 10px;
     transform: scaleX(0);
     transform-origin: left;
@@ -489,7 +195,7 @@
 .contact-frame .frame-line.bottom {
     height: 2px;
     width: calc(100% - 20px);
-    bottom: 4px;
+    bottom: 0;
     right: 10px;
     transform: scaleX(0);
     transform-origin: right;
@@ -498,7 +204,7 @@
 .contact-frame .frame-line.left {
     width: 2px;
     height: calc(100% - 20px);
-    left: 4px;
+    left: 0;
     top: 10px;
     transform: scaleY(0);
     transform-origin: top;
@@ -507,7 +213,7 @@
 .contact-frame .frame-line.right {
     width: 2px;
     height: calc(100% - 20px);
-    right: 4px;
+    right: 0;
     bottom: 10px;
     transform: scaleY(0);
     transform-origin: bottom;
@@ -547,7 +253,11 @@
     transform: translate(4px, 4px);
 }
 
-/* Frame Animation on Hover */
+/* Hover Effects */
+.contact-entry:hover::before {
+    opacity: 1;
+}
+
 .contact-entry:hover .contact-frame .frame-line {
     transform: scale(1);
 }
@@ -557,22 +267,45 @@
     transform: translate(0, 0);
 }
 
-/* Ensure visibility in light theme */
-.contact-entry {
-    border: 1px solid var(--accent);
-    border-opacity: 0.2;
-}
-
-/* Enhanced hover effect */
-.contact-entry:hover {
-    border-color: var(--accent);
-    border-opacity: 1;
-}
-
-/* Contact Entry Hover Effect */
 .contact-entry:hover {
     transform: translateY(-3px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Positioning for different entry types */
+.contact-entry.eagle-position-center {
+    grid-area: center;
+    background: var(--bg-secondary);
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.contact-entry.eagle-position-left {
+    grid-area: left-wing;
+    justify-self: end;
+    width: 85%;
+    transform-origin: right center;
+    clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.contact-entry.eagle-position-right {
+    grid-area: right-wing;
+    justify-self: start;
+    width: 85%;
+    transform-origin: left center;
+    clip-path: polygon(0 0, 90% 0, 100% 100%, 0 100%);
+}
+
+.contact-entry.eagle-position-bottom-center {
+    grid-area: bottom-center;
+    width: 60%;
+    justify-self: center;
+    margin-top: -10px;
+    clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
 }
 
 /* Content Styling */
