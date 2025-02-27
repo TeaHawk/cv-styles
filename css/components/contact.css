@@ -194,9 +194,7 @@
     font-size: 0.95rem;
 }
 
-/* ===== COMPLETELY REVISED ART DECO FRAME ANIMATION ===== */
-/* This approach uses custom clip-paths for animations that respect the original shape */
-
+/* ===== HYBRID ANIMATION APPROACH ===== */
 /* Base frame container */
 .contact-frame {
     position: absolute;
@@ -204,51 +202,200 @@
     pointer-events: none;
     z-index: 3;
     clip-path: inherit;
-    overflow: visible;
+    overflow: hidden;
 }
 
-/* ===== SHAPE-SPECIFIC ANIMATIONS FOR EACH TRAPEZOID ===== */
+/* ===== CENTER RECTANGULAR ELEMENT - ORIGINAL ART DECO FRAME ANIMATION ===== */
+/* Frame Lines - Art Deco Style for center element only */
+.contact-entry.eagle-position-center .contact-frame .frame-line {
+    position: absolute;
+    background: var(--accent);
+    transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1), /* Elegant easing */
+                opacity 0.6s ease;
+    opacity: 0;
+}
 
-/* --- SHAPE-ADAPTIVE ANIMATIONS --- */
-/* We'll use a gradient-based approach that follows any shape */
+/* Art Deco style horizontal lines with ornate ends for center element */
+.contact-entry.eagle-position-center .contact-frame .frame-line.top,
+.contact-entry.eagle-position-center .contact-frame .frame-line.bottom {
+    height: 2px;
+    width: calc(100% - 24px);
+    left: 12px;
+    transform: scaleX(0);
+}
 
-/* Animation container for all shapes */
-.contact-frame::before {
+/* Different origins for the lines */
+.contact-entry.eagle-position-center .contact-frame .frame-line.top {
+    top: 6px;
+    transform-origin: left;
+}
+
+.contact-entry.eagle-position-center .contact-frame .frame-line.bottom {
+    bottom: 6px;
+    transform-origin: right;
+}
+
+/* Art Deco style vertical lines for center element */
+.contact-entry.eagle-position-center .contact-frame .frame-line.left,
+.contact-entry.eagle-position-center .contact-frame .frame-line.right {
+    width: 2px;
+    height: calc(100% - 24px);
+    top: 12px;
+    transform: scaleY(0);
+}
+
+/* Different origins for the lines */
+.contact-entry.eagle-position-center .contact-frame .frame-line.left {
+    left: 6px;
+    transform-origin: top;
+}
+
+.contact-entry.eagle-position-center .contact-frame .frame-line.right {
+    right: 6px;
+    transform-origin: bottom;
+}
+
+/* Hover animation for center element frame */
+.contact-entry.eagle-position-center:hover .contact-frame .frame-line {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* ===== TRAPEZOID ELEMENTS - CUSTOM ART DECO ANIMATIONS ===== */
+
+/* ==== LEFT WING ANIMATION (angled left side) ==== */
+.contact-entry.eagle-position-left .contact-frame::before {
     content: "";
     position: absolute;
-    inset: 3px; /* Inset to avoid overlapping the border */
+    inset: 0;
+    background: radial-gradient(circle at 100% 50%, transparent 98%, var(--accent) 100%);
     opacity: 0;
-    transition: opacity 0.8s ease;
-    clip-path: inherit;
-    /* This creates animated borders that follow ANY shape */
-    background: 
-        /* Top border */
-        linear-gradient(to right, var(--accent) 100%, var(--accent) 100%) top left / 0% 2px no-repeat,
-        /* Right border */
-        linear-gradient(to bottom, var(--accent) 100%, var(--accent) 100%) top right / 2px 0% no-repeat,
-        /* Bottom border */
-        linear-gradient(to left, var(--accent) 100%, var(--accent) 100%) bottom right / 0% 2px no-repeat,
-        /* Left border */
-        linear-gradient(to top, var(--accent) 100%, var(--accent) 100%) bottom left / 2px 0% no-repeat;
+    transition: opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-/* Animation timings for the border gradients */
-.contact-entry:hover .contact-frame::before {
+.contact-entry.eagle-position-left:hover .contact-frame::before {
+    opacity: 1;
+}
+
+/* Custom decoration for left wing */
+.contact-entry.eagle-position-left .contact-frame::after {
+    content: "";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+    width: 80%;
+    background: 
+        linear-gradient(to bottom, var(--accent) 100%, var(--accent) 100%) top right / 2px 0% no-repeat,
+        linear-gradient(to left, var(--accent) 100%, var(--accent) 100%) bottom right / 0% 2px no-repeat;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.contact-entry.eagle-position-left:hover .contact-frame::after {
     opacity: 1;
     background: 
-        /* Top border - animates from left to right */
-        linear-gradient(to right, var(--accent) 100%, var(--accent) 100%) top left / 100% 2px no-repeat,
-        /* Right border - animates from top to bottom */
         linear-gradient(to bottom, var(--accent) 100%, var(--accent) 100%) top right / 2px 100% no-repeat,
-        /* Bottom border - animates from right to left */
-        linear-gradient(to left, var(--accent) 100%, var(--accent) 100%) bottom right / 100% 2px no-repeat,
-        /* Left border - animates from bottom to top */
-        linear-gradient(to top, var(--accent) 100%, var(--accent) 100%) bottom left / 2px 100% no-repeat;
+        linear-gradient(to left, var(--accent) 100%, var(--accent) 100%) bottom right / 100% 2px no-repeat;
     transition: 
-        opacity 0.1s ease,
+        opacity 0.2s ease,
         background-size 0.8s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
+/* ==== RIGHT WING ANIMATION (angled right side) ==== */
+.contact-entry.eagle-position-right .contact-frame::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 0% 50%, transparent 98%, var(--accent) 100%);
+    opacity: 0;
+    transition: opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.contact-entry.eagle-position-right:hover .contact-frame::before {
+    opacity: 1;
+}
+
+/* Custom decoration for right wing */
+.contact-entry.eagle-position-right .contact-frame::after {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    bottom: 5px;
+    width: 80%;
+    background: 
+        linear-gradient(to bottom, var(--accent) 100%, var(--accent) 100%) top left / 2px 0% no-repeat,
+        linear-gradient(to right, var(--accent) 100%, var(--accent) 100%) bottom left / 0% 2px no-repeat;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.contact-entry.eagle-position-right:hover .contact-frame::after {
+    opacity: 1;
+    background: 
+        linear-gradient(to bottom, var(--accent) 100%, var(--accent) 100%) top left / 2px 100% no-repeat,
+        linear-gradient(to right, var(--accent) 100%, var(--accent) 100%) bottom left / 100% 2px no-repeat;
+    transition: 
+        opacity 0.2s ease,
+        background-size 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* ==== BOTTOM CENTER ANIMATION (both sides angled) ==== */
+.contact-entry.eagle-position-bottom-center .contact-frame::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    /* V-shaped decoration from top center */
+    background: conic-gradient(
+        from -45deg at 50% 0%,
+        transparent 0deg,
+        transparent 80deg,
+        var(--accent) 85deg,
+        var(--accent) 95deg,
+        transparent 100deg,
+        transparent 260deg,
+        var(--accent) 265deg,
+        var(--accent) 275deg,
+        transparent 280deg,
+        transparent 360deg
+    );
+    opacity: 0;
+    transition: opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.contact-entry.eagle-position-bottom-center:hover .contact-frame::before {
+    opacity: 1;
+}
+
+/* Custom horizontal decorations for bottom shape */
+.contact-entry.eagle-position-bottom-center .contact-frame::after {
+    content: "";
+    position: absolute;
+    left: 15%; 
+    right: 15%;
+    top: 5px;
+    bottom: 5px;
+    background: 
+        linear-gradient(to right, var(--accent) 100%, var(--accent) 100%) top center / 0% 2px no-repeat,
+        linear-gradient(to left, var(--accent) 100%, var(--accent) 100%) bottom center / 0% 2px no-repeat;
+    background-position: top center, bottom center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.contact-entry.eagle-position-bottom-center:hover .contact-frame::after {
+    opacity: 1;
+    background: 
+        linear-gradient(to right, var(--accent) 100%, var(--accent) 100%) top center / 70% 2px no-repeat,
+        linear-gradient(to left, var(--accent) 100%, var(--accent) 100%) bottom center / 70% 2px no-repeat;
+    background-position: top center, bottom center;
+    transition: 
+        opacity 0.2s ease,
+        background-size 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* ===== DIAMOND CORNERS - SHARED ACROSS ALL SHAPES ===== */
 /* Art Deco Corners - Diamond style */
 .contact-frame .frame-corner {
     position: absolute;
@@ -272,37 +419,32 @@
     transform-origin: center;
 }
 
-/* ADAPTIVE CORNER POSITIONING FOR ALL SHAPES */
-
-/* Top-left corner positioning with shape awareness */
+/* Corner positioning with shape awareness */
 .contact-frame .frame-corner.tl {
     top: 6px;
     left: 6px;
     transform: translate(-8px, -8px);
 }
 
-/* Top-right corner positioning with shape awareness */
 .contact-frame .frame-corner.tr {
     top: 6px;
     right: 6px;
     transform: translate(8px, -8px);
 }
 
-/* Bottom-left corner positioning with shape awareness */
 .contact-frame .frame-corner.bl {
     bottom: 6px;
     left: 6px;
     transform: translate(-8px, 8px);
 }
 
-/* Bottom-right corner positioning with shape awareness */
 .contact-frame .frame-corner.br {
     bottom: 6px;
     right: 6px;
     transform: translate(8px, 8px);
 }
 
-/* Corner animations on hover */
+/* Corner animations on hover - shared for all elements */
 .contact-entry:hover .contact-frame .frame-corner {
     transform: translate(0, 0);
     opacity: 1;
@@ -312,10 +454,39 @@
     transform: rotate(45deg) scale(1);
 }
 
-/* Add a decorative inner glow effect on hover */
-.contact-entry:hover::after {
+/* Art deco interior glow on hover - different for each shape */
+.contact-entry.eagle-position-center:hover::after {
     background: radial-gradient(
         circle at center,
+        color-mix(in srgb, var(--bg-secondary) 90%, var(--accent)),
+        var(--bg-secondary)
+    );
+    transition: background 0.8s ease;
+}
+
+.contact-entry.eagle-position-left:hover::after {
+    background: linear-gradient(
+        to right,
+        var(--bg-secondary),
+        color-mix(in srgb, var(--bg-secondary) 90%, var(--accent)),
+        var(--bg-secondary)
+    );
+    transition: background 0.8s ease;
+}
+
+.contact-entry.eagle-position-right:hover::after {
+    background: linear-gradient(
+        to left,
+        var(--bg-secondary),
+        color-mix(in srgb, var(--bg-secondary) 90%, var(--accent)),
+        var(--bg-secondary)
+    );
+    transition: background 0.8s ease;
+}
+
+.contact-entry.eagle-position-bottom-center:hover::after {
+    background: linear-gradient(
+        to bottom,
         color-mix(in srgb, var(--bg-secondary) 90%, var(--accent)),
         var(--bg-secondary)
     );
