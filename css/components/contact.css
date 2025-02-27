@@ -100,18 +100,18 @@
     justify-content: center;
     position: relative;
     z-index: 2;
-    /* Center section is rectangular, so no clip-path needed */
 }
 
+/* Left wing - trapezoid with angled left side */
 .contact-entry.eagle-position-left {
     grid-area: left-wing;
     justify-self: end;
     width: 85%;
     transform-origin: right center;
-    /* Non-rectangular shape */
     clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%);
 }
 
+/* Right wing - trapezoid with angled right side */
 .contact-entry.eagle-position-right {
     grid-area: right-wing;
     justify-self: start;
@@ -120,6 +120,7 @@
     clip-path: polygon(0 0, 90% 0, 100% 100%, 0 100%);
 }
 
+/* Bottom center - trapezoid with both sides angled */
 .contact-entry.eagle-position-bottom-center {
     grid-area: bottom-center;
     width: 60%;
@@ -142,145 +143,33 @@
     overflow: hidden;
     min-height: 60px;
     z-index: 1;
-    /* Using a box-shadow inset with 0 spread to avoid border issues */
-    box-shadow: inset 0 0 0 1px var(--accent);
 }
 
-/* IMPROVED: Use the background trick for border that follows the clip-path */
-.contact-entry::before {
+/* NEW: Double-element approach for borders */
+.contact-entry::before,
+.contact-entry::after {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    pointer-events: none;
-    /* Using background gradient instead of border for perfect shape following */
-    background: 
-        linear-gradient(to right, var(--accent) 100%, var(--accent) 100%) top left / 100% 1px no-repeat,
-        linear-gradient(to right, var(--accent) 100%, var(--accent) 100%) bottom left / 100% 1px no-repeat,
-        linear-gradient(to bottom, var(--accent) 100%, var(--accent) 100%) top left / 1px 100% no-repeat,
-        linear-gradient(to bottom, var(--accent) 100%, var(--accent) 100%) top right / 1px 100% no-repeat;
-    opacity: 0; /* Start invisible */
-    transition: opacity var(--transition-smooth);
-    /* Inherit the same clip-path to stay within bounds */
+    width: 100%;
+    height: 100%;
     clip-path: inherit;
-    z-index: 2;
-}
-
-/* Hover state: show the "border" outline */
-.contact-entry:hover::before {
-    opacity: 1;
-}
-
-.contact-entry:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-/* Art Deco Frame Animation Container */
-.contact-frame {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
     pointer-events: none;
-    z-index: 3;
-    overflow: hidden;
-    /* Match parent's clip-path */
-    clip-path: inherit;
+    z-index: 1;
 }
 
-/* Revised frame lines for better clipped shape handling */
-.contact-frame .frame-line {
-    position: absolute;
-    background: var(--accent);
-    transition: transform var(--transition-smooth);
-    /* Each line needs enough length to cover the entire shape */
-    transform-origin: center;
+/* Outer element for border (slightly larger) */
+.contact-entry::before {
+    background-color: var(--accent);
+    transform: scale(1.01); /* Slightly larger to create border effect */
+    z-index: -1; /* Behind the main element */
 }
 
-.contact-frame .frame-line.top {
-    height: 2px;
-    width: 100%; /* Full width */
-    top: 4px;
-    left: 0;
-    transform: scaleX(0);
-    transform-origin: left;
-}
-
-.contact-frame .frame-line.bottom {
-    height: 2px;
-    width: 100%; /* Full width */
-    bottom: 4px;
-    left: 0;
-    transform: scaleX(0);
-    transform-origin: right;
-}
-
-.contact-frame .frame-line.left {
-    width: 2px;
-    height: 100%; /* Full height */
-    left: 4px;
-    top: 0;
-    transform: scaleY(0);
-    transform-origin: top;
-}
-
-.contact-frame .frame-line.right {
-    width: 2px;
-    height: 100%; /* Full height */
-    right: 4px;
-    top: 0;
-    transform: scaleY(0);
-    transform-origin: bottom;
-}
-
-/* Art Deco Corners - Adjusted to work with clip-path */
-.contact-frame .frame-corner {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background: var(--accent);
-    opacity: 0;
-    transition: opacity var(--transition-smooth), transform var(--transition-smooth);
-    /* Add z-index to ensure corners appear above other elements */
-    z-index: 4;
-}
-
-.contact-frame .frame-corner.tl {
-    top: 0;
-    left: 0;
-    transform: translate(-4px, -4px);
-}
-
-.contact-frame .frame-corner.tr {
-    top: 0;
-    right: 0;
-    transform: translate(4px, -4px);
-}
-
-.contact-frame .frame-corner.bl {
-    bottom: 0;
-    left: 0;
-    transform: translate(-4px, 4px);
-}
-
-.contact-frame .frame-corner.br {
-    bottom: 0;
-    right: 0;
-    transform: translate(4px, 4px);
-}
-
-/* Frame Animation on Hover - Extended for better visual effect */
-.contact-entry:hover .contact-frame .frame-line {
-    transform: scale(1);
-}
-
-.contact-entry:hover .contact-frame .frame-corner {
-    opacity: 1;
-    transform: translate(0, 0);
+/* Inner element (same size as main) */
+.contact-entry::after {
+    background-color: var(--bg-secondary);
+    /* Same size as the main element */
 }
 
 /* Content Styling */
@@ -288,9 +177,10 @@
     display: flex;
     align-items: center;
     gap: var(--spacing-medium);
-    z-index: 5; /* Ensure content is above all decorative elements */
+    z-index: 3; /* Above the pseudo-elements */
     width: 100%;
     justify-content: center;
+    position: relative;
 }
 
 .contact-icon {
@@ -307,7 +197,123 @@
     font-size: 0.95rem;
 }
 
-/* Animation for Entry - Fixed to work with clip-path */
+/* NEW: Custom Art Deco Frame Animations (works with all shapes) */
+/* We'll use multiple pseudo-elements to create the animated border effects */
+.contact-frame {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+    clip-path: inherit;
+    overflow: hidden;
+}
+
+/* Frame animation using custom edges that match each shape */
+.contact-entry.eagle-position-left .contact-frame::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 2px solid transparent;
+    border-top-color: var(--accent);
+    border-right-color: var(--accent);
+    border-bottom-color: var(--accent);
+    border-left-color: transparent; /* No left border since it's angled */
+    clip-path: inherit;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+.contact-entry.eagle-position-right .contact-frame::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 2px solid transparent;
+    border-top-color: var(--accent);
+    border-right-color: transparent; /* No right border since it's angled */
+    border-bottom-color: var(--accent);
+    border-left-color: var(--accent);
+    clip-path: inherit;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+.contact-entry.eagle-position-bottom-center .contact-frame::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 2px solid transparent;
+    border-top-color: var(--accent);
+    border-right-color: transparent; /* No right border since it's angled */
+    border-bottom-color: var(--accent);
+    border-left-color: transparent; /* No left border since it's angled */
+    clip-path: inherit;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+.contact-entry.eagle-position-center .contact-frame::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 2px solid var(--accent);
+    clip-path: inherit;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+/* Enhanced corners for all shapes */
+.contact-frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: 
+        /* Top left corner */
+        radial-gradient(circle at 0 0, var(--accent) 0, var(--accent) 4px, transparent 4px),
+        /* Top right corner */
+        radial-gradient(circle at 100% 0, var(--accent) 0, var(--accent) 4px, transparent 4px),
+        /* Bottom right corner */
+        radial-gradient(circle at 100% 100%, var(--accent) 0, var(--accent) 4px, transparent 4px),
+        /* Bottom left corner */
+        radial-gradient(circle at 0 100%, var(--accent) 0, var(--accent) 4px, transparent 4px);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    clip-path: inherit;
+    opacity: 0;
+    transition: opacity 0.8s ease; /* Slowed down animation */
+    transition-delay: 0.1s; /* Slight delay for corners */
+}
+
+/* Show animations on hover */
+.contact-entry:hover .contact-frame::before,
+.contact-entry:hover .contact-frame::after {
+    opacity: 1;
+}
+
+/* Custom hover animations for angled edges */
+.contact-entry.eagle-position-left:hover::before {
+    /* Brighten the border and add a slight shadow */
+    filter: brightness(1.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.contact-entry.eagle-position-right:hover::before {
+    filter: brightness(1.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.contact-entry.eagle-position-bottom-center:hover::before {
+    filter: brightness(1.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Improved hover state with longer transition */
+.contact-entry:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+/* Animation for Entry */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -325,20 +331,28 @@
     opacity: 0;
 }
 
-/* Add this to enable a subtle glow effect that follows the shape */
-.contact-entry::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: transparent;
-    transition: box-shadow var(--transition-smooth);
-    clip-path: inherit;
-    z-index: 1;
-    pointer-events: none;
+/* SPECIAL FIX: Angled Border Highlight for Trapezoids */
+/* We use a gradient approach to create perfect borders for angled shapes */
+
+/* For left wing with angled left edge */
+.contact-entry.eagle-position-left {
+    background: 
+        linear-gradient(to bottom right, var(--accent) 0%, var(--accent) 2px, var(--bg-secondary) 2px) 0 0 / 100% 100% no-repeat;
 }
 
-.contact-entry:hover::after {
-    box-shadow: inset 0 0 5px 1px var(--accent);
+/* For right wing with angled right edge */
+.contact-entry.eagle-position-right {
+    background: 
+        linear-gradient(to bottom left, var(--accent) 0%, var(--accent) 2px, var(--bg-secondary) 2px) 0 0 / 100% 100% no-repeat;
+}
+
+/* For bottom center with both edges angled */
+.contact-entry.eagle-position-bottom-center {
+    background: 
+        linear-gradient(to bottom, 
+            var(--accent) 0%, var(--accent) 2px, 
+            var(--bg-secondary) 2px, var(--bg-secondary) calc(100% - 2px),
+            var(--accent) calc(100% - 2px)) 0 0 / 100% 100% no-repeat;
 }
 
 /* Responsive Adjustments */
@@ -361,6 +375,18 @@
         justify-self: center;
         clip-path: none;
         border-radius: 0;
+        background: var(--bg-secondary); /* Reset background */
+        border: 1px solid var(--accent); /* Use standard border instead */
+    }
+    
+    /* Reset all the custom border effects in mobile */
+    .contact-entry.eagle-position-left::before,
+    .contact-entry.eagle-position-right::before,
+    .contact-entry.eagle-position-bottom-center::before,
+    .contact-entry.eagle-position-left::after,
+    .contact-entry.eagle-position-right::after,
+    .contact-entry.eagle-position-bottom-center::after {
+        display: none;
     }
     
     .wing-line.left,
@@ -388,6 +414,8 @@
         page-break-inside: avoid;
         break-inside: avoid;
         clip-path: none !important;
+        background: var(--bg-secondary) !important; /* Reset background */
+        border: 1px solid var(--accent) !important; /* Use standard border */
     }
     
     .eagle-spine,
