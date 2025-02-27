@@ -334,11 +334,11 @@
     clip-path: inherit;
     opacity: 0;
     transition: opacity 0.8s ease;
-    /* Draw only on the straight edges with FIXED gradients */
+    /* Draw only on the straight edges with PROPERLY FIXED gradients */
     background: 
         linear-gradient(to right, transparent, var(--accent)) top/100% 1px no-repeat,
         linear-gradient(to bottom, var(--accent), var(--accent)) right top/1px 100% no-repeat,
-        linear-gradient(to left, transparent, var(--accent)) bottom/100% 1px no-repeat; /* FIXED: now fades correctly */
+        linear-gradient(to right, var(--accent), transparent) bottom/100% 1px no-repeat; /* PROPERLY FIXED */
 }
 
 .contact-entry.eagle-position-left:hover .contact-frame::before {
@@ -401,11 +401,11 @@
     clip-path: inherit;
     opacity: 0;
     transition: opacity 0.8s ease;
-    /* Draw only on the straight edges with FIXED gradients */
+    /* Draw only on the straight edges with PROPERLY FIXED gradients */
     background: 
         linear-gradient(to left, transparent, var(--accent)) top/100% 1px no-repeat,
         linear-gradient(to bottom, var(--accent), var(--accent)) left top/1px 100% no-repeat,
-        linear-gradient(to right, transparent, var(--accent)) bottom/100% 1px no-repeat; /* FIXED: now fades correctly */
+        linear-gradient(to left, var(--accent), transparent) bottom/100% 1px no-repeat; /* PROPERLY FIXED */
 }
 
 .contact-entry.eagle-position-right:hover .contact-frame::before {
@@ -455,8 +455,35 @@
     transform: rotate(45deg);
 }
 
-/* ==== BOTTOM CENTER (PHONE) - SMOOTH REDESIGNED ANIMATION ==== */
-/* Art Deco inspired decorative element for bottom trapezoid */
+/* ==== BOTTOM CENTER (PHONE) - ART DECO TEMPLE & EAGLE INSPIRED DESIGN ==== */
+
+/* Top diamond - like the capstone of a temple */
+.contact-entry.eagle-position-bottom-center .contact-frame .frame-corner.tl {
+    display: block;
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    top: 3px;
+    left: 50%;
+    margin-left: -4px;
+    opacity: 0;
+    transform: scale(0);
+    transition: opacity 0.5s ease, 
+                transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s;
+    z-index: 5;
+}
+
+.contact-entry.eagle-position-bottom-center .contact-frame .frame-corner.tl::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--accent);
+    transform: rotate(0deg);
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
+}
+
+/* Temple-like decorative elements using ::before */
 .contact-entry.eagle-position-bottom-center .contact-frame::before {
     content: "";
     position: absolute;
@@ -467,65 +494,22 @@
     clip-path: inherit;
     opacity: 0;
     transition: opacity 0.8s ease;
-    /* Subtle background accent */
-    background: radial-gradient(
-        ellipse at center 50%, 
-        rgba(var(--accent-rgb, 212, 175, 55), 0.05) 0%, 
-        transparent 70%
-    );
+    /* Art Deco temple-inspired pattern */
+    background: 
+        /* Top decorative beam from the diamond */
+        linear-gradient(to right, transparent, var(--accent), transparent) top center/50% 1px no-repeat,
+        
+        /* Left wing/column */
+        linear-gradient(to bottom right, var(--accent) 0, var(--accent) 1px, transparent 2px) top 15px left 35%/15% 40% no-repeat,
+        
+        /* Right wing/column */
+        linear-gradient(to bottom left, var(--accent) 0, var(--accent) 1px, transparent 2px) top 15px right 35%/15% 40% no-repeat,
+        
+        /* Bottom step/lotus motif horizon line */
+        linear-gradient(to right, transparent 15%, var(--accent) 35%, var(--accent) 65%, transparent 85%) bottom 15px center/90% 1px no-repeat;
 }
 
-/* Top diamond */
-.contact-entry.eagle-position-bottom-center .contact-frame .frame-corner.tl {
-    display: block;
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    top: 4px;
-    left: 50%;
-    margin-left: -3px;
-    opacity: 0;
-    transform: scale(0) translateY(-5px);
-    transition: opacity 0.5s ease, 
-                transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s;
-}
-
-.contact-entry.eagle-position-bottom-center .contact-frame .frame-corner.tl::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: var(--accent);
-    transform: rotate(0deg);
-    transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
-}
-
-/* Bottom diamond */
-.contact-entry.eagle-position-bottom-center .contact-frame .frame-corner.bl {
-    display: block;
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    bottom: 4px;
-    left: 50%;
-    margin-left: -3px;
-    opacity: 0;
-    transform: scale(0) translateY(5px);
-    transition: opacity 0.5s ease, 
-                transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s;
-}
-
-.contact-entry.eagle-position-bottom-center .contact-frame .frame-corner.bl::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: var(--accent);
-    transform: rotate(0deg);
-    transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
-}
-
-/* Smooth flowing lines from diamonds */
+/* Eagle wing spread effect using ::after */
 .contact-entry.eagle-position-bottom-center .contact-frame::after {
     content: "";
     position: absolute;
@@ -533,18 +517,25 @@
     left: 0;
     right: 0;
     bottom: 0;
-    opacity: 0;
-    transition: opacity 0.8s ease;
-    background: 
-        /* Top flowing line */
-        radial-gradient(ellipse at center top, var(--accent) 0, var(--accent) 3px, transparent 3px) top center/100% 3px no-repeat,
-        /* Smooth line flowing down from top diamond */
-        linear-gradient(to bottom, var(--accent), transparent 70%) top center/1px 40% no-repeat,
-        /* Smooth line flowing up from bottom diamond */
-        linear-gradient(to top, var(--accent), transparent 70%) bottom center/1px 40% no-repeat,
-        /* Bottom flowing line */
-        radial-gradient(ellipse at center bottom, var(--accent) 0, var(--accent) 3px, transparent 3px) bottom center/100% 3px no-repeat;
     clip-path: inherit;
+    opacity: 0;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    transform: scaleY(0.95);
+    transform-origin: top;
+    /* Art Deco eagle wing and temple column styling */
+    background: 
+        /* Center stem */
+        linear-gradient(to bottom, var(--accent), transparent) top 11px center/1px 40% no-repeat,
+        
+        /* Left wing sweep */
+        radial-gradient(ellipse at 70% 30%, transparent 0, transparent 98%, var(--accent) 100%) top 40% left 25%/30% 60% no-repeat,
+        
+        /* Right wing sweep */
+        radial-gradient(ellipse at 30% 30%, transparent 0, transparent 98%, var(--accent) 100%) top 40% right 25%/30% 60% no-repeat,
+        
+        /* Temple base/steps - three horizontal bars at different widths */
+        linear-gradient(to right, transparent, var(--accent), transparent) bottom 8px center/40% 1px no-repeat,
+        linear-gradient(to right, transparent, var(--accent), transparent) bottom 12px center/60% 1px no-repeat;
 }
 
 /* Bottom trapezoid hover animations */
@@ -554,16 +545,15 @@
 
 .contact-entry.eagle-position-bottom-center:hover .contact-frame::after {
     opacity: 1;
+    transform: scaleY(1);
 }
 
-.contact-entry.eagle-position-bottom-center:hover .contact-frame .frame-corner.tl,
-.contact-entry.eagle-position-bottom-center:hover .contact-frame .frame-corner.bl {
+.contact-entry.eagle-position-bottom-center:hover .contact-frame .frame-corner.tl {
     opacity: 1;
-    transform: scale(1) translateY(0);
+    transform: scale(1);
 }
 
-.contact-entry.eagle-position-bottom-center:hover .contact-frame .frame-corner.tl::before,
-.contact-entry.eagle-position-bottom-center:hover .contact-frame .frame-corner.bl::before {
+.contact-entry.eagle-position-bottom-center:hover .contact-frame .frame-corner.tl::before {
     transform: rotate(45deg);
 }
 
