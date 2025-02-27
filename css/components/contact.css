@@ -90,29 +90,40 @@
     transform: rotate(30deg);
 }
 
-/* Individual Contact Entry - Eagle Design */
-.contact-entry.eagle-position-center {
-    grid-area: center;
-    background: var(--bg-secondary);
-    min-height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* BORDER FIX: Main container for each contact item - shared across all shapes */
+.contact-entry-container {
     position: relative;
+    /* Each container holds both the background border and the foreground content */
+}
+
+/* Border background - this creates the uniform border effect */
+.contact-entry-border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--accent);
+    z-index: 1;
+    /* Each shape has its own clip-path that will be inherited by its children */
+}
+
+/* Individual Contact Entry - Eagle Design with parent containers */
+.contact-entry-container.eagle-position-center {
+    grid-area: center;
     z-index: 2;
 }
 
-/* Left wing - trapezoid with angled left side */
-.contact-entry.eagle-position-left {
+.contact-entry-container.eagle-position-left {
     grid-area: left-wing;
     justify-self: end;
     width: 85%;
     transform-origin: right center;
+    /* The clip-path is applied to the container now */
     clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%);
 }
 
-/* Right wing - trapezoid with angled right side */
-.contact-entry.eagle-position-right {
+.contact-entry-container.eagle-position-right {
     grid-area: right-wing;
     justify-self: start;
     width: 85%;
@@ -120,8 +131,7 @@
     clip-path: polygon(0 0, 90% 0, 100% 100%, 0 100%);
 }
 
-/* Bottom center - trapezoid with both sides angled */
-.contact-entry.eagle-position-bottom-center {
+.contact-entry-container.eagle-position-bottom-center {
     grid-area: bottom-center;
     width: 60%;
     justify-self: center;
@@ -142,34 +152,18 @@
     align-items: center;
     overflow: hidden;
     min-height: 60px;
-    z-index: 1;
-}
-
-/* NEW: Double-element approach for borders */
-.contact-entry::before,
-.contact-entry::after {
-    content: "";
+    z-index: 2;
+    
+    /* The entry itself is now slightly smaller than its border container to create the border effect */
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 1px;
+    left: 1px;
+    right: 1px;
+    bottom: 1px;
+    width: calc(100% - 2px);
+    height: calc(100% - 2px);
+    /* Inherit clip-path from parent but scale down slightly to create border */
     clip-path: inherit;
-    pointer-events: none;
-    z-index: 1;
-}
-
-/* Outer element for border (slightly larger) */
-.contact-entry::before {
-    background-color: var(--accent);
-    transform: scale(1.01); /* Slightly larger to create border effect */
-    z-index: -1; /* Behind the main element */
-}
-
-/* Inner element (same size as main) */
-.contact-entry::after {
-    background-color: var(--bg-secondary);
-    /* Same size as the main element */
 }
 
 /* Content Styling */
@@ -177,7 +171,7 @@
     display: flex;
     align-items: center;
     gap: var(--spacing-medium);
-    z-index: 3; /* Above the pseudo-elements */
+    z-index: 3;
     width: 100%;
     justify-content: center;
     position: relative;
@@ -197,120 +191,126 @@
     font-size: 0.95rem;
 }
 
-/* NEW: Custom Art Deco Frame Animations (works with all shapes) */
-/* We'll use multiple pseudo-elements to create the animated border effects */
+/* Art Deco Frame for hover animations */
 .contact-frame {
     position: absolute;
     inset: 0;
     pointer-events: none;
-    z-index: 2;
-    clip-path: inherit;
+    z-index: 4;
     overflow: hidden;
-}
-
-/* Frame animation using custom edges that match each shape */
-.contact-entry.eagle-position-left .contact-frame::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border: 2px solid transparent;
-    border-top-color: var(--accent);
-    border-right-color: var(--accent);
-    border-bottom-color: var(--accent);
-    border-left-color: transparent; /* No left border since it's angled */
     clip-path: inherit;
-    opacity: 0;
-    transition: opacity 0.8s ease;
 }
 
-.contact-entry.eagle-position-right .contact-frame::before {
-    content: "";
+/* Art Deco Corners */
+.contact-frame .frame-corner {
     position: absolute;
-    inset: 0;
-    border: 2px solid transparent;
-    border-top-color: var(--accent);
-    border-right-color: transparent; /* No right border since it's angled */
-    border-bottom-color: var(--accent);
-    border-left-color: var(--accent);
-    clip-path: inherit;
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
     opacity: 0;
-    transition: opacity 0.8s ease;
+    transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-.contact-entry.eagle-position-bottom-center .contact-frame::before {
-    content: "";
+.contact-frame .frame-corner.tl {
+    top: 4px;
+    left: 4px;
+    transform: translate(-4px, -4px);
+}
+
+.contact-frame .frame-corner.tr {
+    top: 4px;
+    right: 4px;
+    transform: translate(4px, -4px);
+}
+
+.contact-frame .frame-corner.bl {
+    bottom: 4px;
+    left: 4px;
+    transform: translate(-4px, 4px);
+}
+
+.contact-frame .frame-corner.br {
+    bottom: 4px;
+    right: 4px;
+    transform: translate(4px, 4px);
+}
+
+/* Frame lines for Art Deco effect */
+.contact-frame .frame-line {
     position: absolute;
-    inset: 0;
-    border: 2px solid transparent;
-    border-top-color: var(--accent);
-    border-right-color: transparent; /* No right border since it's angled */
-    border-bottom-color: var(--accent);
-    border-left-color: transparent; /* No left border since it's angled */
-    clip-path: inherit;
+    background: var(--accent);
     opacity: 0;
-    transition: opacity 0.8s ease;
+    transition: transform 0.8s ease, opacity 0.8s ease;
 }
 
-.contact-entry.eagle-position-center .contact-frame::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border: 2px solid var(--accent);
-    clip-path: inherit;
-    opacity: 0;
-    transition: opacity 0.8s ease;
+.contact-frame .frame-line.top {
+    height: 2px;
+    width: calc(100% - 20px);
+    top: 4px;
+    left: 10px;
+    transform: scaleX(0);
+    transform-origin: left;
 }
 
-/* Enhanced corners for all shapes */
-.contact-frame::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: 
-        /* Top left corner */
-        radial-gradient(circle at 0 0, var(--accent) 0, var(--accent) 4px, transparent 4px),
-        /* Top right corner */
-        radial-gradient(circle at 100% 0, var(--accent) 0, var(--accent) 4px, transparent 4px),
-        /* Bottom right corner */
-        radial-gradient(circle at 100% 100%, var(--accent) 0, var(--accent) 4px, transparent 4px),
-        /* Bottom left corner */
-        radial-gradient(circle at 0 100%, var(--accent) 0, var(--accent) 4px, transparent 4px);
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    clip-path: inherit;
-    opacity: 0;
-    transition: opacity 0.8s ease; /* Slowed down animation */
-    transition-delay: 0.1s; /* Slight delay for corners */
+.contact-frame .frame-line.bottom {
+    height: 2px;
+    width: calc(100% - 20px);
+    bottom: 4px;
+    right: 10px;
+    transform: scaleX(0);
+    transform-origin: right;
 }
 
-/* Show animations on hover */
-.contact-entry:hover .contact-frame::before,
-.contact-entry:hover .contact-frame::after {
+.contact-frame .frame-line.left {
+    width: 2px;
+    height: calc(100% - 20px);
+    left: 4px;
+    top: 10px;
+    transform: scaleY(0);
+    transform-origin: top;
+}
+
+.contact-frame .frame-line.right {
+    width: 2px;
+    height: calc(100% - 20px);
+    right: 4px;
+    bottom: 10px;
+    transform: scaleY(0);
+    transform-origin: bottom;
+}
+
+/* Hover animation for frame */
+.contact-entry:hover .contact-frame .frame-corner {
     opacity: 1;
+    transform: translate(0, 0);
 }
 
-/* Custom hover animations for angled edges */
-.contact-entry.eagle-position-left:hover::before {
-    /* Brighten the border and add a slight shadow */
-    filter: brightness(1.2);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+.contact-entry:hover .contact-frame .frame-line {
+    opacity: 1;
+    transform: scale(1);
 }
 
-.contact-entry.eagle-position-right:hover::before {
-    filter: brightness(1.2);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.contact-entry.eagle-position-bottom-center:hover::before {
-    filter: brightness(1.2);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-/* Improved hover state with longer transition */
-.contact-entry:hover {
+/* Entry hover effect */
+.contact-entry-container:hover {
     transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.15));
+    transition: transform 0.5s ease-out, filter 0.5s ease-out;
+}
+
+/* Decoration for hover - inner highlight */
+.contact-entry::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+    clip-path: inherit;
+}
+
+.contact-entry:hover::after {
+    opacity: 1;
 }
 
 /* Animation for Entry */
@@ -325,34 +325,10 @@
     }
 }
 
-.contact-entry {
+.contact-entry-container {
     animation: fadeInUp 0.5s ease-out forwards;
     animation-delay: calc(var(--index, 0) * 0.15s);
     opacity: 0;
-}
-
-/* SPECIAL FIX: Angled Border Highlight for Trapezoids */
-/* We use a gradient approach to create perfect borders for angled shapes */
-
-/* For left wing with angled left edge */
-.contact-entry.eagle-position-left {
-    background: 
-        linear-gradient(to bottom right, var(--accent) 0%, var(--accent) 2px, var(--bg-secondary) 2px) 0 0 / 100% 100% no-repeat;
-}
-
-/* For right wing with angled right edge */
-.contact-entry.eagle-position-right {
-    background: 
-        linear-gradient(to bottom left, var(--accent) 0%, var(--accent) 2px, var(--bg-secondary) 2px) 0 0 / 100% 100% no-repeat;
-}
-
-/* For bottom center with both edges angled */
-.contact-entry.eagle-position-bottom-center {
-    background: 
-        linear-gradient(to bottom, 
-            var(--accent) 0%, var(--accent) 2px, 
-            var(--bg-secondary) 2px, var(--bg-secondary) calc(100% - 2px),
-            var(--accent) calc(100% - 2px)) 0 0 / 100% 100% no-repeat;
 }
 
 /* Responsive Adjustments */
@@ -367,26 +343,14 @@
             "bottom-center";
     }
     
-    .contact-entry.eagle-position-left,
-    .contact-entry.eagle-position-right,
-    .contact-entry.eagle-position-center,
-    .contact-entry.eagle-position-bottom-center {
+    .contact-entry-container.eagle-position-left,
+    .contact-entry-container.eagle-position-right,
+    .contact-entry-container.eagle-position-center,
+    .contact-entry-container.eagle-position-bottom-center {
         width: 100%;
         justify-self: center;
         clip-path: none;
         border-radius: 0;
-        background: var(--bg-secondary); /* Reset background */
-        border: 1px solid var(--accent); /* Use standard border instead */
-    }
-    
-    /* Reset all the custom border effects in mobile */
-    .contact-entry.eagle-position-left::before,
-    .contact-entry.eagle-position-right::before,
-    .contact-entry.eagle-position-bottom-center::before,
-    .contact-entry.eagle-position-left::after,
-    .contact-entry.eagle-position-right::after,
-    .contact-entry.eagle-position-bottom-center::after {
-        display: none;
     }
     
     .wing-line.left,
@@ -408,14 +372,12 @@
         justify-content: space-around;
     }
     
-    .contact-entry {
+    .contact-entry-container {
         width: 45% !important;
         margin: 0 0 10px 0 !important;
         page-break-inside: avoid;
         break-inside: avoid;
         clip-path: none !important;
-        background: var(--bg-secondary) !important; /* Reset background */
-        border: 1px solid var(--accent) !important; /* Use standard border */
     }
     
     .eagle-spine,
