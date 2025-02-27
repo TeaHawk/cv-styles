@@ -194,7 +194,7 @@
     font-size: 0.95rem;
 }
 
-/* ===== HYBRID ANIMATION APPROACH ===== */
+/* ===== CENTER RECTANGULAR ELEMENT - ORIGINAL ART DECO FRAME ANIMATION ===== */
 /* Base frame container */
 .contact-frame {
     position: absolute;
@@ -205,17 +205,16 @@
     overflow: hidden;
 }
 
-/* ===== CENTER RECTANGULAR ELEMENT - ORIGINAL ART DECO FRAME ANIMATION ===== */
 /* Frame Lines - Art Deco Style for center element only */
 .contact-entry.eagle-position-center .contact-frame .frame-line {
     position: absolute;
     background: var(--accent);
-    transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1), /* Elegant easing */
+    transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1), 
                 opacity 0.6s ease;
     opacity: 0;
 }
 
-/* Art Deco style horizontal lines with ornate ends for center element */
+/* Art Deco style horizontal lines for center element */
 .contact-entry.eagle-position-center .contact-frame .frame-line.top,
 .contact-entry.eagle-position-center .contact-frame .frame-line.bottom {
     height: 2px;
@@ -261,105 +260,98 @@
     opacity: 1;
 }
 
-/* ===== TRAPEZOID ELEMENTS - CUSTOM ART DECO ANIMATIONS ===== */
+/* ===== TRAPEZOID ELEMENTS - SIMPLIFIED ANIMATIONS ===== */
+
+/* Hide default frame lines for trapezoid shapes */
+.contact-entry.eagle-position-left .contact-frame .frame-line,
+.contact-entry.eagle-position-right .contact-frame .frame-line,
+.contact-entry.eagle-position-bottom-center .contact-frame .frame-line {
+    display: none;
+}
 
 /* ==== LEFT WING ANIMATION (angled left side) ==== */
+/* Inner border that respects the shape */
 .contact-entry.eagle-position-left .contact-frame::before {
     content: "";
     position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 100% 50%, transparent 98%, var(--accent) 100%);
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+    left: 15px; /* Offset to account for angled edge */
+    border: 2px solid transparent;
+    border-right-color: var(--accent);
+    border-top-color: var(--accent);
+    border-bottom-color: var(--accent);
     opacity: 0;
     transition: opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+    clip-path: inherit;
 }
 
 .contact-entry.eagle-position-left:hover .contact-frame::before {
     opacity: 1;
 }
 
-/* Custom decoration for left wing */
+/* Subtle glow effect for left wing */
 .contact-entry.eagle-position-left .contact-frame::after {
     content: "";
     position: absolute;
-    top: 5px;
-    right: 5px;
-    bottom: 5px;
-    width: 80%;
-    background: 
-        linear-gradient(to bottom, var(--accent) 100%, var(--accent) 100%) top right / 2px 0% no-repeat,
-        linear-gradient(to left, var(--accent) 100%, var(--accent) 100%) bottom right / 0% 2px no-repeat;
+    inset: 0;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.05));
     opacity: 0;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.8s ease;
 }
 
 .contact-entry.eagle-position-left:hover .contact-frame::after {
     opacity: 1;
-    background: 
-        linear-gradient(to bottom, var(--accent) 100%, var(--accent) 100%) top right / 2px 100% no-repeat,
-        linear-gradient(to left, var(--accent) 100%, var(--accent) 100%) bottom right / 100% 2px no-repeat;
-    transition: 
-        opacity 0.2s ease,
-        background-size 0.8s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 /* ==== RIGHT WING ANIMATION (angled right side) ==== */
+/* Inner border that respects the shape */
 .contact-entry.eagle-position-right .contact-frame::before {
     content: "";
     position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 0% 50%, transparent 98%, var(--accent) 100%);
+    top: 5px;
+    left: 5px;
+    bottom: 5px;
+    right: 15px; /* Offset to account for angled edge */
+    border: 2px solid transparent;
+    border-left-color: var(--accent);
+    border-top-color: var(--accent);
+    border-bottom-color: var(--accent);
     opacity: 0;
     transition: opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+    clip-path: inherit;
 }
 
 .contact-entry.eagle-position-right:hover .contact-frame::before {
     opacity: 1;
 }
 
-/* Custom decoration for right wing */
+/* Subtle glow effect for right wing */
 .contact-entry.eagle-position-right .contact-frame::after {
     content: "";
     position: absolute;
-    top: 5px;
-    left: 5px;
-    bottom: 5px;
-    width: 80%;
-    background: 
-        linear-gradient(to bottom, var(--accent) 100%, var(--accent) 100%) top left / 2px 0% no-repeat,
-        linear-gradient(to right, var(--accent) 100%, var(--accent) 100%) bottom left / 0% 2px no-repeat;
+    inset: 0;
+    background: linear-gradient(to left, transparent, rgba(255, 255, 255, 0.05));
     opacity: 0;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.8s ease;
 }
 
 .contact-entry.eagle-position-right:hover .contact-frame::after {
     opacity: 1;
-    background: 
-        linear-gradient(to bottom, var(--accent) 100%, var(--accent) 100%) top left / 2px 100% no-repeat,
-        linear-gradient(to right, var(--accent) 100%, var(--accent) 100%) bottom left / 100% 2px no-repeat;
-    transition: 
-        opacity 0.2s ease,
-        background-size 0.8s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 /* ==== BOTTOM CENTER ANIMATION (both sides angled) ==== */
+/* Inner border that respects the shape - just top and bottom lines */
 .contact-entry.eagle-position-bottom-center .contact-frame::before {
     content: "";
     position: absolute;
-    inset: 0;
-    /* V-shaped decoration from top center */
-    background: conic-gradient(
-        from -45deg at 50% 0%,
-        transparent 0deg,
-        transparent 80deg,
-        var(--accent) 85deg,
-        var(--accent) 95deg,
-        transparent 100deg,
-        transparent 260deg,
-        var(--accent) 265deg,
-        var(--accent) 275deg,
-        transparent 280deg,
-        transparent 360deg
-    );
+    top: 5px;
+    left: 15px; /* Offset for left angled edge */
+    right: 15px; /* Offset for right angled edge */
+    height: calc(100% - 10px);
+    border-top: 2px solid var(--accent);
+    border-bottom: 2px solid var(--accent);
     opacity: 0;
     transition: opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1);
 }
@@ -368,39 +360,30 @@
     opacity: 1;
 }
 
-/* Custom horizontal decorations for bottom shape */
+/* Subtle center glow for bottom center */
 .contact-entry.eagle-position-bottom-center .contact-frame::after {
     content: "";
     position: absolute;
-    left: 15%; 
-    right: 15%;
-    top: 5px;
-    bottom: 5px;
-    background: 
-        linear-gradient(to right, var(--accent) 100%, var(--accent) 100%) top center / 0% 2px no-repeat,
-        linear-gradient(to left, var(--accent) 100%, var(--accent) 100%) bottom center / 0% 2px no-repeat;
-    background-position: top center, bottom center;
+    inset: 0;
+    background: radial-gradient(
+        ellipse at center, 
+        rgba(255, 255, 255, 0.1) 0%, 
+        transparent 70%
+    );
     opacity: 0;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.8s ease;
 }
 
 .contact-entry.eagle-position-bottom-center:hover .contact-frame::after {
     opacity: 1;
-    background: 
-        linear-gradient(to right, var(--accent) 100%, var(--accent) 100%) top center / 70% 2px no-repeat,
-        linear-gradient(to left, var(--accent) 100%, var(--accent) 100%) bottom center / 70% 2px no-repeat;
-    background-position: top center, bottom center;
-    transition: 
-        opacity 0.2s ease,
-        background-size 0.8s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-/* ===== DIAMOND CORNERS - SHARED ACROSS ALL SHAPES ===== */
+/* ===== CORNER DECORATIONS - SPECIFIC FOR EACH SHAPE ===== */
 /* Art Deco Corners - Diamond style */
 .contact-frame .frame-corner {
     position: absolute;
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     opacity: 0;
     transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1), 
                 opacity 0.6s ease;
@@ -415,36 +398,90 @@
     height: 100%;
     background: var(--accent);
     transform: rotate(45deg) scale(0);
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s; /* Bouncy effect with delay */
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s; /* Bouncy effect with delay */
     transform-origin: center;
 }
 
-/* Corner positioning with shape awareness */
-.contact-frame .frame-corner.tl {
+/* CENTER ELEMENT CORNERS - RECTANGULAR SHAPE */
+.contact-entry.eagle-position-center .contact-frame .frame-corner.tl {
     top: 6px;
     left: 6px;
     transform: translate(-8px, -8px);
 }
 
-.contact-frame .frame-corner.tr {
+.contact-entry.eagle-position-center .contact-frame .frame-corner.tr {
     top: 6px;
     right: 6px;
     transform: translate(8px, -8px);
 }
 
-.contact-frame .frame-corner.bl {
+.contact-entry.eagle-position-center .contact-frame .frame-corner.bl {
     bottom: 6px;
     left: 6px;
     transform: translate(-8px, 8px);
 }
 
-.contact-frame .frame-corner.br {
+.contact-entry.eagle-position-center .contact-frame .frame-corner.br {
     bottom: 6px;
     right: 6px;
     transform: translate(8px, 8px);
 }
 
-/* Corner animations on hover - shared for all elements */
+/* LEFT WING CORNERS - HIDE LEFT CORNERS DUE TO ANGLED EDGE */
+.contact-entry.eagle-position-left .contact-frame .frame-corner.tl,
+.contact-entry.eagle-position-left .contact-frame .frame-corner.bl {
+    display: none;
+}
+
+.contact-entry.eagle-position-left .contact-frame .frame-corner.tr {
+    top: 6px;
+    right: 6px;
+    transform: translate(8px, -8px);
+}
+
+.contact-entry.eagle-position-left .contact-frame .frame-corner.br {
+    bottom: 6px;
+    right: 6px;
+    transform: translate(8px, 8px);
+}
+
+/* RIGHT WING CORNERS - HIDE RIGHT CORNERS DUE TO ANGLED EDGE */
+.contact-entry.eagle-position-right .contact-frame .frame-corner.tr,
+.contact-entry.eagle-position-right .contact-frame .frame-corner.br {
+    display: none;
+}
+
+.contact-entry.eagle-position-right .contact-frame .frame-corner.tl {
+    top: 6px;
+    left: 6px;
+    transform: translate(-8px, -8px);
+}
+
+.contact-entry.eagle-position-right .contact-frame .frame-corner.bl {
+    bottom: 6px;
+    left: 6px;
+    transform: translate(-8px, 8px);
+}
+
+/* BOTTOM CENTER CORNERS - ONLY SHOW TOP CORNERS */
+.contact-entry.eagle-position-bottom-center .contact-frame .frame-corner.bl,
+.contact-entry.eagle-position-bottom-center .contact-frame .frame-corner.br {
+    display: none;
+}
+
+.contact-entry.eagle-position-bottom-center .contact-frame .frame-corner.tl {
+    top: 6px;
+    left: 20px; /* Adjusted for angled edge */
+    transform: translate(-8px, -8px);
+}
+
+.contact-entry.eagle-position-bottom-center .contact-frame .frame-corner.tr {
+    top: 6px;
+    right: 20px; /* Adjusted for angled edge */
+    transform: translate(8px, -8px);
+}
+
+/* Corner animations on hover - shared across all shapes */
 .contact-entry:hover .contact-frame .frame-corner {
     transform: translate(0, 0);
     opacity: 1;
@@ -452,45 +489,6 @@
 
 .contact-entry:hover .contact-frame .frame-corner::before {
     transform: rotate(45deg) scale(1);
-}
-
-/* Art deco interior glow on hover - different for each shape */
-.contact-entry.eagle-position-center:hover::after {
-    background: radial-gradient(
-        circle at center,
-        color-mix(in srgb, var(--bg-secondary) 90%, var(--accent)),
-        var(--bg-secondary)
-    );
-    transition: background 0.8s ease;
-}
-
-.contact-entry.eagle-position-left:hover::after {
-    background: linear-gradient(
-        to right,
-        var(--bg-secondary),
-        color-mix(in srgb, var(--bg-secondary) 90%, var(--accent)),
-        var(--bg-secondary)
-    );
-    transition: background 0.8s ease;
-}
-
-.contact-entry.eagle-position-right:hover::after {
-    background: linear-gradient(
-        to left,
-        var(--bg-secondary),
-        color-mix(in srgb, var(--bg-secondary) 90%, var(--accent)),
-        var(--bg-secondary)
-    );
-    transition: background 0.8s ease;
-}
-
-.contact-entry.eagle-position-bottom-center:hover::after {
-    background: linear-gradient(
-        to bottom,
-        color-mix(in srgb, var(--bg-secondary) 90%, var(--accent)),
-        var(--bg-secondary)
-    );
-    transition: background 0.8s ease;
 }
 
 /* Entry hover effect */
@@ -544,6 +542,13 @@
     .wing-line.left,
     .wing-line.right {
         display: none;
+    }
+    
+    /* Show all corners for mobile (no clip-path) */
+    .contact-entry.eagle-position-left .contact-frame .frame-corner,
+    .contact-entry.eagle-position-right .contact-frame .frame-corner,
+    .contact-entry.eagle-position-bottom-center .contact-frame .frame-corner {
+        display: block;
     }
 }
 
