@@ -226,8 +226,8 @@
 .contact-entry.eagle-position-center .contact-frame .frame-line.top,
 .contact-entry.eagle-position-center .contact-frame .frame-line.bottom {
     height: 1px;
-    width: calc(100% - 20px);
-    left: 10px;
+    width: calc(100% - 16px);
+    left: 8px;
     transform: scaleX(0);
 }
 
@@ -245,8 +245,8 @@
 .contact-entry.eagle-position-center .contact-frame .frame-line.left,
 .contact-entry.eagle-position-center .contact-frame .frame-line.right {
     width: 1px;
-    height: calc(100% - 20px);
-    top: 10px;
+    height: calc(100% - 16px);
+    top: 8px;
     transform: scaleY(0);
 }
 
@@ -260,7 +260,7 @@
     transform-origin: bottom;
 }
 
-/* Center element diamonds with enhanced animation */
+/* Center element diamonds with enhanced animation - FIXED POSITIONING */
 .contact-entry.eagle-position-center .contact-frame .frame-corner {
     display: block;
     position: absolute;
@@ -281,27 +281,28 @@
     transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s; /* Rotation animation */
 }
 
+/* Perfectly aligned with frame lines intersection */
 .contact-entry.eagle-position-center .contact-frame .frame-corner.tl {
-    top: 4px;
-    left: 4px;
+    top: 3.5px;
+    left: 3.5px;
     transform: scale(0) translate(-5px, -5px);
 }
 
 .contact-entry.eagle-position-center .contact-frame .frame-corner.tr {
-    top: 4px;
-    right: 4px;
+    top: 3.5px;
+    right: 3.5px;
     transform: scale(0) translate(5px, -5px);
 }
 
 .contact-entry.eagle-position-center .contact-frame .frame-corner.bl {
-    bottom: 4px;
-    left: 4px;
+    bottom: 3.5px;
+    left: 3.5px;
     transform: scale(0) translate(-5px, 5px);
 }
 
 .contact-entry.eagle-position-center .contact-frame .frame-corner.br {
-    bottom: 4px;
-    right: 4px;
+    bottom: 3.5px;
+    right: 3.5px;
     transform: scale(0) translate(5px, 5px);
 }
 
@@ -333,11 +334,11 @@
     clip-path: inherit;
     opacity: 0;
     transition: opacity 0.8s ease;
-    /* Draw only on the straight edges with corrected gradients */
+    /* Draw only on the straight edges with FIXED gradients */
     background: 
         linear-gradient(to right, transparent, var(--accent)) top/100% 1px no-repeat,
         linear-gradient(to bottom, var(--accent), var(--accent)) right top/1px 100% no-repeat,
-        linear-gradient(to right, var(--accent), transparent) bottom/100% 1px no-repeat; /* FIXED: gradient direction */
+        linear-gradient(to left, transparent, var(--accent)) bottom/100% 1px no-repeat; /* FIXED: now fades correctly */
 }
 
 .contact-entry.eagle-position-left:hover .contact-frame::before {
@@ -400,11 +401,11 @@
     clip-path: inherit;
     opacity: 0;
     transition: opacity 0.8s ease;
-    /* Draw only on the straight edges with corrected gradients */
+    /* Draw only on the straight edges with FIXED gradients */
     background: 
         linear-gradient(to left, transparent, var(--accent)) top/100% 1px no-repeat,
         linear-gradient(to bottom, var(--accent), var(--accent)) left top/1px 100% no-repeat,
-        linear-gradient(to left, var(--accent), transparent) bottom/100% 1px no-repeat; /* FIXED: gradient direction */
+        linear-gradient(to right, transparent, var(--accent)) bottom/100% 1px no-repeat; /* FIXED: now fades correctly */
 }
 
 .contact-entry.eagle-position-right:hover .contact-frame::before {
@@ -454,7 +455,7 @@
     transform: rotate(45deg);
 }
 
-/* ==== BOTTOM CENTER (PHONE) - COMPLETELY NEW ANIMATION ==== */
+/* ==== BOTTOM CENTER (PHONE) - SMOOTH REDESIGNED ANIMATION ==== */
 /* Art Deco inspired decorative element for bottom trapezoid */
 .contact-entry.eagle-position-bottom-center .contact-frame::before {
     content: "";
@@ -466,33 +467,40 @@
     clip-path: inherit;
     opacity: 0;
     transition: opacity 0.8s ease;
-    /* Art Deco inspired decorative border - centered motif that doesn't reach edges */
-    background:
-        /* Top decorative line with center ornament */
-        radial-gradient(circle at center top, var(--accent) 0, var(--accent) 3px, transparent 3px) top center/100% 3px no-repeat,
-        /* Bottom decorative line */
-        linear-gradient(to right, transparent, var(--accent), transparent) bottom center/50% 1px no-repeat;
+    /* Subtle background accent */
+    background: radial-gradient(
+        ellipse at center 50%, 
+        rgba(var(--accent-rgb, 212, 175, 55), 0.05) 0%, 
+        transparent 70%
+    );
 }
 
-/* Add decorative chevron to top center */
-.contact-entry.eagle-position-bottom-center .contact-frame::after {
+/* Top diamond */
+.contact-entry.eagle-position-bottom-center .contact-frame .frame-corner.tl {
+    display: block;
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    top: 4px;
+    left: 50%;
+    margin-left: -3px;
+    opacity: 0;
+    transform: scale(0) translateY(-5px);
+    transition: opacity 0.5s ease, 
+                transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s;
+}
+
+.contact-entry.eagle-position-bottom-center .contact-frame .frame-corner.tl::before {
     content: "";
     position: absolute;
-    top: 8px;
-    left: 0;
-    right: 0;
-    height: 16px;
-    background: 
-        linear-gradient(to bottom right, transparent calc(50% - 1px), var(--accent) calc(50% - 1px), var(--accent) calc(50% + 1px), transparent calc(50% + 1px)) center left/50% 100% no-repeat,
-        linear-gradient(to bottom left, transparent calc(50% - 1px), var(--accent) calc(50% - 1px), var(--accent) calc(50% + 1px), transparent calc(50% + 1px)) center right/50% 100% no-repeat;
-    clip-path: inherit;
-    opacity: 0;
-    transform: scaleY(0);
-    transform-origin: top;
-    transition: opacity 0.5s ease, transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+    width: 100%;
+    height: 100%;
+    background: var(--accent);
+    transform: rotate(0deg);
+    transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
 }
 
-/* Diamond accent at bottom center */
+/* Bottom diamond */
 .contact-entry.eagle-position-bottom-center .contact-frame .frame-corner.bl {
     display: block;
     position: absolute;
@@ -504,7 +512,7 @@
     opacity: 0;
     transform: scale(0) translateY(5px);
     transition: opacity 0.5s ease, 
-                transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
+                transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s;
 }
 
 .contact-entry.eagle-position-bottom-center .contact-frame .frame-corner.bl::before {
@@ -514,7 +522,29 @@
     height: 100%;
     background: var(--accent);
     transform: rotate(0deg);
-    transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s;
+    transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
+}
+
+/* Smooth flowing lines from diamonds */
+.contact-entry.eagle-position-bottom-center .contact-frame::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    background: 
+        /* Top flowing line */
+        radial-gradient(ellipse at center top, var(--accent) 0, var(--accent) 3px, transparent 3px) top center/100% 3px no-repeat,
+        /* Smooth line flowing down from top diamond */
+        linear-gradient(to bottom, var(--accent), transparent 70%) top center/1px 40% no-repeat,
+        /* Smooth line flowing up from bottom diamond */
+        linear-gradient(to top, var(--accent), transparent 70%) bottom center/1px 40% no-repeat,
+        /* Bottom flowing line */
+        radial-gradient(ellipse at center bottom, var(--accent) 0, var(--accent) 3px, transparent 3px) bottom center/100% 3px no-repeat;
+    clip-path: inherit;
 }
 
 /* Bottom trapezoid hover animations */
@@ -524,14 +554,15 @@
 
 .contact-entry.eagle-position-bottom-center:hover .contact-frame::after {
     opacity: 1;
-    transform: scaleY(1);
 }
 
+.contact-entry.eagle-position-bottom-center:hover .contact-frame .frame-corner.tl,
 .contact-entry.eagle-position-bottom-center:hover .contact-frame .frame-corner.bl {
     opacity: 1;
     transform: scale(1) translateY(0);
 }
 
+.contact-entry.eagle-position-bottom-center:hover .contact-frame .frame-corner.tl::before,
 .contact-entry.eagle-position-bottom-center:hover .contact-frame .frame-corner.bl::before {
     transform: rotate(45deg);
 }
