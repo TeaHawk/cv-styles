@@ -90,40 +90,26 @@
     transform: rotate(30deg);
 }
 
-/* BORDER FIX: Main container for each contact item - shared across all shapes */
-.contact-entry-container {
-    position: relative;
-    /* Each container holds both the background border and the foreground content */
-}
-
-/* Border background - this creates the uniform border effect */
-.contact-entry-border {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--accent);
-    z-index: 1;
-    /* Each shape has its own clip-path that will be inherited by its children */
-}
-
-/* Individual Contact Entry - Eagle Design with parent containers */
-.contact-entry-container.eagle-position-center {
+/* Individual Contact Entry - Eagle Design */
+.contact-entry.eagle-position-center {
     grid-area: center;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
     z-index: 2;
 }
 
-.contact-entry-container.eagle-position-left {
+.contact-entry.eagle-position-left {
     grid-area: left-wing;
     justify-self: end;
     width: 85%;
     transform-origin: right center;
-    /* The clip-path is applied to the container now */
     clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%);
 }
 
-.contact-entry-container.eagle-position-right {
+.contact-entry.eagle-position-right {
     grid-area: right-wing;
     justify-self: start;
     width: 85%;
@@ -131,7 +117,7 @@
     clip-path: polygon(0 0, 90% 0, 100% 100%, 0 100%);
 }
 
-.contact-entry-container.eagle-position-bottom-center {
+.contact-entry.eagle-position-bottom-center {
     grid-area: bottom-center;
     width: 60%;
     justify-self: center;
@@ -143,26 +129,52 @@
 .contact-entry {
     position: relative;
     padding: var(--spacing-medium);
-    background: var(--bg-secondary);
-    color: var(--text-primary);
     text-decoration: none;
-    transition: transform var(--transition-smooth),
-                box-shadow var(--transition-smooth);
+    transition: transform var(--transition-smooth);
     display: flex;
     align-items: center;
     overflow: hidden;
     min-height: 60px;
-    z-index: 2;
+    z-index: 1;
+    color: var(--text-primary);
+}
+
+/* ===== MULTIPLE BACKGROUND SOLUTION FOR PERFECT BORDERS ===== */
+/* This technique uses multiple backgrounds to create reliable borders that follow clip-paths */
+
+/* Base styling for all entries */
+.contact-entry {
+    /* Apply multiple backgrounds for the border effect */
+    background: 
+        /* Main content background */
+        var(--bg-secondary);
     
-    /* The entry itself is now slightly smaller than its border container to create the border effect */
+    /* Add a subtle drop shadow that follows the clip-path */
+    filter: drop-shadow(0 0 1px var(--accent));
+    
+    /* Ensure correct stacking context */
+    isolation: isolate;
+}
+
+/* Outer border using pseudo-element */
+.contact-entry::before {
+    content: "";
     position: absolute;
-    top: 1px;
-    left: 1px;
-    right: 1px;
-    bottom: 1px;
-    width: calc(100% - 2px);
-    height: calc(100% - 2px);
-    /* Inherit clip-path from parent but scale down slightly to create border */
+    inset: -1px; /* Slightly larger than the main element */
+    background: var(--accent);
+    z-index: -1;
+    /* Inherit the clip-path from the parent */
+    clip-path: inherit;
+}
+
+/* Inner content area */
+.contact-entry::after {
+    content: "";
+    position: absolute;
+    inset: 1px; /* 1px smaller than the main element to create 1px border */
+    background: var(--bg-secondary);
+    z-index: -1;
+    /* Inherit the clip-path but scale it slightly to be within the border */
     clip-path: inherit;
 }
 
@@ -171,10 +183,10 @@
     display: flex;
     align-items: center;
     gap: var(--spacing-medium);
-    z-index: 3;
     width: 100%;
     justify-content: center;
     position: relative;
+    z-index: 2; /* Above the pseudo-elements */
 }
 
 .contact-icon {
@@ -191,126 +203,146 @@
     font-size: 0.95rem;
 }
 
-/* Art Deco Frame for hover animations */
+/* ===== ART DECO FRAME ANIMATION ===== */
 .contact-frame {
     position: absolute;
     inset: 0;
     pointer-events: none;
-    z-index: 4;
-    overflow: hidden;
+    z-index: 3;
+    /* The frame inherits the clip-path from its parent */
     clip-path: inherit;
 }
 
-/* Art Deco Corners */
-.contact-frame .frame-corner {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background: var(--accent);
-    opacity: 0;
-    transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.contact-frame .frame-corner.tl {
-    top: 4px;
-    left: 4px;
-    transform: translate(-4px, -4px);
-}
-
-.contact-frame .frame-corner.tr {
-    top: 4px;
-    right: 4px;
-    transform: translate(4px, -4px);
-}
-
-.contact-frame .frame-corner.bl {
-    bottom: 4px;
-    left: 4px;
-    transform: translate(-4px, 4px);
-}
-
-.contact-frame .frame-corner.br {
-    bottom: 4px;
-    right: 4px;
-    transform: translate(4px, 4px);
-}
-
-/* Frame lines for Art Deco effect */
+/* Frame Lines - Art Deco Style */
 .contact-frame .frame-line {
     position: absolute;
     background: var(--accent);
+    transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1), /* Elegant easing */
+                opacity 0.6s ease;
     opacity: 0;
-    transition: transform 0.8s ease, opacity 0.8s ease;
 }
 
-.contact-frame .frame-line.top {
+/* Art Deco style horizontal lines with ornate ends */
+.contact-frame .frame-line.top,
+.contact-frame .frame-line.bottom {
     height: 2px;
-    width: calc(100% - 20px);
-    top: 4px;
-    left: 10px;
+    /* Width adjusted to allow for angled shapes */
+    width: calc(100% - 24px);
+    left: 12px;
     transform: scaleX(0);
+}
+
+/* Different origins for the lines */
+.contact-frame .frame-line.top {
+    top: 6px;
     transform-origin: left;
 }
 
 .contact-frame .frame-line.bottom {
-    height: 2px;
-    width: calc(100% - 20px);
-    bottom: 4px;
-    right: 10px;
-    transform: scaleX(0);
+    bottom: 6px;
     transform-origin: right;
 }
 
-.contact-frame .frame-line.left {
+/* Art Deco style vertical lines */
+.contact-frame .frame-line.left,
+.contact-frame .frame-line.right {
     width: 2px;
-    height: calc(100% - 20px);
-    left: 4px;
-    top: 10px;
+    /* Height adjusted to allow for angled shapes */
+    height: calc(100% - 24px);
+    top: 12px;
     transform: scaleY(0);
+}
+
+/* Different origins for the lines */
+.contact-frame .frame-line.left {
+    left: 6px;
     transform-origin: top;
 }
 
 .contact-frame .frame-line.right {
-    width: 2px;
-    height: calc(100% - 20px);
-    right: 4px;
-    bottom: 10px;
-    transform: scaleY(0);
+    right: 6px;
     transform-origin: bottom;
 }
 
-/* Hover animation for frame */
-.contact-entry:hover .contact-frame .frame-corner {
-    opacity: 1;
-    transform: translate(0, 0);
+/* Art Deco Corners - more ornate and larger */
+.contact-frame .frame-corner {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    opacity: 0;
+    transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1), /* Elegant easing */
+                opacity 0.6s ease;
 }
 
+/* Custom corner styling for Art Deco look */
+.contact-frame .frame-corner::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--accent);
+    /* Diamond shape for Art Deco feel */
+    transform: rotate(45deg);
+    transition: transform 0.4s ease 0.4s; /* Delayed secondary animation */
+}
+
+/* Position the corners with offsets */
+.contact-frame .frame-corner.tl {
+    top: 3px;
+    left: 3px;
+    transform: translate(-8px, -8px);
+}
+
+.contact-frame .frame-corner.tr {
+    top: 3px;
+    right: 3px;
+    transform: translate(8px, -8px);
+}
+
+.contact-frame .frame-corner.bl {
+    bottom: 3px;
+    left: 3px;
+    transform: translate(-8px, 8px);
+}
+
+.contact-frame .frame-corner.br {
+    bottom: 3px;
+    right: 3px;
+    transform: translate(8px, 8px);
+}
+
+/* Hover animations for the Art Deco frame */
 .contact-entry:hover .contact-frame .frame-line {
-    opacity: 1;
     transform: scale(1);
+    opacity: 1;
+}
+
+.contact-entry:hover .contact-frame .frame-corner {
+    transform: translate(0, 0);
+    opacity: 1;
+}
+
+/* Add rotation animation to corners on hover */
+.contact-entry:hover .contact-frame .frame-corner::before {
+    transform: rotate(0deg);
+}
+
+/* Elegant radial highlight on hover */
+.contact-entry:hover::after {
+    background: 
+        radial-gradient(
+            circle at center, 
+            color-mix(in srgb, var(--bg-secondary) 90%, var(--accent)), 
+            var(--bg-secondary)
+        );
 }
 
 /* Entry hover effect */
-.contact-entry-container:hover {
+.contact-entry:hover {
     transform: translateY(-3px);
-    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.15));
-    transition: transform 0.5s ease-out, filter 0.5s ease-out;
-}
-
-/* Decoration for hover - inner highlight */
-.contact-entry::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
-    opacity: 0;
-    transition: opacity 0.6s ease;
-    pointer-events: none;
-    clip-path: inherit;
-}
-
-.contact-entry:hover::after {
-    opacity: 1;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1), 
+                filter 0.6s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 /* Animation for Entry */
@@ -325,7 +357,7 @@
     }
 }
 
-.contact-entry-container {
+.contact-entry {
     animation: fadeInUp 0.5s ease-out forwards;
     animation-delay: calc(var(--index, 0) * 0.15s);
     opacity: 0;
@@ -343,10 +375,10 @@
             "bottom-center";
     }
     
-    .contact-entry-container.eagle-position-left,
-    .contact-entry-container.eagle-position-right,
-    .contact-entry-container.eagle-position-center,
-    .contact-entry-container.eagle-position-bottom-center {
+    .contact-entry.eagle-position-left,
+    .contact-entry.eagle-position-right,
+    .contact-entry.eagle-position-center,
+    .contact-entry.eagle-position-bottom-center {
         width: 100%;
         justify-self: center;
         clip-path: none;
@@ -372,7 +404,7 @@
         justify-content: space-around;
     }
     
-    .contact-entry-container {
+    .contact-entry {
         width: 45% !important;
         margin: 0 0 10px 0 !important;
         page-break-inside: avoid;
