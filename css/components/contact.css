@@ -194,7 +194,7 @@
     font-size: 0.95rem;
 }
 
-/* ===== NEW APPROACH FOR ALL ELEMENTS ===== */
+/* ===== RESET ALL FRAME ELEMENTS ===== */
 /* Base frame container */
 .contact-frame {
     position: absolute;
@@ -217,8 +217,8 @@
     display: block;
     position: absolute;
     background: var(--accent);
-    transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1),
-                opacity 0.6s ease;
+    transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1), /* Slower, more elegant easing */
+                opacity 0.8s ease;
     opacity: 0;
 }
 
@@ -260,16 +260,15 @@
     transform-origin: bottom;
 }
 
-/* Center element diamonds */
+/* Center element diamonds with enhanced animation */
 .contact-entry.eagle-position-center .contact-frame .frame-corner {
     display: block;
     position: absolute;
     width: 6px;
     height: 6px;
     opacity: 0;
-    transform: translate(0, 0) scale(0);
-    transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1),
-                opacity 0.6s ease;
+    transition: opacity 0.5s ease,
+                transform 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s; /* Slow with bounce and delay */
 }
 
 .contact-entry.eagle-position-center .contact-frame .frame-corner::before {
@@ -278,27 +277,32 @@
     width: 100%;
     height: 100%;
     background: var(--accent);
-    transform: rotate(45deg);
+    transform: rotate(0deg);
+    transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s; /* Rotation animation */
 }
 
 .contact-entry.eagle-position-center .contact-frame .frame-corner.tl {
     top: 4px;
     left: 4px;
+    transform: scale(0) translate(-5px, -5px);
 }
 
 .contact-entry.eagle-position-center .contact-frame .frame-corner.tr {
     top: 4px;
     right: 4px;
+    transform: scale(0) translate(5px, -5px);
 }
 
 .contact-entry.eagle-position-center .contact-frame .frame-corner.bl {
     bottom: 4px;
     left: 4px;
+    transform: scale(0) translate(-5px, 5px);
 }
 
 .contact-entry.eagle-position-center .contact-frame .frame-corner.br {
     bottom: 4px;
     right: 4px;
+    transform: scale(0) translate(5px, 5px);
 }
 
 /* Center element hover animations */
@@ -309,7 +313,11 @@
 
 .contact-entry.eagle-position-center:hover .contact-frame .frame-corner {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(1) translate(0, 0);
+}
+
+.contact-entry.eagle-position-center:hover .contact-frame .frame-corner::before {
+    transform: rotate(45deg); /* Diamonds rotate as they appear */
 }
 
 /* ==== LEFT WING (LINKEDIN) - TRAPEZOID ANIMATION ==== */
@@ -324,19 +332,19 @@
     left: 15px; /* Larger inset for angled edge */
     clip-path: inherit;
     opacity: 0;
-    transition: opacity 0.6s ease;
-    /* Draw only on the straight edges with a gradient */
+    transition: opacity 0.8s ease;
+    /* Draw only on the straight edges with corrected gradients */
     background: 
         linear-gradient(to right, transparent, var(--accent)) top/100% 1px no-repeat,
         linear-gradient(to bottom, var(--accent), var(--accent)) right top/1px 100% no-repeat,
-        linear-gradient(to left, transparent, var(--accent)) bottom/100% 1px no-repeat;
+        linear-gradient(to right, var(--accent), transparent) bottom/100% 1px no-repeat; /* FIXED: gradient direction */
 }
 
 .contact-entry.eagle-position-left:hover .contact-frame::before {
     opacity: 1;
 }
 
-/* Custom diamonds for left trapezoid - only on straight edges */
+/* Custom diamonds for left trapezoid with enhanced animation */
 .contact-entry.eagle-position-left .contact-frame .frame-corner.tr,
 .contact-entry.eagle-position-left .contact-frame .frame-corner.br {
     display: block;
@@ -344,9 +352,8 @@
     width: 5px;
     height: 5px;
     opacity: 0;
-    transform: scale(0);
-    transition: opacity 0.6s ease,
-                transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: opacity 0.5s ease,
+                transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s; /* Slower with bounce */
 }
 
 .contact-entry.eagle-position-left .contact-frame .frame-corner::before {
@@ -355,22 +362,29 @@
     width: 100%;
     height: 100%;
     background: var(--accent);
-    transform: rotate(45deg);
+    transform: rotate(0deg);
+    transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s; /* Rotation */
 }
 
 .contact-entry.eagle-position-left .contact-frame .frame-corner.tr {
     top: 3.5px;
     right: 3.5px;
+    transform: scale(0) translate(5px, -5px);
 }
 
 .contact-entry.eagle-position-left .contact-frame .frame-corner.br {
     bottom: 3.5px;
     right: 3.5px;
+    transform: scale(0) translate(5px, 5px);
 }
 
 .contact-entry.eagle-position-left:hover .contact-frame .frame-corner {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(1) translate(0, 0);
+}
+
+.contact-entry.eagle-position-left:hover .contact-frame .frame-corner::before {
+    transform: rotate(45deg);
 }
 
 /* ==== RIGHT WING (EMAIL) - TRAPEZOID ANIMATION ==== */
@@ -385,19 +399,19 @@
     right: 15px; /* Larger inset for angled edge */
     clip-path: inherit;
     opacity: 0;
-    transition: opacity 0.6s ease;
-    /* Draw only on the straight edges with a gradient */
+    transition: opacity 0.8s ease;
+    /* Draw only on the straight edges with corrected gradients */
     background: 
         linear-gradient(to left, transparent, var(--accent)) top/100% 1px no-repeat,
         linear-gradient(to bottom, var(--accent), var(--accent)) left top/1px 100% no-repeat,
-        linear-gradient(to right, transparent, var(--accent)) bottom/100% 1px no-repeat;
+        linear-gradient(to left, var(--accent), transparent) bottom/100% 1px no-repeat; /* FIXED: gradient direction */
 }
 
 .contact-entry.eagle-position-right:hover .contact-frame::before {
     opacity: 1;
 }
 
-/* Custom diamonds for right trapezoid - only on straight edges */
+/* Custom diamonds for right trapezoid with enhanced animation */
 .contact-entry.eagle-position-right .contact-frame .frame-corner.tl,
 .contact-entry.eagle-position-right .contact-frame .frame-corner.bl {
     display: block;
@@ -405,9 +419,8 @@
     width: 5px;
     height: 5px;
     opacity: 0;
-    transform: scale(0);
-    transition: opacity 0.6s ease,
-                transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: opacity 0.5s ease,
+                transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s; /* Slower with bounce */
 }
 
 .contact-entry.eagle-position-right .contact-frame .frame-corner::before {
@@ -416,98 +429,120 @@
     width: 100%;
     height: 100%;
     background: var(--accent);
-    transform: rotate(45deg);
+    transform: rotate(0deg);
+    transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s; /* Rotation */
 }
 
 .contact-entry.eagle-position-right .contact-frame .frame-corner.tl {
     top: 3.5px;
     left: 3.5px;
+    transform: scale(0) translate(-5px, -5px);
 }
 
 .contact-entry.eagle-position-right .contact-frame .frame-corner.bl {
     bottom: 3.5px;
     left: 3.5px;
+    transform: scale(0) translate(-5px, 5px);
 }
 
 .contact-entry.eagle-position-right:hover .contact-frame .frame-corner {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(1) translate(0, 0);
 }
 
-/* ==== BOTTOM CENTER (PHONE) - TRAPEZOID ANIMATION ==== */
-/* Custom animation container for bottom trapezoid */
+.contact-entry.eagle-position-right:hover .contact-frame .frame-corner::before {
+    transform: rotate(45deg);
+}
+
+/* ==== BOTTOM CENTER (PHONE) - COMPLETELY NEW ANIMATION ==== */
+/* Art Deco inspired decorative element for bottom trapezoid */
 .contact-entry.eagle-position-bottom-center .contact-frame::before {
     content: "";
     position: absolute;
-    /* Inset from the border to avoid overlap */
-    top: 4px;
-    left: 20px; /* Larger inset for left angled edge */
-    right: 20px; /* Larger inset for right angled edge */
-    bottom: 4px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    clip-path: inherit;
     opacity: 0;
-    transition: opacity 0.6s ease;
-    /* Only horizontal lines that don't reach the angled edges */
+    transition: opacity 0.8s ease;
+    /* Art Deco inspired decorative border - centered motif that doesn't reach edges */
+    background:
+        /* Top decorative line with center ornament */
+        radial-gradient(circle at center top, var(--accent) 0, var(--accent) 3px, transparent 3px) top center/100% 3px no-repeat,
+        /* Bottom decorative line */
+        linear-gradient(to right, transparent, var(--accent), transparent) bottom center/50% 1px no-repeat;
+}
+
+/* Add decorative chevron to top center */
+.contact-entry.eagle-position-bottom-center .contact-frame::after {
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: 0;
+    right: 0;
+    height: 16px;
     background: 
-        linear-gradient(to right, var(--accent), var(--accent)) top center/60% 1px no-repeat,
-        linear-gradient(to right, var(--accent), var(--accent)) bottom center/60% 1px no-repeat;
-    background-position: top center, bottom center;
+        linear-gradient(to bottom right, transparent calc(50% - 1px), var(--accent) calc(50% - 1px), var(--accent) calc(50% + 1px), transparent calc(50% + 1px)) center left/50% 100% no-repeat,
+        linear-gradient(to bottom left, transparent calc(50% - 1px), var(--accent) calc(50% - 1px), var(--accent) calc(50% + 1px), transparent calc(50% + 1px)) center right/50% 100% no-repeat;
+    clip-path: inherit;
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: opacity 0.5s ease, transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.contact-entry.eagle-position-bottom-center:hover .contact-frame::before {
-    opacity: 1;
-}
-
-/* Custom diamonds for bottom trapezoid - only at top edge near corners */
-.contact-entry.eagle-position-bottom-center .contact-frame .frame-corner.tl,
-.contact-entry.eagle-position-bottom-center .contact-frame .frame-corner.tr {
+/* Diamond accent at bottom center */
+.contact-entry.eagle-position-bottom-center .contact-frame .frame-corner.bl {
     display: block;
     position: absolute;
-    width: 5px;
-    height: 5px;
+    width: 6px;
+    height: 6px;
+    bottom: 4px;
+    left: 50%;
+    margin-left: -3px;
     opacity: 0;
-    transform: scale(0);
-    transition: opacity 0.6s ease,
-                transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform: scale(0) translateY(5px);
+    transition: opacity 0.5s ease, 
+                transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
 }
 
-.contact-entry.eagle-position-bottom-center .contact-frame .frame-corner::before {
+.contact-entry.eagle-position-bottom-center .contact-frame .frame-corner.bl::before {
     content: "";
     position: absolute;
     width: 100%;
     height: 100%;
     background: var(--accent);
+    transform: rotate(0deg);
+    transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s;
+}
+
+/* Bottom trapezoid hover animations */
+.contact-entry.eagle-position-bottom-center:hover .contact-frame::before {
+    opacity: 1;
+}
+
+.contact-entry.eagle-position-bottom-center:hover .contact-frame::after {
+    opacity: 1;
+    transform: scaleY(1);
+}
+
+.contact-entry.eagle-position-bottom-center:hover .contact-frame .frame-corner.bl {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+
+.contact-entry.eagle-position-bottom-center:hover .contact-frame .frame-corner.bl::before {
     transform: rotate(45deg);
 }
 
-.contact-entry.eagle-position-bottom-center .contact-frame .frame-corner.tl {
-    top: 3.5px;
-    left: calc(20% + 3.5px); /* Positioned to avoid angled edge */
-}
-
-.contact-entry.eagle-position-bottom-center .contact-frame .frame-corner.tr {
-    top: 3.5px;
-    right: calc(20% + 3.5px); /* Positioned to avoid angled edge */
-}
-
-.contact-entry.eagle-position-bottom-center:hover .contact-frame .frame-corner {
-    opacity: 1;
-    transform: scale(1);
-}
-
-/* Subtle glow effects on hover */
+/* Subtle glow effect on hover for center element */
 .contact-entry.eagle-position-center:hover::after {
     background: radial-gradient(
         circle at center,
         color-mix(in srgb, var(--bg-secondary) 95%, var(--accent)),
         var(--bg-secondary)
     );
-    transition: background 0.8s ease;
-}
-
-.contact-entry.eagle-position-left:hover::after,
-.contact-entry.eagle-position-right:hover::after,
-.contact-entry.eagle-position-bottom-center:hover::after {
-    background: var(--bg-secondary);
     transition: background 0.8s ease;
 }
 
