@@ -1,520 +1,429 @@
 /* ===================================================================
-   ART DECO PRINT STYLESHEET
-   Professional CV optimized for PDF export with upbeat Art Deco styling
+   ART DECO PRINT STYLESHEET - Compact Edition
    =================================================================== */
 
-/* === PRINT MEDIA QUERY === */
 @media print {
     
-    /* === ROOT VARIABLES FOR PRINT === */
+    /* === VARIABLES === */
     :root {
-        /* Art Deco Color Palette - Print Optimized */
         --print-gold: #D4AF37;
         --print-gold-dark: #B8941F;
         --print-black: #1A1A1A;
         --print-gray: #4a4a4a;
-        --print-light-gray: #e8e8e8;
+        --print-light: #e8e8e8;
         --print-white: #FFFFFF;
         --print-accent: #0066CC;
         
-        /* Typography - Print Optimized */
-        --print-font-primary: 'Raleway', 'Helvetica Neue', Arial, sans-serif;
-        --print-font-size-base: 10pt;
-        --print-font-size-small: 9pt;
-        --print-font-size-h1: 24pt;
-        --print-font-size-h2: 16pt;
-        --print-font-size-h3: 12pt;
-        --print-line-height: 1.4;
+        --font-base: 9.5pt;
+        --font-small: 8.5pt;
+        --font-h1: 22pt;
+        --font-h2: 14pt;
+        --font-h3: 11pt;
+        --line-height: 1.35;
         
-        /* Spacing - Compact for print */
-        --print-spacing-xs: 4pt;
-        --print-spacing-sm: 8pt;
-        --print-spacing-md: 12pt;
-        --print-spacing-lg: 16pt;
-        --print-spacing-xl: 24pt;
+        --space-xs: 3pt;
+        --space-sm: 6pt;
+        --space-md: 9pt;
+        --space-lg: 12pt;
+        --space-xl: 18pt;
         
-        /* Art Deco Elements */
-        --deco-line-width: 2pt;
-        --deco-border-radius: 1pt;
+        --deco-line: 2pt;
     }
     
-    /* === PAGE SETUP === */
+    /* === PAGE === */
     @page {
-        size: A4 portrait;
-        margin: 15mm 12mm;
+        size: A4;
+        margin: 12mm 10mm;
         
-        /* Art Deco Header */
-        @top-center {
-            content: "";
-            border-bottom: var(--deco-line-width) solid var(--print-gold);
-        }
-        
-        /* Page numbers with Art Deco styling */
         @bottom-right {
             content: counter(page) " / " counter(pages);
-            font-family: var(--print-font-primary);
-            font-size: var(--print-font-size-small);
+            font-size: var(--font-small);
             color: var(--print-gray);
-            font-weight: 300;
         }
     }
     
-    /* === RESET & BASE STYLES === */
+    /* === RESET === */
     * {
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
-        color-adjust: exact !important;
+        box-shadow: none !important;
+        transition: none !important;
     }
     
     body {
         margin: 0;
         padding: 0;
-        font-family: var(--print-font-primary);
-        font-size: var(--print-font-size-base);
-        line-height: var(--print-line-height);
+        font-family: 'Raleway', Arial, sans-serif;
+        font-size: var(--font-base);
+        line-height: var(--line-height);
         color: var(--print-black);
         background: var(--print-white);
     }
     
-    /* Hide non-printable elements */
-    .no-print,
-    .theme-toggle,
-    .lang-switch,
-    button:not(.print-button),
-    nav,
-    .navigation,
-    .scroll-to-top,
-    .interactive-element {
+    /* Hide non-print elements */
+    .no-print, .theme-toggle, .lang-switch, button:not(.print-button),
+    nav, .navigation, .scroll-to-top, .interactive-element,
+    .contact-icon, .icon, [class*="emoji"] {
         display: none !important;
     }
     
-    /* === CONTAINER & LAYOUT === */
-    .cv-container {
+    .cv-container, main {
         width: 100% !important;
         max-width: 100% !important;
         margin: 0 !important;
         padding: 0 !important;
     }
     
-    main {
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-    
-    /* === HEADER SECTION - Art Deco Hero === */
+    /* === HEADER - Compact Art Deco === */
     header {
-        margin-bottom: var(--print-spacing-xl);
-        padding-bottom: var(--print-spacing-lg);
-        border-bottom: var(--deco-line-width) solid var(--print-gold);
+        margin-bottom: var(--space-lg);
+        padding-bottom: var(--space-md);
+        border-bottom: var(--deco-line) solid var(--print-gold);
         position: relative;
     }
     
-    /* Art Deco decorative corner elements */
-    header::before,
-    header::after {
+    header::before, header::after {
         content: "";
         position: absolute;
         bottom: -3pt;
-        width: 40pt;
-        height: var(--deco-line-width);
+        width: 35pt;
+        height: var(--deco-line);
         background: var(--print-gold-dark);
     }
     
-    header::before {
-        left: 0;
-    }
+    header::before { left: 0; }
+    header::after { right: 0; }
     
-    header::after {
-        right: 0;
-    }
-    
-    /* Name styling - Bold Art Deco typography */
-    h1,
-    .header-name,
-    .cv-name {
-        font-size: var(--print-font-size-h1);
-        font-weight: 700;
-        letter-spacing: 2pt;
-        text-transform: uppercase;
-        color: var(--print-black);
-        margin: 0 0 var(--print-spacing-sm) 0;
-        text-align: center;
-    }
-    
-    /* Title/Position - Art Deco accent */
-    .header-title,
-    .cv-title {
-        font-size: var(--print-font-size-h3);
-        font-weight: 400;
-        letter-spacing: 1pt;
-        color: var(--print-gold-dark);
-        text-align: center;
-        margin: 0 0 var(--print-spacing-md) 0;
-    }
-    
-    /* Contact Information - Symmetrical Art Deco layout */
-    .contact-info,
-    .header-contact {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: var(--print-spacing-sm);
-        margin-top: var(--print-spacing-md);
-        padding-top: var(--print-spacing-md);
-        border-top: 1pt solid var(--print-light-gray);
-    }
-    
-    .contact-item {
-        font-size: var(--print-font-size-small);
-        color: var(--print-gray);
-        text-align: center;
-        line-height: 1.3;
-    }
-    
-    .contact-item a {
-        color: var(--print-accent);
-        text-decoration: none;
-        font-weight: 500;
-    }
-    
-    /* Hide emoji icons in print */
-    .contact-item .icon,
-    .contact-icon {
-        display: none;
-    }
-    
-    /* === SECTION HEADERS - Art Deco Geometric Style === */
-    h2,
-    .section-title {
-        font-size: var(--print-font-size-h2);
+    h1, .header-name, .cv-name {
+        font-size: var(--font-h1);
         font-weight: 700;
         letter-spacing: 1.5pt;
         text-transform: uppercase;
         color: var(--print-black);
-        margin: var(--print-spacing-xl) 0 var(--print-spacing-lg) 0;
-        padding-bottom: var(--print-spacing-sm);
-        border-bottom: var(--deco-line-width) solid var(--print-gold);
+        margin: 0 0 var(--space-xs) 0;
+        text-align: center;
+    }
+    
+    .header-title, .cv-title {
+        font-size: var(--font-h3);
+        font-weight: 400;
+        letter-spacing: 0.8pt;
+        color: var(--print-gold-dark);
+        text-align: center;
+        margin: 0 0 var(--space-sm) 0;
+    }
+    
+    /* === CONTACTS - Horizontal Layout === */
+    .contact-info, .header-contact, .contacts-arch {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: var(--space-sm);
+        padding-top: var(--space-sm);
+        border-top: 0.5pt solid var(--print-light);
+        flex-wrap: wrap;
+        gap: var(--space-xs);
+    }
+    
+    .contact-item, .arch-left, .arch-center, .arch-right, .arch-bottom {
+        font-size: var(--font-small);
+        color: var(--print-gray);
+        flex: 1;
+        text-align: center;
+        min-width: 120pt;
+        line-height: 1.2;
+    }
+    
+    .contact-item a, .contact-link {
+        color: var(--print-accent);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: var(--font-small);
+    }
+    
+    /* Remove link URLs for contacts to save space */
+    .contact-item a::after, .contact-link::after {
+        content: none !important;
+    }
+    
+    /* Display contact text directly */
+    .contact-item::before {
+        content: attr(data-label) ": ";
+        font-weight: 600;
+        color: var(--print-black);
+    }
+    
+    /* === SECTIONS - Compact Headers === */
+    h2, .section-title {
+        font-size: var(--font-h2);
+        font-weight: 700;
+        letter-spacing: 1pt;
+        text-transform: uppercase;
+        color: var(--print-black);
+        margin: var(--space-xl) 0 var(--space-md) 0;
+        padding-bottom: var(--space-xs);
+        border-bottom: var(--deco-line) solid var(--print-gold);
         position: relative;
     }
     
-    /* Art Deco accent line */
-    h2::after,
-    .section-title::after {
+    h2::after, .section-title::after {
         content: "";
         position: absolute;
         bottom: -3pt;
         left: 0;
-        width: 60pt;
-        height: var(--deco-line-width);
+        width: 45pt;
+        height: var(--deco-line);
         background: var(--print-gold-dark);
     }
     
-    h3,
-    .subsection-title {
-        font-size: var(--print-font-size-h3);
+    h3, .subsection-title {
+        font-size: var(--font-h3);
         font-weight: 600;
         color: var(--print-black);
-        margin: var(--print-spacing-md) 0 var(--print-spacing-sm) 0;
+        margin: var(--space-md) 0 var(--space-xs) 0;
     }
     
-    /* === EXPERIENCE SECTION === */
-    .experience-section,
-    .section {
+    /* === EXPERIENCE - Compact Layout === */
+    .experience-section, .section {
         page-break-inside: avoid;
-        margin-bottom: var(--print-spacing-lg);
+        margin-bottom: var(--space-md);
     }
     
-    .experience-item,
-    .job-entry {
+    .experience-item, .job-entry {
         page-break-inside: avoid;
-        margin-bottom: var(--print-spacing-lg);
-        padding-left: var(--print-spacing-md);
-        border-left: 2pt solid var(--print-light-gray);
+        margin-bottom: var(--space-lg);
+        padding-left: var(--space-md);
+        border-left: 1.5pt solid var(--print-light);
         position: relative;
     }
     
-    /* Art Deco bullet point */
-    .experience-item::before,
-    .job-entry::before {
+    .experience-item::before, .job-entry::before {
         content: "";
         position: absolute;
-        left: -5pt;
-        top: 4pt;
-        width: 8pt;
-        height: 8pt;
+        left: -4pt;
+        top: 3pt;
+        width: 6pt;
+        height: 6pt;
         background: var(--print-gold);
         transform: rotate(45deg);
     }
     
-    /* Position & Company */
-    .position-title,
-    .job-title {
-        font-size: var(--print-font-size-h3);
+    .position-title, .job-title {
+        font-size: var(--font-h3);
         font-weight: 600;
         color: var(--print-black);
-        margin: 0 0 var(--print-spacing-xs) 0;
+        margin: 0 0 var(--space-xs) 0;
     }
     
     .company-name {
-        font-size: var(--print-font-size-base);
+        font-size: var(--font-base);
         font-weight: 500;
         color: var(--print-accent);
-        margin: 0 0 var(--print-spacing-xs) 0;
+        margin: 0;
+        display: inline;
     }
     
-    .duration,
-    .job-duration {
-        font-size: var(--print-font-size-small);
+    .duration, .job-duration {
+        font-size: var(--font-small);
         font-style: italic;
         color: var(--print-gray);
-        margin: 0 0 var(--print-spacing-sm) 0;
+        margin: 0 0 var(--space-sm) 0;
+        display: inline;
+        padding-left: var(--space-xs);
     }
     
-    /* Categories & Achievements */
+    /* Combine company and duration on same line */
+    .company-name::after {
+        content: " • ";
+        color: var(--print-gray);
+    }
+    
     .category-title {
-        font-size: var(--print-font-size-base);
+        font-size: var(--font-base);
         font-weight: 600;
         color: var(--print-black);
-        margin: var(--print-spacing-sm) 0 var(--print-spacing-xs) 0;
+        margin: var(--space-sm) 0 var(--space-xs) 0;
     }
     
-    .achievements,
-    .achievement-list,
-    ul {
-        margin: var(--print-spacing-xs) 0;
-        padding-left: var(--print-spacing-lg);
+    .achievements, .achievement-list, ul {
+        margin: var(--space-xs) 0;
+        padding-left: var(--space-lg);
     }
     
-    .achievement-item,
-    li {
-        font-size: var(--print-font-size-base);
+    .achievement-item, li {
+        font-size: var(--font-base);
         color: var(--print-black);
-        margin-bottom: var(--print-spacing-xs);
-        line-height: var(--print-line-height);
+        margin-bottom: var(--space-xs);
+        line-height: var(--line-height);
     }
     
-    /* Custom Art Deco bullet points */
     ul li::marker {
         content: "▸ ";
         color: var(--print-gold);
         font-weight: bold;
     }
     
-    /* === SKILLS SECTION === */
+    /* === SKILLS - Compact Grid === */
     .skills-section {
         page-break-inside: avoid;
     }
     
     .skill-category {
-        margin-bottom: var(--print-spacing-md);
+        margin-bottom: var(--space-md);
         page-break-inside: avoid;
     }
     
     .skill-category-title {
-        font-size: var(--print-font-size-base);
+        font-size: var(--font-base);
         font-weight: 600;
         color: var(--print-black);
-        margin: 0 0 var(--print-spacing-sm) 0;
-        padding: var(--print-spacing-xs);
-        background: var(--print-light-gray);
+        margin: 0 0 var(--space-xs) 0;
+        padding: var(--space-xs) 0;
+        border-bottom: 0.5pt solid var(--print-light);
     }
     
     .skill-item {
         display: inline-block;
-        font-size: var(--print-font-size-small);
+        font-size: var(--font-small);
         color: var(--print-gray);
-        padding: 2pt 6pt;
-        margin: 2pt;
-        border: 1pt solid var(--print-light-gray);
-        border-radius: var(--deco-border-radius);
+        padding: 1pt 4pt;
+        margin: 1pt;
+        border: 0.5pt solid var(--print-light);
     }
     
-    /* Hide skill level bars in print */
-    .skill-level,
-    .progress-bar,
-    .skill-percentage {
+    .skill-level, .progress-bar, .skill-percentage {
         display: none !important;
     }
     
-    /* === TECH STACK / TAGS === */
-    .tech-stack,
-    .tags,
-    .tag-list {
-        margin-top: var(--print-spacing-sm);
-        display: flex;
-        flex-wrap: wrap;
-        gap: 4pt;
+    /* === TECH STACK - Inline Compact === */
+    .tech-stack, .tags, .tag-list {
+        margin-top: var(--space-xs);
+        display: inline;
     }
     
-    .tech-item,
-    .tag {
-        display: inline-block;
-        font-size: var(--print-font-size-small);
+    .tech-item, .tag {
+        display: inline;
+        font-size: var(--font-small);
         color: var(--print-gray);
-        padding: 2pt 6pt;
-        border: 1pt solid var(--print-light-gray);
-        border-radius: var(--deco-border-radius);
-        background: var(--print-white);
+        padding: 1pt 3pt;
+        border: 0.5pt solid var(--print-light);
+        margin-right: 2pt;
+        white-space: nowrap;
     }
     
     .tech-title {
         font-weight: 600;
         color: var(--print-black);
-        font-size: var(--print-font-size-small);
-        margin-top: var(--print-spacing-sm);
+        font-size: var(--font-small);
+        margin-top: var(--space-xs);
+        display: block;
     }
     
-    /* === CERTIFICATIONS HIGHLIGHT === */
-    .certification-badge,
-    .certification {
+    /* Tech items inline after title */
+    .tech-title::after {
+        content: ": ";
+    }
+    
+    /* === CERTIFICATIONS === */
+    .certification-badge, .certification {
         display: inline-block;
-        padding: var(--print-spacing-xs) var(--print-spacing-sm);
-        background: linear-gradient(135deg, var(--print-gold) 0%, var(--print-gold-dark) 100%);
+        padding: var(--space-xs) var(--space-sm);
+        background: var(--print-gold);
         color: var(--print-white);
         font-weight: 600;
-        font-size: var(--print-font-size-small);
-        margin: var(--print-spacing-xs) 0;
-        border-radius: var(--deco-border-radius);
+        font-size: var(--font-small);
+        margin: var(--space-xs) var(--space-xs) var(--space-xs) 0;
     }
     
-    /* === TYPOGRAPHY REFINEMENTS === */
+    /* === TYPOGRAPHY === */
     p {
-        margin: var(--print-spacing-xs) 0;
-        font-size: var(--print-font-size-base);
-        line-height: var(--print-line-height);
+        margin: var(--space-xs) 0;
+        font-size: var(--font-base);
+        line-height: var(--line-height);
     }
     
-    strong,
-    b {
-        font-weight: 600;
-        color: var(--print-black);
-    }
+    strong, b { font-weight: 600; color: var(--print-black); }
+    em, i { font-style: italic; color: var(--print-gray); }
     
-    em,
-    i {
-        font-style: italic;
-        color: var(--print-gray);
-    }
-    
-    /* === LINKS === */
+    /* === LINKS - No URLs for compact === */
     a {
         color: var(--print-accent);
         text-decoration: none;
     }
     
-    /* Show URLs for important links in print */
     a[href^="http"]::after {
-        content: " (" attr(href) ")";
-        font-size: var(--print-font-size-small);
-        color: var(--print-gray);
-        word-break: break-all;
-    }
-    
-    /* Don't show URLs for email/phone */
-    a[href^="mailto"]::after,
-    a[href^="tel"]::after {
-        content: "";
+        content: none !important;
     }
     
     /* === PAGE BREAKS === */
-    /* Avoid breaks inside these elements */
-    .experience-item,
-    .skill-category,
-    .achievement-list,
-    .tech-stack {
+    .experience-item, .skill-category, .achievement-list, .tech-stack {
         page-break-inside: avoid;
     }
     
-    /* Force breaks before major sections if needed */
     .section:not(:first-child) {
         page-break-before: auto;
     }
     
-    /* === ART DECO DECORATIVE ELEMENTS === */
-    /* Geometric separator between sections */
+    /* === DECORATIVE SEPARATOR === */
     .section + .section::before {
         content: "";
         display: block;
         width: 100%;
-        height: 1pt;
+        height: 0.5pt;
         background: linear-gradient(
             to right,
             transparent 0%,
-            var(--print-light-gray) 20%,
+            var(--print-light) 25%,
             var(--print-gold) 50%,
-            var(--print-light-gray) 80%,
+            var(--print-light) 75%,
             transparent 100%
         );
-        margin: var(--print-spacing-lg) 0;
+        margin: var(--space-md) 0;
     }
     
-    /* === FOOTER - Art Deco Closing === */
-    footer,
-    .cv-footer {
-        margin-top: var(--print-spacing-xl);
-        padding-top: var(--print-spacing-md);
-        border-top: var(--deco-line-width) solid var(--print-gold);
+    /* === FOOTER === */
+    footer, .cv-footer {
+        margin-top: var(--space-lg);
+        padding-top: var(--space-sm);
+        border-top: var(--deco-line) solid var(--print-gold);
         text-align: center;
-        font-size: var(--print-font-size-small);
+        font-size: var(--font-small);
         color: var(--print-gray);
     }
     
-    /* === PRINT OPTIMIZATION === */
-    /* Remove shadows and transitions */
-    * {
-        box-shadow: none !important;
-        text-shadow: none !important;
-        transition: none !important;
-        animation: none !important;
-    }
-    
-    /* Optimize images for print */
+    /* === OPTIMIZATION === */
     img {
         max-width: 100%;
         page-break-inside: avoid;
-        filter: grayscale(0%);
     }
     
-    /* Remove background colors except essential ones */
     *:not(.certification-badge):not(.skill-category-title) {
         background-image: none !important;
     }
     
-    /* === MULTI-PAGE OPTIMIZATION === */
-    /* Ensure proper spacing for multi-page CVs */
-    .page-break {
-        page-break-before: always;
-    }
+    .page-break { page-break-before: always; }
     
-    /* Widows and orphans control */
     p, li {
         orphans: 3;
         widows: 3;
     }
     
-    /* === ACCESSIBILITY FOR PRINT === */
-    /* Ensure sufficient contrast */
-    .text-light {
-        color: var(--print-gray) !important;
+    .print-only { display: block !important; }
+    
+    /* === MULTI-COLUMN FOR SKILLS (OPTIONAL) === */
+    .skills-grid {
+        column-count: 2;
+        column-gap: var(--space-lg);
     }
     
-    .text-dark {
-        color: var(--print-black) !important;
+    /* === COMPACT ACHIEVEMENTS === */
+    /* Two-column layout for achievements if space allows */
+    .achievements.compact {
+        column-count: 2;
+        column-gap: var(--space-md);
     }
     
-    /* === SPECIAL PRINT-ONLY ELEMENTS === */
-    .print-only {
-        display: block !important;
-    }
-    
-    /* Print timestamp */
-    .print-date::after {
-        content: "Generated: " attr(data-date);
-        font-size: var(--print-font-size-small);
-        color: var(--print-gray);
-        font-style: italic;
+    .achievements.compact li {
+        break-inside: avoid;
     }
 }
-
-/* ===================================================================
-   END OF PRINT STYLESHEET
-   =================================================================== */
