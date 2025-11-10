@@ -4,7 +4,7 @@ const experiences = {
             fr: {
                 position: "Business Development Manager",
                 company: "Ecofoam",
-                duration: "09/2024 - 04/2025",
+                duration: "Depuis 04/2025",
                 categories: [
                     {
                         title: "Gestion Client et Croissance Commerciale",
@@ -34,7 +34,7 @@ const experiences = {
             en: {
                 position: "Business Development Manager",
                 company: "Ecofoam",
-                duration: "09/2024 - 04/2025",
+                duration: "Since 04/2025",
                 categories: [
                     {
                         title: "Client Management & Commercial Growth",
@@ -64,7 +64,7 @@ const experiences = {
             ru: {
                 position: "Менеджер по развитию бизнеса",
                 company: "Ecofoam",
-                duration: "09/2024 - 04/2025",
+                duration: "C 04/2025",
                 categories: [
                     {
                         title: "Управление клиентами и коммерческий рост",
